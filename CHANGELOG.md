@@ -49,6 +49,73 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
+## [1.7.0] - 2026-07-12
+
+### Added / 新增
+
+#### Stage 6 (Implementation) — seventh section filled in
+
+11-section Implementation SOP. **Procedure, not style** — coding style lives in
+Stage 10 (Coding Practices). Stage 6 owns: how to execute a single task end-to-end.
+
+11 sections:
+
+- §1 Overview — single-task execution loop; one session = one task
+- §2 Pre-conditions (Hard Gates) — 4 gates (Plan / Test Plan / Stage 5 / Commit authority)
+- §3 Task Selection & Context Loading — pick one task, load 4 docs, declare boundary
+- §4 The Per-Task Loop — `Load → Code → Test → Commit → Report` 5-step micro-cycle (~1 hour per session)
+- §5 CODE Phase — SOP (match Spec literally, match Test Plan literally, stay in Target Files)
+- §6 TEST Phase — execute Test Plan; "fail loud" (no swallowing errors); capture evidence
+- §7 COMMIT Phase — agent prepares (git add + draft message + halt); **Ezio executes `git commit`**
+- §8 REPORT Phase — Task Report as handoff artifact to Stage 7
+- §9 Task Boundary Discipline — one session = one task (anti-patterns explicit)
+- §10 Stop Conditions — 7 conditions that force halt + escalate (S1–S7)
+- §11 Open Questions (decision deadline per item)
+- §12 References
+
+Includes:
+
+- [`docs/06-implementation/_index_en.md`](docs/06-implementation/_index_en.md) + `_index_zh.md` — full section content
+- [`docs/06-implementation/template_en.md`](docs/06-implementation/template_en.md) + `_zh.md` — Task Report template (12 sections, Status header mandatory at top)
+- [`docs/06-implementation/checklist_en.md`](docs/06-implementation/checklist_en.md) + `_zh.md` — per-session checklist:
+  - A. Pre-flight (4 gates + task context + environment)
+  - B. Per-loop (after each of 5 phases)
+  - C. Boundary discipline (one session one task; no scope expansion; no silent failures)
+  - D. Stop Conditions (S1–S7)
+  - E. Hand-off
+  - F. Quality gates (7 hard gates, not "best practices")
+  - G. Anti-pattern self-check
+
+### Decisions confirmed with Ezio
+
+- **Stage 6 = SOP (procedure), Stage 10 = craft (style)**: kept strictly separate.
+  Stage 6 does NOT duplicate coding style, naming, error patterns — those live in
+  Stage 10.
+- **One session = one task**: hard rule; "while I'm in this file, let me also..."
+  patterns are explicit Stop Conditions.
+- **Commit authority split**: agent prepares (git add + draft message + halt);
+  Ezio runs `git commit`. Three reasons: audit / safety / reversibility.
+- **Status header mandatory in Task Report**: COMPLETED / FAILED / BLOCKED / PARTIAL
+  at the top, plain and unambiguous. Hiding failures in verbose text is disallowed.
+- **No skipping, deleting, or marking-xfail tests**: failures are data; silent
+  fixes are lost data.
+- **Fail-loud philosophy**: every Phase produces concrete evidence (≥ 50 lines test
+  output, coverage delta, etc.); no summaries.
+
+### Changed / 变更
+
+- Sections index updated: Stage 6 (Implementation) status `Skeleton` → `Active`
+
+### Remaining work / 剩 5 个 section
+
+- Stage 7 (Review) — Skeleton
+- Stage 8 (Commit) — Skeleton
+- Cross-Cutting 10 (Coding Practices) — Skeleton
+- Cross-Cutting 11 (Governance) — Skeleton
+- Cross-Topic 90 (Pitfalls) — Skeleton
+
+---
+
 ## [1.6.0] - 2026-07-12
 
 ### Added / 新增

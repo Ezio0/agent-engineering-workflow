@@ -109,6 +109,70 @@ Stage 5 的 11 章节：
 
 ---
 
+## [1.7.0] - 2026-07-12
+
+### 新增
+
+#### Stage 6（实施）—— 第七个填的 section
+
+11 章实施 SOP。**是流程，不是风格**——编码风格在 Stage 10（Coding Practices）。
+Stage 6 负责：一个 task 怎么端到端执行。
+
+11 章：
+
+- §1 概述 —— 单任务执行循环；一个 session = 一个 task
+- §2 前置条件（硬关卡）—— 4 个关卡（Plan / Test Plan / Stage 5 / commit 权限）
+- §3 任务选择与上下文加载 —— 选一个 task，加载 4 个文档，声明边界
+- §4 单 task 循环 —— `加载 → 编码 → 测试 → 提交 → 报告` 5 步微循环（每个 session 约 1 小时）
+- §5 编码阶段 —— 流程（字面匹配 Spec、字面匹配 Test Plan、留在 Target Files 内）
+- §6 测试阶段 —— 执行 Test Plan；"失败响亮"（不吞错）；抓证据
+- §7 提交阶段 —— agent 准备（git add + 起草 message + 暂停）；**Ezio 执行 `git commit`**
+- §8 报告阶段 —— Task Report 作为给 Stage 7 的交接产物
+- §9 任务边界纪律 —— 一个 session = 一个 task（反模式明确列出）
+- §10 停止条件 —— 7 个强制暂停 + 升级的条件（S1–S7）
+- §11 开放问题（每项决策截止）
+- §12 参考
+
+包含：
+
+- [`docs/06-implementation/_index_en.md`](docs/06-implementation/_index_en.md) + `_index_zh.md` —— 完整 section
+- [`docs/06-implementation/template_en.md`](docs/06-implementation/template_en.md) + `_zh.md` —— Task Report 模板（12 节，Status header 必填在顶部）
+- [`docs/06-implementation/checklist_en.md`](docs/06-implementation/checklist_en.md) + `_zh.md` —— 每个 session 的检查表：
+  - A. Pre-flight（4 关 + task 上下文 + 环境）
+  - B. Per-loop（5 阶段每阶段后）
+  - C. 边界纪律（一个 session 一个 task；无范围扩张；无静默失败）
+  - D. 停止条件（S1–S7）
+  - E. 交接
+  - F. 质量关卡（7 个硬关卡，不是"最佳实践"）
+  - G. 反模式自查
+
+### 与 Ezio 确认的决策
+
+- **Stage 6 = 流程 SOP，Stage 10 = 手艺风格**：严格分开。Stage 6 不重复编码风格、
+  命名、错误处理模式——那些在 Stage 10。
+- **一个 session = 一个 task**：硬规则；"既然我在这个文件里，顺便..."模式是明确的
+  停止条件。
+- **Commit 权限分离**：agent 准备（git add + 起草 message + 暂停）；Ezio 运行
+  `git commit`。三个理由：审计 / 安全 / 可回滚。
+- **Task Report 的 Status header 必填**：已完成 / 失败 / 阻塞 / 部分完成写在顶部，
+  一目了然。不允许把失败藏在冗长正文。
+- **不跳过、删除、标 xfail 测试**：失败是数据；静默修复是丢失数据。
+- **失败响亮的哲学**：每阶段产生具体证据（≥ 50 行测试输出、覆盖率变化等）；不总结。
+
+### 变更
+
+- Sections 索引更新：Stage 6（实施）状态 `骨架` → `活跃`
+
+### 剩 5 个 section
+
+- Stage 7（Review）—— 骨架
+- Stage 8（Commit）—— 骨架
+- 横向 10（Coding Practices）—— 骨架
+- 横向 11（Governance）—— 骨架
+- 跨主题 90（pitfalls）—— 骨架
+
+---
+
 ## [1.5.0] - 2026-07-12
 
 ### 新增

@@ -16,7 +16,7 @@
 | 03 | [Plan](03-plan/_index_zh.md) | 实施步骤、依赖、风险 | 活跃 |
 | 04 | [Test Plan](04-test-plan/_index_zh.md) | 单元 / 集成 / E2E 范围 + 覆盖率 | 活跃 |
 | 05 | [Multi-Agent Coordination](05-multi-agent-coordination/_index_zh.md) | 三层防护（声明 + 隔离 + 检测）应对并发 agent | 活跃 |
-| 06 | [Implementation](06-implementation/_index_zh.md) | 写代码 | 骨架 |
+| 06 | [Implementation](06-implementation/_index_zh.md) | 单任务执行循环（加载 → 编码 → 测试 → 提交 → 报告） | 活跃 |
 | 07 | [Review](07-review/_index_zh.md) | Ezio 评审 diff / patch | 骨架 |
 | 08 | [Commit](08-commit/_index_zh.md) | 以 git commit 落地 | 骨架 |
 

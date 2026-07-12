@@ -16,7 +16,7 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 | 03 | [Plan](03-plan/_index_en.md) | Implementation steps, dependencies, risks | Active |
 | 04 | [Test Plan](04-test-plan/_index_en.md) | Unit / Integration / E2E scope + coverage | Active |
 | 05 | [Multi-Agent Coordination](05-multi-agent-coordination/_index_en.md) | 3-layer defense (Declaration + Isolation + Detection) for concurrent agents | Active |
-| 06 | [Implementation](06-implementation/_index_en.md) | Write the code | Skeleton |
+| 06 | [Implementation](06-implementation/_index_en.md) | Single-task execution loop (Load → Code → Test → Commit → Report) | Active |
 | 07 | [Review](07-review/_index_en.md) | Ezio reviews diff / patch | Skeleton |
 | 08 | [Commit](08-commit/_index_en.md) | Land as git commit | Skeleton |
 
