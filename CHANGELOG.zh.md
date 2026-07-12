@@ -49,6 +49,57 @@
 
 ---
 
+## [1.3.0] - 2026-07-12
+
+### 新增
+
+#### Stage 2（Spec）—— 第三个填充的 section
+
+技术文档惯例 12 章节结构（**不是** 13，跟 PRD 不同）。按 Ezio 指示：
+"Spec 是技术文档。我们有需求文档和技术文档，技术文档按技术文档惯例来。"
+
+12 章节：
+
+- §1 Overview
+- §2 Goals
+- §3 Non-Goals
+- §4 Architecture（强制 ASCII/mermaid 图）
+- §5 Data Model
+- §6 API Surface
+- §7 Error Model
+- §8 Failure Modes
+- §9 Performance Budget
+- §10 Security & Privacy
+- §11 Open Questions（每项决策截止日）
+- §12 References
+
+### 与 Ezio 确认的决策
+
+- **风格：v1.0 项目用 Single Spec（不是 ADR-heavy）。** 切换到 ADR-style 的时机：项目过 v1.0、积累矛盾决定时。
+- **§4 Architecture 强制真图**（ASCII 或 mermaid）。纯文字"架构"不是架构。
+- **Non-Goals vs Open Questions 不重叠，但 cross-reference。** Non-Goal = 决定不做；Open Question = 还没决定。每个 Open Question 有决策截止日；解决后移到对应 section 并升 Spec 版本。
+- **§11 Open Questions 每项必须有决策截止日。** 无截止日的 wishlist 不允许。
+
+包括：
+
+- [`docs/02-spec/_index_zh.md`](docs/02-spec/_index_zh.md) + `_index_en.md` — section 完整内容：
+  - 跟上游 stages 的关系（Positioning + PRD）
+  - 12 个强制章节
+  - 何时改用 ADR-style（v1.0 后）
+  - 常见失败模式表
+- [`docs/02-spec/template_v1.0_zh.md`](docs/02-spec/template_v1.0_zh.md) + `_en.md` — 12 章节空白模板
+- [`docs/02-spec/checklist_v1.0_zh.md`](docs/02-spec/checklist_v1.0_zh.md) + `_en.md` — 进入 Stage 3（Plan）前的签字门：
+  - 前置（PRD 已签字）
+  - 结构门（含真图要求、§11 截止日）
+  - 各章节内容门
+  - 质量门 + 4 个自检问题
+
+### 变更
+
+- 剩 9 个 section 仍是骨架（Sections 03–07、10–12、90）。下一个：Stage 3（Plan）。
+
+---
+
 ## [1.2.0] - 2026-07-12
 
 ### 新增

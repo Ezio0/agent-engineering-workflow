@@ -49,6 +49,64 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
+## [1.3.0] - 2026-07-12
+
+### Added / 新增
+
+#### Stage 2 (Spec) — third section filled in
+
+Tech-doc-conventional 12-section structure (NOT 13 like PRD). Per Ezio's instruction:
+"Spec is a technical document. We have a requirements doc and a technical
+doc — the technical doc follows technical-doc conventions."
+
+12 sections:
+
+- §1 Overview
+- §2 Goals
+- §3 Non-Goals
+- §4 Architecture (mandatory ASCII/mermaid diagram)
+- §5 Data Model
+- §6 API Surface
+- §7 Error Model
+- §8 Failure Modes
+- §9 Performance Budget
+- §10 Security & Privacy
+- §11 Open Questions (decision deadline per item)
+- §12 References
+
+### Decisions confirmed with Ezio
+
+- **Style: Single Spec (not ADR-heavy)** for v1.0 projects. Switch to ADR-style
+  when project is past v1.0 or accumulating conflicting decisions.
+- **§4 Architecture requires real diagram** (ASCII or mermaid). Text-only "architecture"
+  is not architecture.
+- **Non-Goals vs Open Questions**: not overlapping, but cross-referenced.
+  Non-Goal = decided NOT to do. Open Question = haven't decided.
+  Every Open Question has a decision deadline; resolved questions move to the
+  relevant section and bump Spec version.
+- **§11 Open Questions requires decision deadline per item**. Wishlist items
+  without deadlines are not allowed.
+
+Includes:
+
+- [`docs/02-spec/_index_en.md`](docs/02-spec/_index_en.md) + `_index_zh.md` — full section content:
+  - Relationship to upstream stages (Positioning + PRD)
+  - 12 mandatory sections
+  - When to use ADR-style instead (post-v1.0)
+  - Common failure modes table
+- [`docs/02-spec/template_v1.0_en.md`](docs/02-spec/template_v1.0_en.md) + `_zh.md` — blank 12-section template
+- [`docs/02-spec/checklist_v1.0_en.md`](docs/02-spec/checklist_v1.0_en.md) + `_zh.md` — sign-off gate before Stage 3 (Plan):
+  - Pre-requisite (PRD signed off)
+  - Structural gates (incl. real diagram requirement, §11 deadlines)
+  - Per-section content gates
+  - Quality gates + 4 self-check questions
+
+### Changed / 变更
+
+- All 9 remaining sections still Skeleton (Sections 03–07, 10–12, 90). Next: Stage 3 (Plan).
+
+---
+
 ## [1.2.0] - 2026-07-12
 
 ### Added / 新增
