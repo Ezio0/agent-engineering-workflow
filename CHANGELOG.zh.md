@@ -49,6 +49,49 @@
 
 ---
 
+## [1.5.0] - 2026-07-12
+
+### 新增
+
+#### Stage 4（Test Plan）—— 第五个填充的 section
+
+8 章节 Test Plan。按 Ezio 决策：
+
+- **默认覆盖率门槛**：Unit ≥ 80%、Integration 100%、E2E 100%（豁免需书面理由记 §1）
+- **Test Plan 是硬门**：Test Plan 签字前 Stage 5（Implementation）不能开始
+- **金字塔形状强制**：unit 数 > integration 数 > E2E 数
+
+8 章节：
+
+- §1 Scope & Coverage Targets
+- §2 Test Pyramid Breakdown（必须是金字塔形）
+- §3 Test Strategy per Layer（Unit / Integration / E2E —— 每层带 mock + 速度预算）
+- §4 Test Data（无真实 PII；只用合成）
+- §5 Test Environments（Local / CI / Staging / Production）
+- §6 Non-Functional Tests（性能 / 安全 / 可访问性 / 兼容性 / 恢复）
+- §7 Open Questions（每项决策截止日）
+- §8 References
+
+包括：
+
+- [`docs/04-test-plan/_index_zh.md`](docs/04-test-plan/_index_zh.md) + `_index_en.md` — section 完整内容：
+  - 默认覆盖率门槛
+  - 测试金字塔概念 + 平 / 头重 / 底重分别意味着什么
+  - 8 个强制章节
+  - 常见失败模式表
+- [`docs/04-test-plan/template_v1.0_zh.md`](docs/04-test-plan/template_v1.0_zh.md) + `_en.md` — 8 章节空白模板
+- [`docs/04-test-plan/checklist_v1.0_zh.md`](docs/04-test-plan/checklist_v1.0_zh.md) + `_en.md` — 进入 Stage 5（Implementation）前的签字门：
+  - 前置（Plan 已签字）
+  - 结构门（8 章节，金字塔形）
+  - 各章节内容门
+  - 质量门 + 4 个自检问题（含"删掉所有 E2E 还能自信发版吗？"）
+
+### 变更
+
+- 剩 7 个 section 仍是骨架（Sections 05–07、10–12、90）。下一个：Stage 5（Implementation）。
+
+---
+
 ## [1.4.0] - 2026-07-12
 
 ### 新增

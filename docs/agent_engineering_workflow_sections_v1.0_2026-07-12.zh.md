@@ -14,7 +14,7 @@
 | 01 | [PRD](01-prd/_index_zh.md) | 功能范围、用户故事、验收 | 活跃 |
 | 02 | [Spec](02-spec/_index_zh.md) | API 表面、数据结构、错误契约 | 活跃 |
 | 03 | [Plan](03-plan/_index_zh.md) | 实施步骤、依赖、风险 | 活跃 |
-| 04 | [Test Plan](04-test-plan/_index_zh.md) | 单元 / 集成 / E2E 范围 + 覆盖率 | 骨架 |
+| 04 | [Test Plan](04-test-plan/_index_zh.md) | 单元 / 集成 / E2E 范围 + 覆盖率 | 活跃 |
 | 05 | [Implementation](05-implementation/_index_zh.md) | 写代码 | 骨架 |
 | 06 | [Review](06-review/_index_zh.md) | Ezio 评审 diff / patch | 骨架 |
 | 07 | [Commit](07-commit/_index_zh.md) | 以 git commit 落地 | 骨架 |

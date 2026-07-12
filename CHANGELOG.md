@@ -49,6 +49,49 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
+## [1.5.0] - 2026-07-12
+
+### Added / 新增
+
+#### Stage 4 (Test Plan) — fifth section filled in
+
+8-section Test Plan. Per Ezio's decisions:
+
+- **Default coverage thresholds**: Unit ≥ 80%, Integration 100%, E2E 100% (overrides require written reason in §1)
+- **Test Plan is a hard gate**: Stage 5 (Implementation) cannot begin until Test Plan is signed off
+- **Pyramid shape mandatory**: unit count > integration count > E2E count
+
+8 sections:
+
+- §1 Scope & Coverage Targets
+- §2 Test Pyramid Breakdown (must be pyramid-shaped)
+- §3 Test Strategy per Layer (Unit / Integration / E2E — each with mock + speed budget)
+- §4 Test Data (no real PII; synthetic only)
+- §5 Test Environments (Local / CI / Staging / Production)
+- §6 Non-Functional Tests (Performance / Security / Accessibility / Compatibility / Recovery)
+- §7 Open Questions (decision deadline per item)
+- §8 References
+
+Includes:
+
+- [`docs/04-test-plan/_index_en.md`](docs/04-test-plan/_index_en.md) + `_index_zh.md` — full section content:
+  - Default coverage thresholds
+  - Test pyramid concept + what flat / top-heavy / bottom-heavy mean
+  - 8 mandatory sections
+  - Common failure modes table
+- [`docs/04-test-plan/template_v1.0_en.md`](docs/04-test-plan/template_v1.0_en.md) + `_zh.md` — blank 8-section template
+- [`docs/04-test-plan/checklist_v1.0_en.md`](docs/04-test-plan/checklist_v1.0_en.md) + `_zh.md` — sign-off gate before Stage 5 (Implementation):
+  - Pre-requisite (Plan signed off)
+  - Structural gates (8 sections, pyramid shape)
+  - Per-section content gates
+  - Quality gates + 4 self-check questions (incl. "delete all E2E, can you still ship?")
+
+### Changed / 变更
+
+- All 7 remaining sections still Skeleton (Sections 05–07, 10–12, 90). Next: Stage 5 (Implementation).
+
+---
+
 ## [1.4.0] - 2026-07-12
 
 ### Added / 新增
