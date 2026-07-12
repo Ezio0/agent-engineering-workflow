@@ -11,7 +11,7 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 | # | Section | Purpose | Status |
 |---|---------|---------|--------|
 | 00 | [Positioning](00-positioning/_index_en.md) | Who / why / underlying logic / what we are NOT | Active |
-| 01 | [PRD](01-prd/_index_en.md) | Functional scope, user stories, acceptance | Skeleton |
+| 01 | [PRD](01-prd/_index_en.md) | Functional scope, user stories, acceptance | Active |
 | 02 | [Spec](02-spec/_index_en.md) | API surface, data structures, error contracts | Skeleton |
 | 03 | [Plan](03-plan/_index_en.md) | Implementation steps, dependencies, risks | Skeleton |
 | 04 | [Test Plan](04-test-plan/_index_en.md) | Unit / Integration / E2E scope + coverage | Skeleton |

@@ -49,6 +49,45 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
+## [1.2.0] - 2026-07-12
+
+### Added / 新增
+
+#### Stage 1 (PRD) — second section filled in
+
+Reuses the EgoZone 13-section PRD structure with two renames per Ezio's instruction:
+
+- `§7 Admin SQL` → `§7 Data Observability` (project-agnostic)
+- `§12 埋点需求 (Telemetry)` → `§12 Observability Requirements` (covers events / logs / metrics / tracing, not just events)
+
+Includes:
+
+- [`docs/01-prd/_index_en.md`](docs/01-prd/_index_en.md) + `_index_zh.md` — full section content:
+  - **Relationship to Positioning** table: which PRD sections reference which Positioning sections (§2 ← WHO, §1 ← WHY, §5 ← WHY NOW, §10 ← ANTI-POSITIONING)
+  - **13 mandatory sections** in fixed order (all required, may be empty "无")
+  - **§12 Observability Requirements** mandatory even when §7 doesn't apply
+  - How-to-use guidance (Positioning must sign off first)
+  - Common failure modes table
+- [`docs/01-prd/template_v1.0_en.md`](docs/01-prd/template_v1.0_en.md) + `_zh.md` — blank 13-section PRD template with appendix on observability design principles
+- [`docs/01-prd/checklist_v1.0_en.md`](docs/01-prd/checklist_v1.0_en.md) + `_zh.md` — sign-off gate before Stage 2 (Spec):
+  - Pre-requisite gate: Positioning signed off
+  - Structural gates (all 13 sections, §12 mandatory, §10 ≥ 3 items, §13 has Kanban)
+  - Content gates per section (acceptance criteria per §)
+  - Quality gates + 3 self-check questions
+
+### Decisions confirmed with Ezio
+
+- 13-section structure: reuse EgoZone template
+- Depth: framework + template + checklist (same shape as Stage 0)
+- Overlap with Positioning: allowed (reference, don't rewrite) — codified in the "Relationship to Positioning" table
+- Observability design principles: included as appendix in template
+
+### Changed / 变更
+
+- All 10 remaining sections still Skeleton (Sections 02–07, 10–12, 90). Next: Stage 2 (Spec).
+
+---
+
 ## [1.1.0] - 2026-07-12
 
 ### Added / 新增

@@ -49,6 +49,45 @@
 
 ---
 
+## [1.2.0] - 2026-07-12
+
+### 新增
+
+#### Stage 1（PRD）—— 第二个填充的 section
+
+复用 EgoZone 13 章节 PRD 结构，按 Ezio 指示重命名两章：
+
+- `§7 Admin SQL` → `§7 数据可观测性`（项目无关）
+- `§12 埋点需求` → `§12 可观测性需求`（覆盖事件 / 日志 / 指标 / 追踪，不只是事件）
+
+包括：
+
+- [`docs/01-prd/_index_zh.md`](docs/01-prd/_index_zh.md) + `_index_en.md` — section 完整内容：
+  - **跟 Positioning 的关系**表：哪些 PRD 章节引用 Positioning 的哪些内容（§2 ← WHO，§1 ← WHY，§5 ← WHY NOW，§10 ← ANTI-POSITIONING）
+  - **13 个强制章节**（固定顺序，必须齐全，可空"无"）
+  - **§12 可观测性需求**即使 §7 不适用也强制
+  - 使用指南（Positioning 必须先签字）
+  - 常见失败模式表
+- [`docs/01-prd/template_v1.0_zh.md`](docs/01-prd/template_v1.0_zh.md) + `_en.md` — 13 章节 PRD 空白模板，附"可观测性需求的设计原则"附录
+- [`docs/01-prd/checklist_v1.0_zh.md`](docs/01-prd/checklist_v1.0_zh.md) + `_en.md` — 进入 Stage 2（Spec）前的签字门：
+  - 前置门：Positioning 已签字
+  - 结构门（13 章节齐全，§12 强制，§10 ≥ 3 项，§13 有 Kanban）
+  - 各章节内容门
+  - 质量门 + 3 个自检问题
+
+### 与 Ezio 确认的决策
+
+- 13 章节结构：复用 EgoZone 模板
+- 深度：框架 + 模板 + checklist（跟 Stage 0 一致）
+- 跟 Positioning 的重叠：允许（引用别重写）—— 体现在"跟 Positioning 的关系"表里
+- 可观测性需求的设计原则：作为附录纳入模板
+
+### 变更
+
+- 剩 10 个 section 仍是骨架（Sections 02–07、10–12、90）。下一个：Stage 2（Spec）。
+
+---
+
 ## [1.1.0] - 2026-07-12
 
 ### 新增
