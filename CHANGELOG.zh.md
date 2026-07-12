@@ -176,6 +176,114 @@ Stage 11 框架从 `egozone-governance` skill 投影以下内容：
 
 ---
 
+## [2.2.0] - 2026-07-12
+
+### 🎉 里程碑：HANDBOOK 完成 —— 全部 12 个 section 已填
+
+**状态**：`agent-engineering-workflow` handbook 的全部 12 个 sections 现在都是 **活跃** 且有完整内容。从 `00-positioning`（骨架 → 5 问框架）到 `90-pitfalls`（骨架 → 43 条索引），每个 section 都已通过与 Ezio 的讨论填好并 commit。
+
+### 新增
+
+#### 跨主题 90（Pitfalls）—— 最后填的 section —— HANDBOOK 完成
+
+8 章 pitfall 索引。**索引，不是叙事** —— 不引入新规则；汇总所有 11 个前序 section 和外部源（egozone-governance skill、agent-team-orchestrator README、claude-code skill、coding-workflow skill）的 pitfalls。
+
+8 章：
+
+- §1 概述 —— 何时查阅（5 个时刻）和何时**不**用（3 个情况）
+- §2 Pitfall 分类 —— 6 个类别：P-MA / P-IM / P-RV / P-CM / P-CD / P-GV
+- §3 Pitfall 索引 —— 43 条带固定模板（日期 / 类别 / 上下文 / 触发 / 症状 / 修复 / 交叉引用）
+- §4 Pitfall 来源 —— 出处：egozone-governance（18）、agent-team-orchestrator（~5）、claude-code（~3）、coding-workflow（~2）、handbook 自身（~15）、agent-team-orchestrator 项目构建（1）
+- §5 何时添加新 Pitfall —— 5 个触发（复发 / 高爆炸半径 / 用户纠正 / skill 记录 / pre-delivery review）；模板强制
+- §6 Pitfall 生命周期 —— 5 个状态（已发现 / 已索引 / 已缓解 / 已废弃 / 提升为规则）
+- §7 搜索技巧 —— 4 个策略（按症状 / 按来源 / 按 stage / 按类别）
+- §8 参考 —— section 归属 + skill 源 + agent-team-orchestrator 文档
+
+包含：
+
+- [`docs/90-pitfalls/_index_en.md`](docs/90-pitfalls/_index_en.md) + `_index_zh.md` —— 完整索引含 43 条
+
+### 43 个 pitfalls 一览
+
+| 类别 | 数量 | 例子 |
+|------|------|------|
+| **P-MA**（多 Agent） | 6 | #1 并发覆盖，#4 自我评审，#5 跨 profile 读 env |
+| **P-IM**（实施） | 9 | #8 未授权工作，#9 跳过失败测试，#11 一 session 多 task，#15 忽略停止条件 |
+| **P-RV**（Review） | 7 | #16 "看起来不错发吧"，#17 自我评审，#21 "带保留批准" |
+| **P-CM**（提交） | 6 | #23 错误作者，#25 force-push，#27 缺 Task ID |
+| **P-CD**（编码） | 6 | #29 print 代替 logging，#30 吞异常，#31 硬编码用户值 |
+| **P-GV**（治理） | 9 | #7 静默失败，#35 agent 决定，#43 信摘要不信文件 |
+| **总计** | **43** | |
+
+### 与 Ezio 确认的决策
+
+- **索引不是叙事**：Stage 90 不引入新规则；它交叉引用修复所在之处。
+- **活文档**：发现时加新 pitfall（§5 有 5 个触发），不等大版本。
+- **投影规则**：本索引的 pitfalls 指向**记录修复**的 section，不是发现问题之处（Discovered-in-X, Fixed-in-Y）。
+- **6 个类别（不是 9 个）**：从 9 压缩到 6，因为跨 stage pitfalls（如 #7 静默失败既出现在 P-IM 也出现在 P-GV）跨多个 stages。类别是主标签，不是划分。
+
+### 最终 handbook 结构
+
+```
+agent-engineering-workflow/
+├── README.md                          # 英文
+├── README.zh.md                       # 中文
+├── CHANGELOG.md / .zh.md              # 双语 changelog
+├── LICENSE
+└── docs/
+    ├── 00-positioning/        (活跃) 5 问框架 + template + checklist
+    ├── 01-prd/                (活跃) 13 章 PRD + template + checklist
+    ├── 02-spec/               (活跃) 12 章技术文档 Spec + template + checklist
+    ├── 03-plan/               (活跃) 10 章 Plan + template + checklist
+    ├── 04-test-plan/          (活跃) 8 章 Test Plan + template + checklist
+    ├── 05-multi-agent-coord/  (活跃) 11 章协议 + template + checklist
+    ├── 06-implementation/     (活跃) 11 章 SOP + template + checklist
+    ├── 07-review/             (活跃) 10 章协议 + template + checklist
+    ├── 08-commit/             (活跃) 8 章 SOP
+    ├── 10-coding-practices/   (活跃) 13 章风格指南
+    ├── 11-governance/         (活跃) 11 章框架
+    ├── 90-pitfalls/           (活跃) 8 章索引（43 条）
+    ├── agent_engineering_workflow_sections_v1.0_2026-07-12.{en,zh}.md
+    └── agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.{en,zh}.md
+```
+
+总计：**42 个文件**（不含 `.git`、CHANGELOG），**约 10,000 行**双语内容。
+
+### 完成后下一步
+
+这些独立跟踪，不阻塞 handbook 完成：
+
+1. 更新 Hermes 的 `global-launch-review` skill，反映 9 阶段 workflow + 横向 + pitfall 索引
+2. 更新 `agent-team-orchestrator` README，引用 `agent-engineering-workflow` 作为三层防护和 4 原则的权威源
+3. 加 `.github/workflows/bilingual-lint.yml` 强制结构对等
+4. 把 workflow 应用到实际项目（EgoZone、未来项目）
+
+### 变更
+
+- Sections 索引更新：跨主题 90（Pitfalls）状态 `骨架` → `活跃`
+- 版本号 bump：2.1.0 → 2.2.0
+
+### 🎯 全部 sections 现在都是活跃
+
+| Section | 状态 |
+|---------|------|
+| 00 Positioning | ✅ 活跃 |
+| 01 PRD | ✅ 活跃 |
+| 02 Spec | ✅ 活跃 |
+| 03 Plan | ✅ 活跃 |
+| 04 Test Plan | ✅ 活跃 |
+| 05 Multi-Agent Coordination | ✅ 活跃 |
+| 06 Implementation | ✅ 活跃 |
+| 07 Review | ✅ 活跃 |
+| 08 Commit | ✅ 活跃 |
+| 10 Coding Practices | ✅ 活跃 |
+| 11 Governance | ✅ 活跃 |
+| 90 Pitfalls | ✅ 活跃 |
+
+**12/12 sections 活跃。Handbook 完成。**
+
+---
+
 ## [1.9.0] - 2026-07-12
 
 ### 新增

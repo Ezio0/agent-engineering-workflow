@@ -183,6 +183,114 @@ The Stage 11 framework projects the following from `egozone-governance` skill:
 
 ---
 
+## [2.2.0] - 2026-07-12
+
+### 🎉 MILESTONE: HANDBOOK COMPLETE — All 12 sections filled in
+
+**Status**: All 12 sections of the `agent-engineering-workflow` handbook are now **Active** with full content. From `00-positioning` (skeleton → 5-question framework) to `90-pitfalls` (skeleton → 43-entry index), every section has been filled in via discussion with Ezio and committed.
+
+### Added / 新增
+
+#### Cross-Topic 90 (Pitfalls) — final section filled in — HANDBOOK COMPLETE
+
+8-section pitfall index. **Index, not narrative** — does not introduce new rules; aggregates pitfalls from all 11 prior sections and external sources (egozone-governance skill, agent-team-orchestrator README, claude-code skill, coding-workflow skill).
+
+8 sections:
+
+- §1 Overview — when to consult (5 moments) and when NOT to use (3 cases)
+- §2 Pitfall Categories — 6 categories: P-MA / P-IM / P-RV / P-CM / P-CD / P-GV
+- §3 Pitfall Index — 43 entries with fixed template (Date / Category / Context / Trigger / Symptom / Fix / Cross-reference)
+- §4 Pitfall Sources — provenance: egozone-governance (18), agent-team-orchestrator (~5), claude-code (~3), coding-workflow (~2), handbook itself (~15), agent-team-orchestrator project build (1)
+- §5 When to Add a New Pitfall — 5 triggers (recurrence / blast radius / user correction / skill-documented / pre-delivery review); template enforcement
+- §6 Pitfall Lifecycle — 5 states (discovered / indexed / mitigated / obsolete / promoted to rule)
+- §7 Search Tips — 4 strategies (by symptom / by source / by stage / by category)
+- §8 References — section homes + skill sources + agent-team-orchestrator docs
+
+Includes:
+
+- [`docs/90-pitfalls/_index_en.md`](docs/90-pitfalls/_index_en.md) + `_index_zh.md` — full index with 43 entries
+
+### The 43 pitfalls at a glance
+
+| Category | Count | Examples |
+|----------|-------|----------|
+| **P-MA** (Multi-Agent) | 6 | #1 concurrent overwrite, #4 self-review, #5 cross-profile env read |
+| **P-IM** (Implementation) | 9 | #8 unsolicited work, #9 skip-failing-test, #11 one-session-many-tasks, #15 ignore stop condition |
+| **P-RV** (Review) | 7 | #16 "looks good ship it", #17 self-review, #21 "approve with caveats" |
+| **P-CM** (Commit) | 6 | #23 wrong author, #25 force-push, #27 missing Task ID |
+| **P-CD** (Coding) | 6 | #29 print-not-logging, #30 swallowed exceptions, #31 hardcoded user values |
+| **P-GV** (Governance) | 9 | #7 silent failure, #35 agent-decides, #43 trust-summary-over-file |
+| **Total** | **43** | |
+
+### Decisions confirmed with Ezio
+
+- **Index not narrative**: Stage 90 does not introduce new rules; it cross-references where the fix lives.
+- **Living document**: new pitfalls added as discovered (5 triggers in §5), not waiting for major version.
+- **Projection rule**: pitfalls in this index point to the section that documents the FIX, not where they were discovered (Discovered-in-X, Fixed-in-Y).
+- **Six categories (not nine)**: collapsed to 6 instead of one per stage, because cross-cutting pitfalls (e.g., #7 silent failure appears in P-IM AND P-GV) span multiple stages. The category is a primary tag, not a partition.
+
+### Final handbook structure
+
+```
+agent-engineering-workflow/
+├── README.md                          # English
+├── README.zh.md                       # Chinese
+├── CHANGELOG.md / .zh.md              # Bilingual changelog
+├── LICENSE
+└── docs/
+    ├── 00-positioning/        (Active) 5-question framework + template + checklist
+    ├── 01-prd/                (Active) 13-section PRD + template + checklist
+    ├── 02-spec/               (Active) 12-section tech-doc Spec + template + checklist
+    ├── 03-plan/               (Active) 10-section Plan + template + checklist
+    ├── 04-test-plan/          (Active) 8-section Test Plan + template + checklist
+    ├── 05-multi-agent-coord/  (Active) 11-section protocol + template + checklist
+    ├── 06-implementation/     (Active) 11-section SOP + template + checklist
+    ├── 07-review/             (Active) 10-section protocol + template + checklist
+    ├── 08-commit/             (Active) 8-section SOP
+    ├── 10-coding-practices/   (Active) 13-section style guide
+    ├── 11-governance/         (Active) 11-section framework
+    ├── 90-pitfalls/           (Active) 8-section index (43 entries)
+    ├── agent_engineering_workflow_sections_v1.0_2026-07-12.{en,zh}.md
+    └── agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.{en,zh}.md
+```
+
+Total: **42 files** (excluding `.git`, CHANGELOG), **~10,000 lines** of bilingual content.
+
+### Post-completion next steps
+
+These are tracked separately and not blocking handbook completion:
+
+1. Update `global-launch-review` skill in Hermes to reflect the 9-stage workflow + cross-cutting + pitfall index
+2. Update `agent-team-orchestrator` README to reference `agent-engineering-workflow` as canonical source for the 3-layer defense and 4 principles
+3. Add `.github/workflows/bilingual-lint.yml` for structural parity enforcement
+4. Apply the workflow to actual projects (EgoZone, future projects)
+
+### Changed / 变更
+
+- Sections index updated: Cross-Topic 90 (Pitfalls) status `Skeleton` → `Active`
+- VERSION bumped: 2.1.0 → 2.2.0
+
+### 🎯 All sections now Active
+
+| Section | Status |
+|---------|--------|
+| 00 Positioning | ✅ Active |
+| 01 PRD | ✅ Active |
+| 02 Spec | ✅ Active |
+| 03 Plan | ✅ Active |
+| 04 Test Plan | ✅ Active |
+| 05 Multi-Agent Coordination | ✅ Active |
+| 06 Implementation | ✅ Active |
+| 07 Review | ✅ Active |
+| 08 Commit | ✅ Active |
+| 10 Coding Practices | ✅ Active |
+| 11 Governance | ✅ Active |
+| 90 Pitfalls | ✅ Active |
+
+**12/12 sections Active. Handbook COMPLETE.**
+
+---
+
 ## [1.9.0] - 2026-07-12
 
 ### Added / 新增

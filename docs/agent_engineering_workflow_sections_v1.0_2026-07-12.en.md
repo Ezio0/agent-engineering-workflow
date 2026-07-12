@@ -31,7 +31,7 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 
 | # | Section | Purpose | Status |
 |---|---------|---------|--------|
-| 90 | [Pitfalls](90-pitfalls/_index_en.md) | Consolidated pitfall index | Skeleton |
+| 90 | [Pitfalls](90-pitfalls/_index_en.md) | Cross-topic pitfall index (43 entries across 6 categories) | Active |
 
 ## Top-Level Documents
 

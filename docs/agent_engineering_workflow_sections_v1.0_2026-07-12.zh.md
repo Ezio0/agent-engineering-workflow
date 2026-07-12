@@ -31,7 +31,7 @@
 
 | # | Section | 用途 | 状态 |
 |---|---------|------|------|
-| 90 | [Pitfalls](90-pitfalls/_index_zh.md) | 集中的 pitfall 索引 | 骨架 |
+| 90 | [Pitfalls](90-pitfalls/_index_zh.md) | 跨主题 pitfall 索引（6 个类别共 43 条） | 活跃 |
 
 ## 顶层文档
 
