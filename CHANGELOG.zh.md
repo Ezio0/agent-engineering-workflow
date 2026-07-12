@@ -49,10 +49,44 @@
 
 ---
 
-## v1.1 计划
+## [1.1.0] - 2026-07-12
 
-- 通过讨论填充 12 个 section 的内容（从 Positioning 开始，到 Multi-Agent Coordination 结束）
-- 更新 `global-launch-review` skill 以反映新的 8 阶段 workflow
+### 新增
+
+#### Stage 0（Positioning）—— 第一个填充的 section
+
+12 个 section 中的第一个，与 Ezio 讨论后完成：
+
+- [`docs/00-positioning/_index_zh.md`](docs/00-positioning/_index_zh.md) + `_index_en.md` — section 完整内容：
+  - **5 问框架**：WHO / WHY / WHY NOW / UNDERLYING LOGIC / ANTI-POSITIONING
+  - 使用指南（一页 memo 规则、v-bump 时复盘）
+  - 常见失败模式表
+  - Stage 0 交付物（memo + checklist）
+- [`docs/00-positioning/template_v1.0_zh.md`](docs/00-positioning/template_v1.0_zh.md) + `_en.md` — 一页纸空白模板
+- [`docs/00-positioning/checklist_v1.0_zh.md`](docs/00-positioning/checklist_v1.0_zh.md) + `_en.md` — 进入 Stage 1（PRD）前的签字门
+  - 5 项强制门（每问一项）
+  - 5 项质量门
+  - 3 个自检问题（含 why-now 的反面）
+
+按 Ezio 指示：**只模板 + checklist，不要示例**（handbook 自己不作 case study）。
+
+### 变更
+
+- 剩 11 个 section 仍是骨架（Sections 01–07、10–12、90）。下一个：Stage 1（PRD）。
+
+---
+
+## 下一个 v1.1.x 计划
+
+- Stage 1（PRD）内容（讨论后）
+- Stage 2（Spec）内容（讨论后）
+- Stage 3（Plan）内容（讨论后）
+- Stage 4（Test Plan）内容（讨论后）
+- Stage 5（Implementation）内容（讨论后）
+- Stage 6（Review）内容（讨论后）
+- Stage 7（Commit）内容（讨论后）
+- 横向 10/11/12 内容（讨论后）
+- 更新 `global-launch-review` skill 以反映新 8 阶段 workflow
 - 更新 `agent-team-orchestrator` README 引用本手册
 - 添加 `05-implementation/templates/`（PRD/Spec/Plan 复制粘贴模板）
 - 添加 CI workflow `.github/workflows/bilingual-lint.yml` 强制结构对齐

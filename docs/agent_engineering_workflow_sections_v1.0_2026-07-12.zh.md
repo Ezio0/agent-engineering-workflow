@@ -10,7 +10,7 @@
 
 | # | Section | 用途 | 状态 |
 |---|---------|------|------|
-| 00 | [Positioning](00-positioning/_index_zh.md) | 为谁 / 为什么 / 底层逻辑 / 我们**不是**什么 | 骨架 |
+| 00 | [Positioning](00-positioning/_index_zh.md) | 为谁 / 为什么 / 底层逻辑 / 我们**不是**什么 | 活跃 |
 | 01 | [PRD](01-prd/_index_zh.md) | 功能范围、用户故事、验收 | 骨架 |
 | 02 | [Spec](02-spec/_index_zh.md) | API 表面、数据结构、错误契约 | 骨架 |
 | 03 | [Plan](03-plan/_index_zh.md) | 实施步骤、依赖、风险 | 骨架 |

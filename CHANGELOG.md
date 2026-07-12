@@ -49,9 +49,43 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
-## Planned for v1.1
+## [1.1.0] - 2026-07-12
 
-- Fill in content for all 12 sections via discussion (start with Positioning, end with Multi-Agent Coordination)
+### Added / 新增
+
+#### Stage 0 (Positioning) — first section filled in
+
+The first of 12 sections, completed via discussion with Ezio:
+
+- [`docs/00-positioning/_index_en.md`](docs/00-positioning/_index_en.md) + `_index_zh.md` — full section content:
+  - **5-question framework**: WHO / WHY / WHY NOW / UNDERLYING LOGIC / ANTI-POSITIONING
+  - How-to-use guidance (1-page memo rule, revisits on v-bumps)
+  - Common failure modes table
+  - Deliverables for Stage 0 (memo + checklist)
+- [`docs/00-positioning/template_v1.0_en.md`](docs/00-positioning/template_v1.0_en.md) + `_zh.md` — blank 1-page template
+- [`docs/00-positioning/checklist_v1.0_en.md`](docs/00-positioning/checklist_v1.0_en.md) + `_zh.md` — sign-off gate before moving to Stage 1 (PRD)
+  - 5 mandatory gates (one per question)
+  - 5 quality gates
+  - 3 self-check questions (incl. inverse-of-why-now)
+
+Per Ezio's instruction: **template + checklist only, no case studies** (handbook itself is not used as case study).
+
+### Changed / 变更
+
+- All 11 remaining sections still Skeleton (Sections 01–07, 10–12, 90). Next: Stage 1 (PRD).
+
+---
+
+## Planned for next v1.1.x
+
+- Stage 1 (PRD) content via discussion
+- Stage 2 (Spec) content via discussion
+- Stage 3 (Plan) content via discussion
+- Stage 4 (Test Plan) content via discussion
+- Stage 5 (Implementation) content via discussion
+- Stage 6 (Review) content via discussion
+- Stage 7 (Commit) content via discussion
+- Cross-cutting 10/11/12 content via discussion
 - Update `global-launch-review` skill to reflect the new 8-stage workflow
 - Update `agent-team-orchestrator` README to reference this handbook
 - Add `05-implementation/templates/` (PRD/Spec/Plan copy-paste templates)
