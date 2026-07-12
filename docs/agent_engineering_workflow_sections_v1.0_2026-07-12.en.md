@@ -13,7 +13,7 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 | 00 | [Positioning](00-positioning/_index_en.md) | Who / why / underlying logic / what we are NOT | Active |
 | 01 | [PRD](01-prd/_index_en.md) | Functional scope, user stories, acceptance | Active |
 | 02 | [Spec](02-spec/_index_en.md) | API surface, data structures, error contracts | Active |
-| 03 | [Plan](03-plan/_index_en.md) | Implementation steps, dependencies, risks | Skeleton |
+| 03 | [Plan](03-plan/_index_en.md) | Implementation steps, dependencies, risks | Active |
 | 04 | [Test Plan](04-test-plan/_index_en.md) | Unit / Integration / E2E scope + coverage | Skeleton |
 | 05 | [Implementation](05-implementation/_index_en.md) | Write the code | Skeleton |
 | 06 | [Review](06-review/_index_en.md) | Ezio reviews diff / patch | Skeleton |

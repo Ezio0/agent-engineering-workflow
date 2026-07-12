@@ -49,6 +49,51 @@
 
 ---
 
+## [1.4.0] - 2026-07-12
+
+### 新增
+
+#### Stage 3（Plan）—— 第四个填充的 section
+
+10 章节实施 Plan。按 Ezio 调整：
+
+- **Task 颗粒度 = agent 会话尺寸**（XS ~30 分钟 / S ~1-2 小时 / M ~半天 / L=避免），**不是**人天估算。Agent 工作更快。
+- **Task ID = T-001、T-002**（顺序编号，简洁）
+- **Kanban 字段先做占位**：每个 Task 有 `Kanban card: <ID 或 "TBD — 开始前注册">`。Hermes Kanban 整合延后到真用多 agent 时再加。
+
+10 章节：
+
+- §1 Summary（从 Spec 到可运行代码的路线图）
+- §2 Phases（P0 setup / P1 core / P2+ polish-rollout）
+- §3 Task Breakdown（T-NNN，尺寸 XS/S/M，带验收标准）
+- §4 Dependencies（内部 / 外部 / 基础设施）
+- §5 Risks & Mitigations（**开发期**，不是运行时——运行时在 Spec §8）
+- §6 Rollout Strategy（feature flag / canary / 阶段 / 回滚）
+- §7 Verification Plan（简要——完整覆盖在 Stage 4）
+- §8 Open Questions（每项决策截止日）
+- §9 References
+- §10 History（只 Phase / Task 级别变更——commit 由 git log 处理）
+
+包括：
+
+- [`docs/03-plan/_index_zh.md`](docs/03-plan/_index_zh.md) + `_index_en.md` — section 完整内容：
+  - 跟上游 / 下游 stages 的关系
+  - Task 颗粒度原理（agent 尺寸）
+  - 10 个强制章节
+  - 常见失败模式表
+- [`docs/03-plan/template_v1.0_zh.md`](docs/03-plan/template_v1.0_zh.md) + `_en.md` — 10 章节空白模板
+- [`docs/03-plan/checklist_v1.0_zh.md`](docs/03-plan/checklist_v1.0_zh.md) + `_en.md` — 进入 Stage 4（Test Plan）前的签字门：
+  - 前置（Spec 已签字）
+  - 结构门（10 章节，≥3 phases，每 phase ≥1 task）
+  - 各章节内容门（含 task 尺寸强制）
+  - 质量门 + 4 个自检问题
+
+### 变更
+
+- 剩 8 个 section 仍是骨架（Sections 04–07、10–12、90）。下一个：Stage 4（Test Plan）。
+
+---
+
 ## [1.3.0] - 2026-07-12
 
 ### 新增

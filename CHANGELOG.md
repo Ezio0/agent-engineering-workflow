@@ -49,6 +49,51 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
+## [1.4.0] - 2026-07-12
+
+### Added / 新增
+
+#### Stage 3 (Plan) — fourth section filled in
+
+10-section implementation Plan. Per Ezio's adjustments:
+
+- **Task granularity = agent-session size** (XS ~30 min / S ~1-2h / M ~half-day / L=Avoid), NOT human-day estimates. Agents work faster.
+- **Task IDs = T-001, T-002** (sequential, simple)
+- **Kanban field is a placeholder for now**: each Task has `Kanban card: <ID or "TBD — register before starting">`. Hermes Kanban integration deferred until actually using Kanban with multiple agents.
+
+10 sections:
+
+- §1 Summary (roadmap from Spec to working code)
+- §2 Phases (P0 setup / P1 core / P2+ polish-rollout)
+- §3 Task Breakdown (T-NNN, sized XS/S/M, with acceptance criteria)
+- §4 Dependencies (Internal / External / Infrastructure)
+- §5 Risks & Mitigations (development-time, NOT runtime — that's Spec §8)
+- §6 Rollout Strategy (feature flag / canary / stages / rollback)
+- §7 Verification Plan (brief — full coverage in Stage 4)
+- §8 Open Questions (decision deadline per item)
+- §9 References
+- §10 History (Phase / Task level changes only — git log handles commits)
+
+Includes:
+
+- [`docs/03-plan/_index_en.md`](docs/03-plan/_index_en.md) + `_index_zh.md` — full section content:
+  - Relationship to upstream / downstream stages
+  - Task granularity rationale (agent-sized)
+  - 10 mandatory sections
+  - Common failure modes table
+- [`docs/03-plan/template_v1.0_en.md`](docs/03-plan/template_v1.0_en.md) + `_zh.md` — blank 10-section template
+- [`docs/03-plan/checklist_v1.0_en.md`](docs/03-plan/checklist_v1.0_en.md) + `_zh.md` — sign-off gate before Stage 4 (Test Plan):
+  - Pre-requisite (Spec signed off)
+  - Structural gates (10 sections, ≥3 phases, ≥1 task per phase)
+  - Per-section content gates (incl. task sizing enforcement)
+  - Quality gates + 4 self-check questions
+
+### Changed / 变更
+
+- All 8 remaining sections still Skeleton (Sections 04–07, 10–12, 90). Next: Stage 4 (Test Plan).
+
+---
+
 ## [1.3.0] - 2026-07-12
 
 ### Added / 新增
