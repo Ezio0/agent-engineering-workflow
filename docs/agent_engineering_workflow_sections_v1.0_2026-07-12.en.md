@@ -25,7 +25,7 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 | # | Section | Applies to | Status |
 |---|---------|-----------|--------|
 | 10 | [Coding Practices](10-coding-practices/_index_en.md) | Code style: naming / types / errors / logging / comments / tests / deps / language idioms | Active |
-| 11 | [Governance](11-governance/_index_en.md) | All stages | Skeleton |
+| 11 | [Governance](11-governance/_index_en.md) | Roles × authority matrix; commit/push policy; profile boundaries; escalation | Active |
 
 ## Cross-Topic Indexes (90–99)
 

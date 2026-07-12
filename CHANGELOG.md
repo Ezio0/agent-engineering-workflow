@@ -115,6 +115,74 @@ Includes:
 
 ---
 
+## [2.1.0] - 2026-07-12
+
+### Added / 新增
+
+#### Cross-Cutting 11 (Governance) — second cross-cutting section filled in
+
+11-section governance framework. **Framework layer, NOT project-specific
+instance.** Per-stage mechanics (multi-agent isolation, commit operation)
+live in Stages 5 and 8; Stage 11 owns the **policy layer** of "who decides
+what, with what authority, with what escalation".
+
+11 sections:
+
+- §1 Overview — fundamental tension (agents fast, humans accountable); what Governance is NOT; relationship with egozone-governance skill
+- §2 Roles and Authority — 5 role categories; full authority matrix (5 × 12 actions); 3 tiers of "NEVER commit"; explicit instruction definition
+- §3 Commit Authority (cross-reference) — why asymmetric permission; audit trail requirement; pre-authorization pattern
+- §4 Push Policy — when to push by scenario; `--force` banned; pre-push verification; pre-push hooks recommended
+- §5 Profile Boundaries — what profiles can/cannot share; 2 cross-profile communication patterns; 2 anti-patterns (cross-profile env read, cross-profile memory write)
+- §6 Escalation Protocol — 7 escalation paths (E1-E7); "ask, don't guess" principle; silent failure pitfall
+- §7 Skill Management Governance — who creates/modifies skills; creation triggers; versioning; cross-profile sync
+- §8 Memory Management Governance — what goes where; write authority per profile; what to write / not write; compaction
+- §9 Anti-Patterns — 5 governance failure modes (agent decides / implicit auth / cross-profile direct / memory misuse / skill duplication)
+- §10 Open Questions
+- §11 References
+
+Includes:
+
+- [`docs/11-governance/_index_en.md`](docs/11-governance/_index_en.md) + `_index_zh.md` — full section content
+
+### Decisions confirmed with Ezio
+
+- **Handbook = framework; egozone-governance skill = instance**. Stage 11 documents the
+  framework (who decides what); egozone-governance skill documents EgoZone's specific
+  instance (Kanban board, patch directory, 18 pitfalls). If the skill is deleted, the
+  handbook remains valid for any project.
+- **Three "NEVER commit" tiers** with different enforcement strategies: workflow-level
+  (Tier 1 worker profiles), tool-config-level (Tier 2 coding subagents), N/A (Tier 3).
+- **Three explicit-instruction rules** restated from Stage 8: only "commit" / "提交" / direct
+  git command counts; "OK" / "looks good" / silence do not.
+- **Push policy independent of commit**: push is a separate governance decision governed
+  by Stage 11 §4, not part of commit workflow.
+- **Profile boundaries hard by default**: cross-profile reads/writes require explicit
+  `cross_profile=True` + Ezio authorization; not auto-permitted.
+
+### Projection from egozone-governance skill
+
+The Stage 11 framework projects the following from `egozone-governance` skill:
+
+| From egozone-governance | Stage 11 home |
+|------------------------|---------------|
+| Kanban-first rule | Stage 11 §6 (escalation) — general principle, project-specifics in skill |
+| Commit authority tiers | Stage 11 §2.3 — full matrix with 3 tiers |
+| Patch handoff format | Stage 5 §7 (mechanics) + egozone-governance (EgoZone path) |
+| Profile-scoped files | Stage 11 §5 — boundary rules |
+| Pitfall #7 (silent failure) | Stage 11 §6.3 — escalated to framework-level rule |
+| Pitfall #15 (Claude Code auto-commit) | Stage 11 §2.3 Tier 2 — enforcement strategy |
+| Pitfalls #1-6, #8-14, #16-18 | Stage 90 (Pitfalls) — cross-reference, full content stays in skill |
+
+### Changed / 变更
+
+- Sections index updated: Cross-Cutting 11 (Governance) status `Skeleton` → `Active`
+
+### Remaining work / 剩 1 个 section
+
+- Cross-Topic 90 (Pitfalls) — Skeleton
+
+---
+
 ## [1.9.0] - 2026-07-12
 
 ### Added / 新增

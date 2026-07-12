@@ -25,7 +25,7 @@
 | # | Section | 适用于 | 状态 |
 |---|---------|--------|------|
 | 10 | [Coding Practices](10-coding-practices/_index_zh.md) | 代码风格：命名 / 类型 / 错误 / 日志 / 注释 / 测试 / 依赖 / 语言惯用法 | 活跃 |
-| 11 | [Governance](11-governance/_index_zh.md) | 所有 stages | 骨架 |
+| 11 | [Governance](11-governance/_index_zh.md) | 角色 × 权限矩阵；commit/push 策略；profile 边界；升级 | 活跃 |
 
 ## 跨主题索引（90–99）
 

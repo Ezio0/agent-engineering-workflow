@@ -113,6 +113,69 @@ Stage 10 拥有**代码本身怎么写**。
 
 ---
 
+## [2.1.0] - 2026-07-12
+
+### 新增
+
+#### 横向 11（Governance）—— 第二个填的横向 section
+
+11 章 governance 框架。**框架层，不是项目特定实例。** 每 stage 的机制（多 agent 隔离、commit 操作）
+在 Stages 5 和 8；Stage 11 拥有"谁决定什么、用什么权限、什么升级"的**策略层**。
+
+11 章：
+
+- §1 概述 —— 根本张力（agents 快、人类负责）；Governance 不是什么；跟 egozone-governance skill 的关系
+- §2 角色与权限 —— 5 个角色类别；完整权限矩阵（5 × 12 动作）；"永不 commit" 的 3 个 tier；显式指令定义
+- §3 Commit 权限（交叉引用）—— 为何非对称权限；审计轨迹要求；预授权模式
+- §4 Push 策略 —— 按场景何时 push；`--force` 禁用；push 前验证；推荐 pre-push hooks
+- §5 Profile 边界 —— profiles 能/不能共享什么；2 个跨 profile 通信模式；2 个反模式（跨 profile 读 env、跨 profile 写 memory）
+- §6 升级协议 —— 7 条升级路径（E1-E7）；"问，不要猜"原则；静默失败陷阱
+- §7 Skill 管理治理 —— 谁创建/修改 skills；创建触发；版本化；跨 profile 同步
+- §8 Memory 管理治理 —— 什么放哪里；按 profile 的写权限；什么写/不写；压缩
+- §9 反模式 —— 5 个治理失败模式（agent 决定 / 隐性授权 / 跨 profile 直连 / memory 误用 / skill 重复）
+- §10 开放问题
+- §11 参考
+
+包含：
+
+- [`docs/11-governance/_index_en.md`](docs/11-governance/_index_en.md) + `_index_zh.md` —— 完整 section
+
+### 与 Ezio 确认的决策
+
+- **Handbook = 框架；egozone-governance skill = 实例**。Stage 11 记录框架（谁决定什么）；
+  egozone-governance skill 记录 EgoZone 的特定实例（Kanban board、patch 目录、18 个 pitfalls）。
+  如果 skill 删了，handbook 对任何项目仍有效。
+- **"永不 commit" 的 3 个 tier** 带不同强制策略：工作流层（Tier 1 worker profiles）、
+  工具配置层（Tier 2 编码子 agents）、N/A（Tier 3）。
+- **三条显式指令规则** 重述自 Stage 8：仅 "commit" / "提交" / 直接 git 命令算数；
+  "OK" / "looks good" / 沉默不算。
+- **Push 策略独立于 commit**：push 是 Stage 11 §4 管的独立治理决策，不是 commit workflow 的一部分。
+- **Profile 边界默认硬**：跨 profile 读/写需要显式 `cross_profile=True` + Ezio 授权；不自动允许。
+
+### 从 egozone-governance skill 的投影
+
+Stage 11 框架从 `egozone-governance` skill 投影以下内容：
+
+| 从 egozone-governance | Stage 11 归属 |
+|----------------------|--------------|
+| Kanban-first 规则 | Stage 11 §6（升级）—— 通用原则，项目特定在 skill |
+| Commit 权限 tiers | Stage 11 §2.3 —— 完整矩阵带 3 个 tiers |
+| Patch handoff 格式 | Stage 5 §7（机制）+ egozone-governance（EgoZone 路径） |
+| Profile-scoped files | Stage 11 §5 —— 边界规则 |
+| Pitfall #7（静默失败） | Stage 11 §6.3 —— 提升到框架级规则 |
+| Pitfall #15（Claude Code auto-commit） | Stage 11 §2.3 Tier 2 —— 强制策略 |
+| Pitfalls #1-6, #8-14, #16-18 | Stage 90（Pitfalls）—— 交叉引用，完整内容保留在 skill |
+
+### 变更
+
+- Sections 索引更新：横向 11（Governance）状态 `骨架` → `活跃`
+
+### 剩 1 个 section
+
+- 跨主题 90（pitfalls）—— 骨架
+
+---
+
 ## [1.9.0] - 2026-07-12
 
 ### 新增
