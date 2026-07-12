@@ -17,7 +17,7 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 | 04 | [Test Plan](04-test-plan/_index_en.md) | Unit / Integration / E2E scope + coverage | Active |
 | 05 | [Multi-Agent Coordination](05-multi-agent-coordination/_index_en.md) | 3-layer defense (Declaration + Isolation + Detection) for concurrent agents | Active |
 | 06 | [Implementation](06-implementation/_index_en.md) | Single-task execution loop (Load → Code → Test → Commit → Report) | Active |
-| 07 | [Review](07-review/_index_en.md) | Ezio reviews diff / patch | Skeleton |
+| 07 | [Review](07-review/_index_en.md) | Verify Task Report completeness + evidence (10 QG gate) | Active |
 | 08 | [Commit](08-commit/_index_en.md) | Land as git commit | Skeleton |
 
 ## Cross-Cutting Topics (10–19)

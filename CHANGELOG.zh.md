@@ -49,6 +49,68 @@
 
 ---
 
+## [1.8.0] - 2026-07-12
+
+### 新增
+
+#### Stage 7（Review）—— 第八个填的 section
+
+10 章 Review 协议。**Review 验证 Task Report，不是代码。** 最硬约束：
+Reviewer 不能是本 task 的实施 agent（G3）。
+
+10 章：
+
+- §1 概述 —— 信任但验证关卡；Reviewer 仅 Ezio；自我评审禁止
+- §2 前置条件（3 个硬关卡）—— Task Report 存在 / Status header 已设置 / G3 验证
+- §3 Review 范围 —— 10 个 QG；Reviewer 显式不验证的项
+- §4 Review 循环 —— `读报告 → 核范围 → 验证据 → 决策` 4 步（约 35 分钟）
+- §5 范围验证（详细）—— 文件列表交叉核对；常见范围失败模式
+- §6 证据验证（详细）—— 测试输出 / 覆盖率 / Commit SHA / Status header
+- §7 偏差判断 —— 4 个 severity 等级 + "这真的算 TRIVIAL 吗？"测试
+- §8 决策输出 —— APPROVED / CHANGES REQUESTED / BLOCKED（无"带保留批准"）
+- §9 多 Agent Patch Review —— 仅 patch 提交；patch 与 Task Report 不一致规则
+- §10 Reviewer 反模式 —— 5 个 RA- 模式（RA-1 "看起来不错发吧" 最阴险）
+
+包含：
+
+- [`docs/07-review/_index_en.md`](docs/07-review/_index_en.md) + `_index_zh.md` —— 完整 section
+- [`docs/07-review/template_en.md`](docs/07-review/template_en.md) + `_zh.md` —— Review Decision 模板（8 节，Outcome header 必填）
+- [`docs/07-review/checklist_en.md`](docs/07-review/checklist_en.md) + `_zh.md` —— 每次 review 检查表：
+  - A. Pre-flight（3 关 + 上下文 + 身份）
+  - B. Per-QG（10 个 QG 验证项）
+  - C. Pre-Decision（决策逻辑 + 交叉检查 + 反模式）
+  - D. 交接（3 种 outcome 各自流程）
+  - E. 质量关卡（6 个硬关卡）
+  - F. 反模式自查
+
+### 与 Ezio 确认的决策
+
+- **Review = 报告验证，不是代码评审**：阶段分明；Reviewer 引用 QG，不重读每行。
+- **自我评审禁止**（G3）：如果你写了代码，你不能 review 它。无例外。
+- **无"带保留批准"**：要么 APPROVED + §3 观察，要么 CHANGES REQUESTED + §4 action items。
+  强制选择防止盖章。
+- **三种 outcome，不同路径**：APPROVED → Stage 8 / CHANGES REQUESTED → Stage 6 带新版本 /
+  BLOCKED → 上游文档修订 + 重新进入。
+- **Status header 准确性是 QG**：撒谎的 Status header 比错误状态更糟；表明想藏东西。
+  当软违规处理。
+- **Test Plan §1 的覆盖在覆盖率上生效**：Reviewer 对齐实际 Test Plan 阈值验证，不是默认值。
+  覆盖默认值的项目（如遗留集成 < 100%）必须有书面说明。
+- **多 agent patch 时，Reviewer 是跑测试的人**：这是 Reviewer 重跑 agent 工作的唯一场景——
+  但在独立 worktree，不是 main checkout。
+
+### 变更
+
+- Sections 索引更新：Stage 7（Review）状态 `骨架` → `活跃`
+
+### 剩 4 个 section
+
+- Stage 8（Commit）—— 骨架
+- 横向 10（Coding Practices）—— 骨架
+- 横向 11（Governance）—— 骨架
+- 跨主题 90（pitfalls）—— 骨架
+
+---
+
 ## [1.6.0] - 2026-07-12
 
 ### 新增

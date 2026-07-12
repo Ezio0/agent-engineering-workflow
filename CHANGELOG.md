@@ -49,6 +49,71 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
+## [1.8.0] - 2026-07-12
+
+### Added / 新增
+
+#### Stage 7 (Review) — eighth section filled in
+
+10-section Review protocol. **Review verifies the Task Report, NOT the code.**
+The hardest constraint: Reviewer must NOT be the Implementation agent for the
+task being reviewed (G3).
+
+10 sections:
+
+- §1 Overview — Trust-but-verify gate; Reviewer = Ezio only; self-review forbidden
+- §2 Pre-conditions (3 hard gates) — Task Report exists / Status header set / G3 verified
+- §3 Review Scope — the 10 QG items; what Reviewer explicitly does NOT verify
+- §4 Review Loop — `Read Report → Check Scope → Verify Evidence → Decide` 4 steps (~35 min)
+- §5 Scope Verification (detailed) — file-list cross-check; common scope failure modes
+- §6 Evidence Verification (detailed) — test output / coverage / commit SHA / Status header
+- §7 Deviation Judgment — 4 severity levels + the "is this really TRIVIAL?" test
+- §8 Decision Outcomes — APPROVED / CHANGES REQUESTED / BLOCKED (no "approve with caveats")
+- §9 Multi-Agent Patch Review — patch-only submission; patch vs Task Report disagreement rule
+- §10 Reviewer Anti-Patterns — 5 RA- patterns (RA-1 "looks good ship it" is most insidious)
+
+Includes:
+
+- [`docs/07-review/_index_en.md`](docs/07-review/_index_en.md) + `_index_zh.md` — full section content
+- [`docs/07-review/template_en.md`](docs/07-review/template_en.md) + `_zh.md` — Review Decision template (8 sections, Outcome header mandatory)
+- [`docs/07-review/checklist_en.md`](docs/07-review/checklist_en.md) + `_zh.md` — per-review checklist:
+  - A. Pre-flight (3 gates + context + identity)
+  - B. Per-QG (10 QG verification items)
+  - C. Pre-Decision (decision logic + cross-checks + anti-patterns)
+  - D. Hand-off (3 outcome-specific procedures)
+  - E. Quality gates (6 hard gates)
+  - F. Anti-pattern self-check
+
+### Decisions confirmed with Ezio
+
+- **Review = report verification, not code review**: distinct stages; Reviewer cites QG
+  references, doesn't re-read every line.
+- **Self-review forbidden** (G3): if you wrote the code, you cannot review it. No exceptions.
+- **No "approve with caveats"**: either APPROVED + §3 observations, or CHANGES REQUESTED
+  with §4 action items. Forcing the choice prevents rubber-stamping.
+- **Three outcomes, distinct paths**: APPROVED → Stage 8 / CHANGES REQUESTED → Stage 6
+  with new version + Revision History / BLOCKED → upstream document revision + re-entry.
+- **Status header accuracy is a QG**: a lying status header is worse than wrong status;
+  it signals hiding. Treated as soft violation.
+- **Test Plan §1 overrides win on coverage**: Reviewer verifies against the actual Test
+  Plan thresholds, not the defaults. Projects that override (e.g., legacy integration
+  < 100%) must have it in writing.
+- **For multi-agent patches, Reviewer is the one who runs tests**: the one case where
+  Reviewer re-runs the agent's work — but in a separate worktree, not main checkout.
+
+### Changed / 变更
+
+- Sections index updated: Stage 7 (Review) status `Skeleton` → `Active`
+
+### Remaining work / 剩 4 个 section
+
+- Stage 8 (Commit) — Skeleton
+- Cross-Cutting 10 (Coding Practices) — Skeleton
+- Cross-Cutting 11 (Governance) — Skeleton
+- Cross-Topic 90 (Pitfalls) — Skeleton
+
+---
+
 ## [1.7.0] - 2026-07-12
 
 ### Added / 新增
