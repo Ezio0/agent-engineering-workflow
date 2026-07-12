@@ -49,6 +49,68 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
+## [1.9.0] - 2026-07-12
+
+### Added / 新增
+
+#### Stage 8 (Commit) — ninth section filled in — **9-stage linear workflow now COMPLETE**
+
+8-section Commit SOP. **Commit is the single irreversible point** — everything
+before is reversible, commit creates the permanent audit anchor.
+
+8 sections:
+
+- §1 Overview — single irreversible point; three things that must not be confused (Ezio author / Stage 6 preparer / Stage 7 approver); why Commit is its own stage
+- §2 Pre-conditions (4 hard gates) — Task Report COMPLETED / Review Decision APPROVED / worktree ready / working directory clean
+- §3 Commit Authority Recap — full role × authority matrix (Ezio / ezio-zero / other profiles / Claude Code / other agents); "explicit verbal/textual authorization" definition
+- §4 Commit Message Format — Conventional Commits + Task ID + scope; What/Why/Evidence body template; good/bad examples
+- §5 The Commit Operation (5 steps, Ezio perspective) — verify clean → verify staged → verify message → commit → verify SHA
+- §6 Post-Commit Verification — update Task Report §3, archive Review Decision, cleanup Stage 5 worktree, push (optional)
+- §7 Failure Modes — CF-1 through CF-5 (wrong author / wrong files / wrong message / force-push / amend-without-backup); `--amend` and `--force` rules
+- §8 Open Questions (decision deadline per item)
+
+Includes:
+
+- [`docs/08-commit/_index_en.md`](docs/08-commit/_index_en.md) + `_index_zh.md` — full section content
+- **No template or checklist** — Commit is short enough that template/checklist would be overhead. Cross-cutting rules live in Stage 11 Governance.
+
+### Decisions confirmed with Ezio
+
+- **Commit = its own stage** (not folded into Stage 6 or 7): enforces authority clarity,
+  message format enforcement, post-commit hygiene.
+- **Conventional Commits format with Task ID mandatory**: subject includes `<type>(<scope>):`
+  + Task ID in footer (`Refs: T-NNN`).
+- **Body template = What / Why / Evidence**: future readers must be able to reconstruct why
+  the commit exists without opening the Task Report.
+- **`--amend` rules tightened**: only for author/message/staging fixes BEFORE push; never
+  for code changes; never after push.
+- **`--force` banned**: `git push --force` is never used in this workflow. Recovery is always
+  `git revert` + safe push.
+- **Push is NOT part of commit**: separate decision governed by Stage 11.
+
+### Milestone / 里程碑
+
+**The 9-stage linear workflow is now COMPLETE.** Stages 0 → 8 (Positioning → Commit) all
+have framework + template + checklist (where applicable) + Active status. Remaining sections
+are cross-cutting topics and a cross-topic index:
+
+- Cross-Cutting 10 (Coding Practices) — Skeleton
+- Cross-Cutting 11 (Governance) — Skeleton (commit authority + push policy will live here)
+- Cross-Topic 90 (Pitfalls) — Skeleton
+
+### Changed / 变更
+
+- Sections index updated: Stage 8 (Commit) status `Skeleton` → `Active`
+- v1.0.0 "8-stage workflow" description still in CHANGELOG history; current state is 9 stages
+
+### Remaining work / 剩 3 个 section
+
+- Cross-Cutting 10 (Coding Practices) — Skeleton
+- Cross-Cutting 11 (Governance) — Skeleton
+- Cross-Topic 90 (Pitfalls) — Skeleton
+
+---
+
 ## [1.8.0] - 2026-07-12
 
 ### Added / 新增

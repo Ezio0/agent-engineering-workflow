@@ -18,7 +18,7 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 | 05 | [Multi-Agent Coordination](05-multi-agent-coordination/_index_en.md) | 3-layer defense (Declaration + Isolation + Detection) for concurrent agents | Active |
 | 06 | [Implementation](06-implementation/_index_en.md) | Single-task execution loop (Load → Code → Test → Commit → Report) | Active |
 | 07 | [Review](07-review/_index_en.md) | Verify Task Report completeness + evidence (10 QG gate) | Active |
-| 08 | [Commit](08-commit/_index_en.md) | Land as git commit | Skeleton |
+| 08 | [Commit](08-commit/_index_en.md) | Land approved work as git commit (Ezio-only authority, Conventional Commits format) | Active |
 
 ## Cross-Cutting Topics (10–19)
 

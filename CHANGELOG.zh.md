@@ -49,6 +49,68 @@
 
 ---
 
+## [1.9.0] - 2026-07-12
+
+### 新增
+
+#### Stage 8（Commit）—— 第九个填的 section —— **9 阶段线性 workflow 现在完成**
+
+8 章 Commit SOP。**Commit 是唯一的不可逆点** —— 之前一切都是可逆的，commit
+创建永久审计锚点。
+
+8 章：
+
+- §1 概述 —— 单一不可逆点；三件不能混淆的事（Ezio 作者 / Stage 6 准备者 / Stage 7 批准者）；为什么 Commit 是独立阶段
+- §2 前置条件（4 个硬关卡）—— Task Report 已完成 / Review Decision APPROVED / worktree 就绪 / 工作目录干净
+- §3 Commit 权限回顾 —— 完整角色 × 权限矩阵（Ezio / ezio-zero / 其他 profile / Claude Code / 其他 agent）；"显式口语/文字授权"定义
+- §4 Commit Message 格式 —— Conventional Commits + Task ID + scope；What/Why/Evidence body 模板；好/坏例子
+- §5 Commit 操作（5 步，Ezio 视角）—— 验干净 → 验暂存 → 验消息 → commit → 验 SHA
+- §6 Commit 后验证 —— 更新 Task Report §3，归档 Review Decision，清理 Stage 5 worktree，push（可选）
+- §7 失败模式 —— CF-1 到 CF-5（作者错 / 文件错 / 消息错 / force-push / amend-无备份）；`--amend` 和 `--force` 规则
+- §8 开放问题（每项决策截止）
+
+包含：
+
+- [`docs/08-commit/_index_en.md`](docs/08-commit/_index_en.md) + `_index_zh.md` —— 完整 section
+- **无 template 或 checklist** —— Commit 足够短，template/checklist 是开销。横向规则在 Stage 11 Governance。
+
+### 与 Ezio 确认的决策
+
+- **Commit = 独立阶段**（不折叠进 Stage 6 或 7）：强制权限清晰、message 格式强制、
+  post-commit 整洁。
+- **Conventional Commits 格式，Task ID 必填**：subject 含 `<type>(<scope>):`，Task ID
+  在 footer（`Refs: T-NNN`）。
+- **Body 模板 = What / Why / Evidence**：未来读者必须能重建 commit 为什么存在，
+  无需打开 Task Report。
+- **`--amend` 规则收紧**：仅用于 author / message / staging 修复，且仅 push 前；绝不
+  用于代码改动；绝不 push 后。
+- **`--force` 禁用**：本 workflow 中 `git push --force` 永不 使用。恢复永远走
+  `git revert` + 安全 push。
+- **Push 不属于 commit**：是 Stage 11 管辖的独立决策。
+
+### 里程碑
+
+**9 阶段线性 workflow 现在完成。** Stages 0 → 8（Positioning → Commit）全部有
+framework + template + checklist（适用处）+ Active 状态。剩 sections 是横向主题和
+跨主题索引：
+
+- 横向 10（Coding Practices）—— 骨架
+- 横向 11（Governance）—— 骨架（commit 权限 + push policy 会在此）
+- 跨主题 90（pitfalls）—— 骨架
+
+### 变更
+
+- Sections 索引更新：Stage 8（Commit）状态 `骨架` → `活跃`
+- v1.0.0 的 "8 阶段 workflow" 描述仍在 CHANGELOG 历史中；当前状态是 9 阶段
+
+### 剩 3 个 section
+
+- 横向 10（Coding Practices）—— 骨架
+- 横向 11（Governance）—— 骨架
+- 跨主题 90（pitfalls）—— 骨架
+
+---
+
 ## [1.8.0] - 2026-07-12
 
 ### 新增
