@@ -49,6 +49,72 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
+## [2.0.0] - 2026-07-12
+
+### Changed / 变更 — VERSION BUMP TO 2.0.0
+
+**Why 2.0.0 (not 1.x):** v1.0 → v1.9 covered the **linear workflow** (Stages 0–8).
+v2.0 begins the **cross-cutting topics phase** (Stages 10–11, then 90). Per the
+handbook's own versioning rules: MAJOR bump (v1 → v2) for breaking structural
+change to the document set. Adding cross-cutting is structural — it changes how
+the document is organized, not just what's in each section.
+
+### Added / 新增
+
+#### Cross-Cutting 10 (Coding Practices) — first cross-cutting section filled in
+
+13-section coding style guide. **Strict separation from Stage 6**: Stage 6 owns
+**how to execute a task**; Stage 10 owns **how to write the code itself**.
+
+13 sections:
+
+- §1 Overview — craft layer; three load-bearing principles (readability / explicitness / no magic in user data path)
+- §2 Naming — case conventions by language; naming goals; `_` prefix; names to avoid
+- §3 Types and Signatures — when required vs optional; `Optional[T]` vs `T | None`; avoid `Any`
+- §4 Error Handling — four levels (validation / domain / infrastructure / internal); custom exceptions; never swallow
+- §5 Logging — levels; what to log and what NOT (PII); `print` is not logging
+- §6 Comments and Docstrings — WHY not WHAT; outdated comments worse than none
+- §7 Function and Module Design — size limits; argument counts; flag arguments; module size; public API
+- §8 Tests (Style) — AAA pattern; one assertion when possible; naming; no test logic; mocking at boundaries
+- §9 Dependencies and Tooling — defaults (ruff / mypy / eslint / prettier / pre-commit); pinning rules
+- §10 Language Notes (Idioms) — Python / TypeScript / SQL concrete idioms
+- §11 Architecture Discipline (No Magic in User Data Path) — engine code never hardcodes user/env values; "different user tomorrow" test
+- §12 Open Questions
+- §13 References
+
+Includes:
+
+- [`docs/10-coding-practices/_index_en.md`](docs/10-coding-practices/_index_en.md) + `_index_zh.md` — full section content
+
+### Decisions confirmed with Ezio
+
+- **Strict separation from Stage 6**: Stage 6 is SOP (procedure); Stage 10 is craft (style). They do not duplicate.
+- **Three load-bearing principles**: readability > cleverness, explicit > implicit, no magic in user data path.
+- **Architecture principle from SOUL.md cross-referenced**: "No hardcoded user data in engine code" — restated in §11 with concrete test ("different user tomorrow").
+- **Language-agnostic by default, idioms in §10**: principles are universal; only syntax differs per language.
+- **Tool defaults explicit**: ruff/mypy/eslint/prettier/pre-commit named with rationale per tool.
+
+### Pre-existing decision now restated
+
+- **No `coding-workflow` skill duplication**: the existing `coding-workflow` skill
+  in `~/.hermes/profiles/ezio-zero/skills/software-development/coding-workflow/`
+  describes the Plan → Code → Test → Review → Report loop, which is **Stage 6**
+  content, not Stage 10. Stage 10 does NOT re-document that loop. Future update
+  to `coding-workflow` skill should reference Stage 6 + Stage 10 instead of
+  maintaining its own copy.
+
+### Changed / 变更
+
+- Sections index updated: Cross-Cutting 10 (Coding Practices) status `Skeleton` → `Active`
+- VERSION bumped: 1.9.0 → 2.0.0 (cross-cutting phase begins)
+
+### Remaining work / 剩 2 个 section
+
+- Cross-Cutting 11 (Governance) — Skeleton
+- Cross-Topic 90 (Pitfalls) — Skeleton
+
+---
+
 ## [1.9.0] - 2026-07-12
 
 ### Added / 新增

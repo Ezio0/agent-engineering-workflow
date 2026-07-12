@@ -49,6 +49,70 @@
 
 ---
 
+## [2.0.0] - 2026-07-12
+
+### 变更 — 版本号 bump 到 2.0.0
+
+**为什么是 2.0.0（不是 1.x）：** v1.0 → v1.9 覆盖**线性 workflow**（Stages 0–8）。
+v2.0 开始**横向主题阶段**（Stages 10–11，然后 90）。按 handbook 自己的版本规则：
+MAJOR bump（v1 → v2）用于结构性变更。加横向主题是结构性的——它改了文档
+组织方式，不只是每个 section 的内容。
+
+### 新增
+
+#### 横向 10（Coding Practices）—— 第一个填的横向 section
+
+13 章编码风格指南。**与 Stage 6 严格分离**：Stage 6 拥有**怎么执行 task**；
+Stage 10 拥有**代码本身怎么写**。
+
+13 章：
+
+- §1 概述 —— 手艺层；三条支撑原则（可读性 / 显式 / 用户数据路径无魔法）
+- §2 命名 —— 按语言的命名风格；命名目标；`_` 前缀；要避免的命名
+- §3 类型和签名 —— 何时必须 vs 可选；`Optional[T]` vs `T | None`；避免 `Any`
+- §4 错误处理 —— 四层（验证 / 领域 / 基础设施 / 内部）；自定义异常；永不吞
+- §5 日志 —— 级别；记什么什么不记（PII）；`print` 不是日志
+- §6 注释和 Docstring —— WHY 不是 WHAT；过时注释比没注释更糟
+- §7 函数和模块设计 —— 大小限制；参数个数；flag 参数；模块大小；public API
+- §8 测试（风格）—— AAA 模式；能的话一个断言；命名；测试无逻辑；在边界 mock
+- §9 依赖和工具 —— 默认（ruff / mypy / eslint / prettier / pre-commit）；固定规则
+- §10 语言笔记（惯用法）—— Python / TypeScript / SQL 具体惯用法
+- §11 架构纪律（用户数据路径无魔法）—— 引擎代码绝不硬编码用户/环境值；"明天不同用户"测试
+- §12 开放问题
+- §13 参考
+
+包含：
+
+- [`docs/10-coding-practices/_index_en.md`](docs/10-coding-practices/_index_en.md) + `_index_zh.md` —— 完整 section
+
+### 与 Ezio 确认的决策
+
+- **与 Stage 6 严格分离**：Stage 6 是 SOP（流程）；Stage 10 是手艺（风格）。不重复。
+- **三条支撑原则**：可读性 > 巧妙，显式 > 隐式，用户数据路径无魔法。
+- **交叉引用 SOUL.md 架构原则**："引擎代码无硬编码用户数据"——在 §11 重述，带具体测试（"明天不同用户"）。
+- **默认与语言无关，惯用法在 §10**：原则普适；只是每语言语法不同。
+- **工具默认明确**：ruff/mypy/eslint/prettier/pre-commit 命名带每个工具的理由。
+
+### 重述既有决策
+
+- **不重复 `coding-workflow` skill**：现有
+  `~/.hermes/profiles/ezio-zero/skills/software-development/coding-workflow/`
+  描述 Plan → Code → Test → Review → Report 循环，那是 **Stage 6** 内容，不是
+  Stage 10。Stage 10 **不**重述那个循环。`coding-workflow` skill 未来更新应引用
+  Stage 6 + Stage 10，不是维护自己的副本。
+
+### 变更
+
+- Sections 索引更新：横向 10（Coding Practices）状态 `骨架` → `活跃`
+- 版本号 bump：1.9.0 → 2.0.0（横向阶段开始）
+
+### 剩 2 个 section
+
+- 横向 11（Governance）—— 骨架
+- 跨主题 90（pitfalls）—— 骨架
+
+---
+
 ## [1.9.0] - 2026-07-12
 
 ### 新增

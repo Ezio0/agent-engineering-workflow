@@ -24,7 +24,7 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 
 | # | Section | Applies to | Status |
 |---|---------|-----------|--------|
-| 10 | [Coding Practices](10-coding-practices/_index_en.md) | Stage 6 (Implementation) | Skeleton |
+| 10 | [Coding Practices](10-coding-practices/_index_en.md) | Code style: naming / types / errors / logging / comments / tests / deps / language idioms | Active |
 | 11 | [Governance](11-governance/_index_en.md) | All stages | Skeleton |
 
 ## Cross-Topic Indexes (90–99)

@@ -24,7 +24,7 @@
 
 | # | Section | 适用于 | 状态 |
 |---|---------|--------|------|
-| 10 | [Coding Practices](10-coding-practices/_index_zh.md) | Stage 6（Implementation） | 骨架 |
+| 10 | [Coding Practices](10-coding-practices/_index_zh.md) | 代码风格：命名 / 类型 / 错误 / 日志 / 注释 / 测试 / 依赖 / 语言惯用法 | 活跃 |
 | 11 | [Governance](11-governance/_index_zh.md) | 所有 stages | 骨架 |
 
 ## 跨主题索引（90–99）
