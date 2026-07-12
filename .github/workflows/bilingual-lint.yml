@@ -1,0 +1,105 @@
+name: Bilingual Lint
+
+# Enforces the bilingual documentation convention from the
+# Agent Engineering Workflow handbook. See:
+#   - Pillar 2 (Bilingual Documentation) in global-workflow-standard skill
+#   - Stage 90 Pitfall #1 (standards-defining projects must dogfood)
+#   - scripts/bilingual_lint.py for rule details
+#
+# Mode: ADVISORY (default). R3/R4 are WARN — known handbook self-violations
+# are tracked for incremental cleanup, not blocked. R1/R2/R5 are ERROR (blocking).
+#
+# Use --strict mode by setting workflow_dispatch input, OR change `mode:` below
+# to `strict` once the handbook has finished self-dogfooding (Pitfall #1).
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "scripts/bilingual_lint.py"
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Lint mode (advisory or strict)"
+        required: false
+        default: "advisory"
+        type: choice
+        options:
+          - advisory
+          - strict
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Bilingual Docs Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Determine lint mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=advisory" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run bilingual lint
+        id: lint
+        run: |
+          if [ "${{ steps.mode.outputs.value }}" = "strict" ]; then
+            python3 scripts/bilingual_lint.py --strict .
+          else
+            python3 scripts/bilingual_lint.py .
+          fi
+
+      - name: Annotate warnings on PR
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+            let output;
+            try {
+              output = execSync(
+                'python3 scripts/bilingual_lint.py --strict . || true',
+                { encoding: 'utf-8' }
+              );
+            } catch (e) {
+              output = e.stdout || '';
+            }
+            const warns = output.split('\n').filter(l => l.trim().startsWith('-'));
+            if (warns.length === 0) {
+              core.info('No lint warnings.');
+              return;
+            }
+            const body = [
+              '## 📝 Bilingual Lint — Advisory Warnings',
+              '',
+              `Found **${warns.length} advisory warning(s)** (R3/R4 naming drift). These are non-blocking but should be cleaned up incrementally (Pitfall #1 dogfooding).`,
+              '',
+              '```',
+              ...warns.slice(0, 30),
+              warns.length > 30 ? `... and ${warns.length - 30} more` : '',
+              '```',
+              '',
+              'See `scripts/bilingual_lint.py` for rule details.',
+            ].join('\n');
+            await core.summary.addRaw(body, true).write();
