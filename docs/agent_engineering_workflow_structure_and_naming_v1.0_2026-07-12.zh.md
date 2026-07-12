@@ -26,12 +26,12 @@
     ├── 02-spec/
     ├── 03-plan/
     ├── 04-test-plan/
-    ├── 05-implementation/
-    ├── 06-review/
-    ├── 07-commit/
+    ├── 06-implementation/
+    ├── 07-review/
+    ├── 08-commit/
     ├── 10-coding-practices/        # 横向主题
     ├── 11-governance/              # 横向主题
-    ├── 12-multi-agent-coordination/  # 横向主题
+    ├── 05-multi-agent-coordination/  # 横向主题
     ├── 90-pitfalls/                # 跨主题索引
     ├── <project>_structure_and_naming_v1.0_<date>.en.md  # 本文档（英文）
     └── <project>_structure_and_naming_v1.0_<date>.zh.md  # 本文档（中文）
@@ -41,11 +41,13 @@
 
 | 范围 | 含义 |
 |------|------|
-| **00–07** | 线性 workflow stages（Positioning → Commit） |
+| **00–09** | 线性 workflow stages（Positioning → Commit） |
 | **10–19** | 横向主题（应用于多个 stages） |
 | **90–99** | 跨主题索引（如 pitfall 索引） |
 
 两位零填充是强制的，保证可排序。
+
+**注**：00–09 范围于 2026-07-12 从 00–07 扩展，纳入 Multi-Agent Coordination 作为 Stage 5（它是 Stage 6 Implementation 的硬前置，所以放在线性流而不是横向主题）。
 
 ---
 
@@ -153,8 +155,8 @@ Section 标题结构必须在两语种间 1:1 对齐（本手册通过 `.github/
 
 - **代码结构** — 随项目类型（CLI / web app / library）变化；在每个项目的 `CLAUDE.md` 或 `CONVENTIONS.md` 显式声明
 - **Git workflow 规则** — 见 [`docs/11-governance/`](../11-governance/_index_zh.md)
-- **Commit message 格式** — 见 [`docs/07-commit/`](../07-commit/_index_zh.md)
-- **模板内容** — 见 [`docs/05-implementation/`](../05-implementation/_index_zh.md)（待添加）
+- **Commit message 格式** — 见 [`docs/08-commit/`](../08-commit/_index_zh.md)
+- **模板内容** — 见 [`docs/06-implementation/`](../06-implementation/_index_zh.md)（待添加）
 
 ---
 

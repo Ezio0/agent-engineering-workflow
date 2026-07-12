@@ -26,12 +26,12 @@ Every project has a top-level `docs/` directory. Inside, **one folder per workfl
     ├── 02-spec/
     ├── 03-plan/
     ├── 04-test-plan/
-    ├── 05-implementation/
-    ├── 06-review/
-    ├── 07-commit/
+    ├── 06-implementation/
+    ├── 07-review/
+    ├── 08-commit/
     ├── 10-coding-practices/        # cross-cutting
     ├── 11-governance/              # cross-cutting
-    ├── 12-multi-agent-coordination/  # cross-cutting
+    ├── 05-multi-agent-coordination/  # cross-cutting
     ├── 90-pitfalls/                # cross-topic index
     ├── <project>_structure_and_naming_v1.0_<date>.en.md  # this document
     └── <project>_structure_and_naming_v1.0_<date>.zh.md  # this document
@@ -41,11 +41,13 @@ Every project has a top-level `docs/` directory. Inside, **one folder per workfl
 
 | Range | Meaning |
 |-------|---------|
-| **00–07** | Linear workflow stages (Positioning → Commit) |
+| **00–09** | Linear workflow stages (Positioning → Commit) |
 | **10–19** | Cross-cutting topics (apply to multiple stages) |
 | **90–99** | Cross-topic indexes (e.g. pitfall index) |
 
 Two-digit zero-padding is mandatory for sortability.
+
+**Note**: The 00–09 range was extended from 00–07 on 2026-07-12 to accommodate Multi-Agent Coordination as a Stage 5 (it's a hard prerequisite for Stage 6 Implementation, so it sits in the linear flow rather than as a cross-cutting topic).
 
 ---
 
@@ -153,8 +155,8 @@ This document covers **document structure**. The following are intentionally **N
 
 - **Code structure** — varies by project type (CLI / web app / library); declared in each project's `CLAUDE.md` or `CONVENTIONS.md`
 - **Git workflow rules** — see [`docs/11-governance/`](../11-governance/_index_en.md)
-- **Commit message format** — see [`docs/07-commit/`](../07-commit/_index_en.md)
-- **Template content** — see [`docs/05-implementation/`](../05-implementation/_index_en.md) (templates to be added)
+- **Commit message format** — see [`docs/08-commit/`](../08-commit/_index_en.md)
+- **Template content** — see [`docs/06-implementation/`](../06-implementation/_index_en.md) (templates to be added)
 
 ---
 

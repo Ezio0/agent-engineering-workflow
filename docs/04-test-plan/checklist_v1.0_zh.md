@@ -1,6 +1,6 @@
 # Test Plan Checklist（v1.0）
 
-> **用途**：从 Stage 4（Test Plan）进入 Stage 5（Implementation）前的签字门。
+> **用途**：从 Stage 4（Test Plan）进入 Stage 6（Implementation）前的签字门。
 > **怎么用**：写完 Test Plan 后填本文件。任何强制门没勾，**Implementation 不能开始**。
 > **关联**：[English version](checklist_v1.0_en.md)
 
@@ -137,4 +137,4 @@
 
 ---
 
-> 签字后 Stage 5（Implementation）可以开始。见 [`../05-implementation/_index_zh.md`](../05-implementation/_index_zh.md)。
+> 签字后 Stage 6（Implementation）可以开始。见 [`../06-implementation/_index_zh.md`](../06-implementation/_index_zh.md)。

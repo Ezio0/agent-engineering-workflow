@@ -8,12 +8,12 @@
 
 ## Purpose
 
-Ezio reviews the diff / patch produced by Stage 5 and decides approve / reject / iterate.
+Ezio reviews the diff / patch produced by Stage 6 and decides approve / reject / iterate.
 
 ## Outcomes
 
 - **"commit" / "提交" / "OK 提交"** → proceed to Stage 7
-- **"再改改" / "修改"** → back to Stage 5
+- **"再改改" / "修改"** → back to Stage 6
 - **"算了" / 拒绝** → task closed
 
 ## To be filled after discussion with Ezio

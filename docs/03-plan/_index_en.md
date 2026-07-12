@@ -14,7 +14,7 @@ Plan is the bridge between "what we're building" (Spec) and "who does what when"
 |-------|---------------------|
 | **Spec** (Stage 2) | Plan implements Spec §2 Goals + §6 API Surface + §7 Error Model. Reference Spec, don't rewrite. |
 | **Test Plan** (Stage 4) | Plan says "what + how to break it down"; Test Plan says "how to verify it". Plan §7 (Verification Plan) is a brief overview — full coverage goes in Stage 4. |
-| **Implementation** (Stage 5) | Plan is the entry point for Implementation. Phases and Tasks are followed in order. |
+| **Implementation** (Stage 6) | Plan is the entry point for Implementation. Phases and Tasks are followed in order. |
 
 **If the Plan contradicts the Spec, fix the Spec first.** Same rule as PRD → Spec.
 
@@ -47,7 +47,7 @@ One paragraph: the implementation roadmap from Spec to working code.
 
 - What gets built
 - How many Phases, roughly how long
-- What "done" looks like (Stage 5 → Stage 7 exit criteria)
+- What "done" looks like (Stage 6 → Stage 8 exit criteria)
 
 ### §2 Phases
 
@@ -183,4 +183,4 @@ Phase / Task level changes only. **Individual commits go to git log, not here.**
 - Upstream: [`../01-prd/_index_en.md`](../01-prd/_index_en.md)
 - Upstream: [`../00-positioning/_index_en.md`](../00-positioning/_index_en.md)
 - Downstream: [`../04-test-plan/_index_en.md`](../04-test-plan/_index_en.md)
-- Downstream: [`../05-implementation/_index_en.md`](../05-implementation/_index_en.md)
+- Downstream: [`../06-implementation/_index_en.md`](../06-implementation/_index_en.md)

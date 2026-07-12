@@ -8,7 +8,7 @@
 
 ## Purpose
 
-Cross-cutting topic: applies to **all stages**, especially Stage 6 (Review) and Stage 7 (Commit).
+Cross-cutting topic: applies to **all stages**, especially Stage 7 (Review) and Stage 8 (Commit).
 
 ## Topics (planned)
 

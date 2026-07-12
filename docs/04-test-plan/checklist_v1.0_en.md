@@ -1,6 +1,6 @@
 # Test Plan Checklist (v1.0)
 
-> **Purpose**: Sign-off gate before moving from Stage 4 (Test Plan) to Stage 5 (Implementation).
+> **Purpose**: Sign-off gate before moving from Stage 4 (Test Plan) to Stage 5 (Multi-Agent Coordination).
 > **How to use**: Fill out AFTER writing the Test Plan. If any mandatory gate is unchecked, **Implementation cannot begin**.
 > **Related**: [中文版](checklist_v1.0_zh.md)
 
@@ -137,4 +137,4 @@ Strongly recommended (not strict, but skipping usually means the Test Plan isn't
 
 ---
 
-> Once signed off, Stage 5 (Implementation) may begin. See [`../05-implementation/_index_en.md`](../05-implementation/_index_en.md).
+> Once signed off, Stage 5 (Multi-Agent Coordination) may begin. See [`../06-implementation/_index_en.md`](../06-implementation/_index_en.md).

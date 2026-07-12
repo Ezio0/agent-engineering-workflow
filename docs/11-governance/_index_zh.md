@@ -8,7 +8,7 @@
 
 ## 目的
 
-横向主题：应用于**所有 stages**，特别是 Stage 6（Review）和 Stage 7（Commit）。
+横向主题：应用于**所有 stages**，特别是 Stage 7（Review）和 Stage 8（Commit）。
 
 ## 计划 topics
 

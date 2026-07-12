@@ -79,12 +79,12 @@ agent-engineering-workflow/
 │   ├── 02-spec/               # Stage 2: Spec
 │   ├── 03-plan/               # Stage 3: Plan
 │   ├── 04-test-plan/          # Stage 4: Test Plan
-│   ├── 05-implementation/     # Stage 5: Implementation
-│   ├── 06-review/             # Stage 6: Review
-│   ├── 07-commit/             # Stage 7: Commit
+│   ├── 06-implementation/     # Stage 6: Implementation
+│   ├── 07-review/             # Stage 7: Review
+│   ├── 08-commit/             # Stage 8: Commit
 │   ├── 10-coding-practices/   # Cross-cutting topic
 │   ├── 11-governance/         # Cross-cutting topic
-│   ├── 12-multi-agent-coordination/  # Cross-cutting topic
+│   ├── 05-multi-agent-coordination/  # Cross-cutting topic
 │   └── 90-pitfalls/           # Cross-topic index
 └── CHANGELOG.md
 ```

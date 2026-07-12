@@ -8,7 +8,7 @@
 
 ## Purpose
 
-Cross-cutting topic: applies to **Stage 5 (Implementation)** and overlaps with daily coding patterns.
+Cross-cutting topic: applies to **Stage 5 (Multi-Agent Coordination)** and overlaps with daily coding patterns.
 
 ## Topics (planned)
 

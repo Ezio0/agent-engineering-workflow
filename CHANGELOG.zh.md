@@ -49,6 +49,66 @@
 
 ---
 
+## [1.6.0] - 2026-07-12
+
+### 新增
+
+#### Stage 5（Multi-Agent Coordination）—— 第六个填充的 section（**重排**）
+
+**重大重组**：Multi-Agent Coordination 从横向主题 12 移到**线性 stage 5**，因为它是 Implementation 的硬前置。Implementation 现在是 Stage 6，Review Stage 7，Commit Stage 8。编号方案从 00–07 扩到 00–09。
+
+重命名 sections：
+
+- `12-multi-agent-coordination/` → `05-multi-agent-coordination/`
+- `05-implementation/` → `06-implementation/`
+- `06-review/` → `07-review/`
+- `07-commit/` → `08-commit/`
+
+**从 `agent-team-orchestrator` 整合**：协议层（3 层 + 4 设计原则）现在进手册。实现细节（Python 模块、CLI、exit code）留在 Orchestrator 仓库作可选参考工具。**解耦**：如果 Orchestrator 删了，本 section 仍然有效。
+
+Stage 5 的 11 章节：
+
+- §1 何时适用本 section
+- §2 3 种失败模式（并发覆盖 / stale-base 重写 / 混合文件 auto-commit）
+- §3 三层防护（声明 + 隔离 + 检测）
+- §4 Target Files 协议（严格 grammar spec，宽容解析）
+- §5 Worktree 生命周期（创建 / 清理 / 孤儿处理）
+- §6 Stale-Base 检测（捕获 / 检测 / 处理）
+- §7 Patch 交接协议（落地到 `docs/pending-reviews/<task_id>_<timestamp>.patch`）
+- §8 Commit Authority（agent 永远不 commit 到 main）
+- §9 设计原则（无静默失败 / 人在回路 / 上游无关 / 主 checkout 只读）
+- §10 Open Questions（每项决策截止日）
+- §11 References（Orchestrator 作可选工具，不是 SSOT）
+
+包括：
+
+- [`docs/05-multi-agent-coordination/_index_zh.md`](docs/05-multi-agent-coordination/_index_zh.md) + `_index_en.md` — section 完整内容
+- [`docs/05-multi-agent-coordination/template_v1.0_zh.md`](docs/05-multi-agent-coordination/template_v1.0_zh.md) + `_en.md` — 4 模板：Target Files section、Patch header、Worktree checklist、Stale-base 脚本
+- [`docs/05-multi-agent-coordination/checklist_v1.0_zh.md`](docs/05-multi-agent-coordination/checklist_v1.0_zh.md) + `_en.md` — 并发 agent run 前的签字门
+
+### 变更
+
+- 编号方案：`00–07` → `00–09`，纳入 Multi-Agent 作为 Stage 5
+- Stage 编号：Implementation 现 6（原 5），Review 现 7（原 6），Commit 现 8（原 7）
+- Multi-Agent Coordination 从"横向主题"表移出 — 现在在"Workflow Stages"里
+- 17 个含交叉引用的文件已更新到新 section 路径 + stage 编号
+
+### 移除
+
+- "横向主题（10–19）"里的 12（Multi-Agent 已移出）
+- multi-agent section 旧的"横向"状态
+
+### 剩 6 个 section
+
+- Stage 6（Implementation）—— 骨架
+- Stage 7（Review）—— 骨架
+- Stage 8（Commit）—— 骨架
+- 横向 10（Coding Practices）—— 骨架
+- 横向 11（Governance）—— 骨架
+- 跨主题 90（pitfalls）—— 骨架
+
+---
+
 ## [1.5.0] - 2026-07-12
 
 ### 新增

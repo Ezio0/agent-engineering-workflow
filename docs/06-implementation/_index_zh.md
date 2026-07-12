@@ -1,6 +1,6 @@
 # 05 — Implementation（实施）
 
-> **状态**：骨架（Stage 5）
+> **状态**：骨架（Stage 6）
 > **最后审阅**：2026-07-12
 > **关联**：[English version](_index_en.md)
 
@@ -18,6 +18,6 @@
 
 ## 多 agent 场景
 
-如果多 agent 写同一 codebase，见 [`../12-multi-agent-coordination/`](../12-multi-agent-coordination/_index_zh.md)。
+如果多 agent 写同一 codebase，见 [`../05-multi-agent-coordination/`](../05-multi-agent-coordination/_index_zh.md)。
 
 ## 待 Ezio 讨论后填充

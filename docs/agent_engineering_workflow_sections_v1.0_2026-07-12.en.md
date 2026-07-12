@@ -6,7 +6,7 @@
 
 This is the top-level navigation index for the `agent-engineering-workflow` handbook. Each entry links to a section's `_index_en.md`.
 
-## Workflow Stages (00–07)
+## Workflow Stages (00–09)
 
 | # | Section | Purpose | Status |
 |---|---------|---------|--------|
@@ -15,17 +15,17 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 | 02 | [Spec](02-spec/_index_en.md) | API surface, data structures, error contracts | Active |
 | 03 | [Plan](03-plan/_index_en.md) | Implementation steps, dependencies, risks | Active |
 | 04 | [Test Plan](04-test-plan/_index_en.md) | Unit / Integration / E2E scope + coverage | Active |
-| 05 | [Implementation](05-implementation/_index_en.md) | Write the code | Skeleton |
-| 06 | [Review](06-review/_index_en.md) | Ezio reviews diff / patch | Skeleton |
-| 07 | [Commit](07-commit/_index_en.md) | Land as git commit | Skeleton |
+| 05 | [Multi-Agent Coordination](05-multi-agent-coordination/_index_en.md) | 3-layer defense (Declaration + Isolation + Detection) for concurrent agents | Active |
+| 06 | [Implementation](06-implementation/_index_en.md) | Write the code | Skeleton |
+| 07 | [Review](07-review/_index_en.md) | Ezio reviews diff / patch | Skeleton |
+| 08 | [Commit](08-commit/_index_en.md) | Land as git commit | Skeleton |
 
 ## Cross-Cutting Topics (10–19)
 
 | # | Section | Applies to | Status |
 |---|---------|-----------|--------|
-| 10 | [Coding Practices](10-coding-practices/_index_en.md) | Stage 5 | Skeleton |
+| 10 | [Coding Practices](10-coding-practices/_index_en.md) | Stage 6 (Implementation) | Skeleton |
 | 11 | [Governance](11-governance/_index_en.md) | All stages | Skeleton |
-| 12 | [Multi-Agent Coordination](12-multi-agent-coordination/_index_en.md) | Stage 5 | Skeleton |
 
 ## Cross-Topic Indexes (90–99)
 
@@ -44,18 +44,18 @@ This is the top-level navigation index for the `agent-engineering-workflow` hand
 
 ## Roadmap
 
-The 8-stage workflow + cross-cutting topics will be filled in via discussion with Ezio, in this order:
+The 9-stage workflow + cross-cutting topics are being filled in via discussion with Ezio, in this order:
 
 1. **Positioning** (Stage 0) — first because most foundational
 2. **PRD** (Stage 1) — depends on Positioning
 3. **Spec** (Stage 2)
 4. **Plan** (Stage 3)
 5. **Test Plan** (Stage 4)
-6. **Implementation** (Stage 5)
-7. **Review** (Stage 6)
-8. **Commit** (Stage 7)
-9. **Coding Practices** (Cross-Cutting 10)
-10. **Governance** (Cross-Cutting 11)
-11. **Multi-Agent Coordination** (Cross-Cutting 12) — last per Ezio's instruction
+6. **Multi-Agent Coordination** (Stage 5) — hard prerequisite for Implementation (depends on Orchestrator integration)
+7. **Implementation** (Stage 6)
+8. **Review** (Stage 7)
+9. **Commit** (Stage 8)
+10. **Coding Practices** (Cross-Cutting 10)
+11. **Governance** (Cross-Cutting 11)
 
-After all sections are filled, the `global-launch-review` skill in Hermes will be updated to reflect the new 8-stage workflow.
+After all sections are filled, the `global-launch-review` skill in Hermes will be updated to reflect the new 9-stage workflow.

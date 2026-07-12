@@ -8,7 +8,7 @@
 
 ## 目的
 
-横向主题：应用于 **Stage 5（Implementation）**，与日常编码模式相关。
+横向主题：应用于 **Stage 6（Implementation）**，与日常编码模式相关。
 
 ## 计划 topics
 

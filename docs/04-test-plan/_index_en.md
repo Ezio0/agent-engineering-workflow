@@ -15,7 +15,7 @@ Test Plan answers: "How do we know this works?" Without it, Implementation is ju
 | Stage | Test Plan's relationship |
 |-------|---------------------------|
 | **Plan** (Stage 3) | Test Plan expands Plan §7 Verification Plan into a full strategy. Every Task in Plan §3 should have corresponding tests. |
-| **Implementation** (Stage 5) | Test Plan is a **pre-requisite gate**. Implementation cannot begin until Test Plan is signed off. |
+| **Implementation** (Stage 6) | Test Plan is a **pre-requisite gate**. Implementation cannot begin until Test Plan is signed off. |
 | **Review** (Stage 6) | Review checks both code AND test coverage against this Test Plan. |
 
 **If tests aren't in Test Plan, they don't count.** Discoveries during Implementation that need new tests → bump Test Plan version, get sign-off, then write tests.
@@ -117,7 +117,7 @@ Same rule as Spec §11 / Plan §8: no wishlist items, only items with deadlines.
 ## How to use this stage
 
 1. **Plan must be signed off first** (Stage 3 checklist all checked).
-2. **Test Plan is a pre-requisite for Implementation** — Stage 5 cannot begin until Test Plan is signed off.
+2. **Test Plan is a pre-requisite for Implementation** — Stage 6 cannot begin until Test Plan is signed off.
 3. **Reference Plan §3 (Task Breakdown)** — every Task should have at least one test.
 4. **Reference Plan §7 (Verification Plan)** — Test Plan is the detailed expansion of that overview.
 5. **§2 must be pyramid-shaped** — flat test suites are a red flag.
@@ -164,4 +164,4 @@ The pyramid is **a direction, not a number**. The exact ratios depend on project
 - Upstream: [`../02-spec/_index_en.md`](../02-spec/_index_en.md)
 - Upstream: [`../01-prd/_index_en.md`](../01-prd/_index_en.md)
 - Upstream: [`../00-positioning/_index_en.md`](../00-positioning/_index_en.md)
-- Downstream: [`../05-implementation/_index_en.md`](../05-implementation/_index_en.md)
+- Downstream: [`../06-implementation/_index_en.md`](../06-implementation/_index_en.md)

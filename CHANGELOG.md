@@ -49,6 +49,65 @@ After initial commit prep, Ezio observed that the project must **walk its own ta
 
 ---
 
+## [1.6.0] - 2026-07-12
+
+### Added / 新增
+
+#### Stage 5 (Multi-Agent Coordination) — sixth section filled in (REORDERED)
+
+**Major restructure**: Multi-Agent Coordination was moved from cross-cutting topic 12 to **linear stage 5**, because it's a hard prerequisite for Implementation. Implementation now is Stage 6, Review Stage 7, Commit Stage 8. Numbering scheme extended from 00–07 to 00–09.
+
+Renumbered sections:
+- `12-multi-agent-coordination/` → `05-multi-agent-coordination/`
+- `05-implementation/` → `06-implementation/`
+- `06-review/` → `07-review/`
+- `07-commit/` → `08-commit/`
+
+**Integrated from `agent-team-orchestrator`**: the protocol layer (3 layers + 4 design principles) is now part of the handbook. Implementation details (Python modules, CLI, exit codes) stay in the Orchestrator repo as optional reference tooling. **Decoupled**: if Orchestrator is deleted, this section remains valid.
+
+11 sections in Stage 5:
+
+- §1 When this section applies
+- §2 The 3 Failure Modes (concurrent overwrite / stale-base rewrite / mixed-file auto-commit)
+- §3 The 3-Layer Defense (Declaration + Isolation + Detection)
+- §4 Target Files Protocol (strict grammar spec, lenient parser)
+- §5 Worktree Lifecycle (creation / cleanup / orphan handling)
+- §6 Stale-Base Detection (capture / detect / handle)
+- §7 Patch Handoff Protocol (landing in `docs/pending-reviews/<task_id>_<timestamp>.patch`)
+- §8 Commit Authority (agents never commit to main)
+- §9 Design Principles (No silent failures / Human-in-the-loop / Upstream-agnostic / Read-only on main)
+- §10 Open Questions (decision deadline per item)
+- §11 References (Orchestrator as optional tooling, not source of truth)
+
+Includes:
+
+- [`docs/05-multi-agent-coordination/_index_en.md`](docs/05-multi-agent-coordination/_index_en.md) + `_index_zh.md` — full section content
+- [`docs/05-multi-agent-coordination/template_v1.0_en.md`](docs/05-multi-agent-coordination/template_v1.0_en.md) + `_zh.md` — 4 templates: Target Files section, Patch header, Worktree checklist, Stale-base script
+- [`docs/05-multi-agent-coordination/checklist_v1.0_en.md`](docs/05-multi-agent-coordination/checklist_v1.0_en.md) + `_zh.md` — sign-off gate before concurrent agent runs
+
+### Changed / 变更
+
+- Numbering scheme: `00–07` → `00–09` to accommodate Multi-Agent as Stage 5
+- Stage numbers: Implementation now 6 (was 5), Review now 7 (was 6), Commit now 8 (was 7)
+- Multi-Agent Coordination removed from "Cross-Cutting Topics" table — now in "Workflow Stages"
+- All 17 files with cross-references updated to new section paths + stage numbers
+
+### Removed / 移除
+
+- 12 from "Cross-Cutting Topics (10–19)" (Multi-Agent moved out)
+- Old cross-cutting status from multi-agent section
+
+### Remaining work / 剩 6 个 section
+
+- Stage 6 (Implementation) — Skeleton
+- Stage 7 (Review) — Skeleton
+- Stage 8 (Commit) — Skeleton
+- Cross-Cutting 10 (Coding Practices) — Skeleton
+- Cross-Cutting 11 (Governance) — Skeleton
+- Cross-Topic 90 (Pitfalls) — Skeleton
+
+---
+
 ## [1.5.0] - 2026-07-12
 
 ### Added / 新增
