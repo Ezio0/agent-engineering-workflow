@@ -25,7 +25,8 @@ Gate Check — 检查项目是否满足对应 Tier 的门控要求。
 检查维度（v2.0）:
     T0: Kanban 注册存在
     T1: Lean Canvas 存在 + 签字
-    T2: 5 Gate 全部存在 + 章节完整性 + 签字 + 上游引用校验
+    T2: 5 Gate 全部存在 + 章节完整性 + 签字 + 上游引用校验 + 48h Hotfix Retro 审计
+    T3: Hotfix Lane 合规（tier 声明 + Kanban + hotfix commit + reviewer）
 
     新增 --auto-detect-tier:
     基于 git diff --stat 启发式给出建议 Tier
@@ -41,6 +42,7 @@ import re
 import subprocess
 import sys
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import NamedTuple
 
@@ -400,6 +402,167 @@ def detect_tier(project_root: Path) -> TierAssessment:
 # Gate 检查
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------\
+# T3 Hotfix 检查
+# ---------------------------------------------------------------------------\
+
+def check_t3(project_root: Path) -> list[CheckResult]:
+    """T3 检查：Hotfix Lane 合规性。
+    
+    校验:
+      1. .workflow/tier 声明 tier: T3 + justification（必须提到 incident）
+      2. Kanban 注册存在（复用 T0 检查）
+      3. 最近 commit 有 hotfix: 前缀
+      4. 至少一名 reviewer 记录（宽松文本匹配）
+    T3 与 T0-T2 独立，不走包含关系（hotfix 不需要 Positioning Memo）。
+    """
+    results = []
+    
+    # 1. 检查 .workflow/tier
+    tier, justification = read_tier_file(project_root)
+    if tier != "T3":
+        results.append(CheckResult(
+            passed=False,
+            message=f"T3 声明缺失或错误：.workflow/tier 应声明 tier: T3（当前: {tier or '未声明'}）",
+        ))
+    else:
+        if not justification:
+            results.append(CheckResult(
+                passed=False,
+                message="T3 justification 缺失：必须包含 incident ID 或事故描述",
+            ))
+        elif not re.search(r"incident|事故|P0|P1|hotfix|emergency", justification, re.IGNORECASE):
+            results.append(CheckResult(
+                passed=False,
+                message=f"T3 justification 不含 incident 引用：'{justification[:50]}...' 应提到 incident ID",
+            ))
+        else:
+            results.append(CheckResult(
+                passed=True,
+                message=f"T3 声明 + justification ✓",
+            ))
+    
+    # 2. Kanban 注册（复用 T0）
+    results.extend(check_t0(project_root))
+    
+    # 3. 最近 commit 检查 hotfix: 前缀
+    try:
+        proc = subprocess.run(
+            ["git", "log", "--oneline", "-5", "--format=%s"],
+            capture_output=True, text=True, cwd=project_root, timeout=10,
+        )
+        commits = proc.stdout.strip().splitlines()
+        has_hotfix_commit = any(
+            c.lower().startswith("hotfix:") or "hotfix" in c.lower()
+            for c in commits
+        )
+        if has_hotfix_commit:
+            results.append(CheckResult(
+                passed=True,
+                message="最近 commit 含 hotfix 前缀 ✓",
+            ))
+        else:
+            results.append(CheckResult(
+                passed=False,
+                message="最近 5 条 commit 无 hotfix: 前缀（T3 要求 commit message 以 hotfix: 开头）",
+            ))
+    except (subprocess.TimeoutExpired, FileNotFoundError, OSError):
+        results.append(CheckResult(
+            passed=False,
+            severity="WARNING",
+            message="无法检查 git log（非 git 仓库或超时）",
+        ))
+    
+    # 4. Reviewer 记录（宽松匹配）
+    reviewer_found = False
+    retro_dir = project_root / "docs" / "09-retro"
+    if retro_dir.exists():
+        for f in retro_dir.glob("hotfix-*.md"):
+            content = f.read_text(encoding="utf-8")
+            if re.search(r"reviewed by|approved by|审阅|reviewer", content, re.IGNORECASE):
+                reviewer_found = True
+                break
+    
+    # 也检查 Kanban / incident 文件
+    if not reviewer_found:
+        for p in [project_root / "kanban.md", project_root / ".kanban"]:
+            if p.exists() and p.is_file():
+                content = p.read_text(encoding="utf-8")
+                if re.search(r"reviewed by|approved by|审阅|reviewer", content, re.IGNORECASE):
+                    reviewer_found = True
+                    break
+    
+    if reviewer_found:
+        results.append(CheckResult(
+            passed=True,
+            message="Reviewer 记录 ✓",
+        ))
+    else:
+        results.append(CheckResult(
+            passed=False,
+            message="Reviewer 记录缺失：需在 retro 或 Kanban 卡中记录 'reviewed by' 或 'approved by'",
+        ))
+    
+    return results
+
+
+# ---------------------------------------------------------------------------
+# 48h Hotfix Retro 审计
+# ---------------------------------------------------------------------------
+
+def check_hotfix_retro_48h(project_root: Path) -> list[CheckResult]:
+    """检查所有 hotfix retro 是否在 48h 内完成。
+    
+    扫描 docs/09-retro/hotfix-*.{zh,en}.md：
+    - 从文件名提取事故日期（hotfix-YYYY-MM-DD-incident-id）
+    - 如果事故日期 > 48h 且 retro 内容不完整（缺 root cause） → FAIL
+    
+    Returns:
+        检查结果列表（空列表 = 无 hotfix 或全部合规）
+    """
+    results = []
+    retro_dir = project_root / "docs" / "09-retro"
+    if not retro_dir.exists():
+        return results  # 无 hotfix
+    
+    now = datetime.now(tz=timezone.utc)
+    
+    for f in retro_dir.glob("hotfix-*.md"):
+        # 从文件名提取日期：hotfix-2026-07-14-xxx.md
+        m = re.match(r"hotfix-(\d{4})-(\d{2})-(\d{2})", f.name)
+        if not m:
+            continue  # 文件名格式不匹配，跳过
+        
+        incident_date_str = f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+        try:
+            incident_date = datetime.strptime(incident_date_str, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        
+        hours_elapsed = (now - incident_date).total_seconds() / 3600
+        
+        if hours_elapsed <= 48:
+            continue  # 还在 48h 窗口内，OK
+        
+        # 超过 48h，检查 retro 完整性
+        content = f.read_text(encoding="utf-8")
+        has_root_cause = bool(re.search(
+            r"root cause|根因|RCA|时间线|timeline",
+            content, re.IGNORECASE,
+        ))
+        
+        if not has_root_cause:
+            results.append(CheckResult(
+                passed=False,
+                message=(
+                    f"❌ Hotfix-{incident_date_str} retro 已超 48h 未完成"
+                    f"（已过 {int(hours_elapsed)}h），阻塞新 T2"
+                ),
+            ))
+    
+    return results
+
+
 def check_t0(project_root: Path) -> list[CheckResult]:
     """T0 检查：Kanban 注册是否存在。
     
@@ -511,6 +674,7 @@ def run_check(
     tier: str,
     project_root: Path,
     verbose: bool = False,
+    skip_hotfix_audit: bool = False,
 ) -> tuple[bool, list[CheckResult]]:
     """执行门控检查。返回 (passed, results)。"""
     all_results: list[CheckResult] = []
@@ -521,6 +685,12 @@ def run_check(
         all_results = check_t1(project_root)
     elif tier == "T2":
         all_results = check_t2(project_root)
+        # 48h Hotfix Retro 审计（T2 pre-flight）
+        if not skip_hotfix_audit:
+            hotfix_results = check_hotfix_retro_48h(project_root)
+            all_results.extend(hotfix_results)
+    elif tier == "T3":
+        all_results = check_t3(project_root)
     else:
         return False, [CheckResult(passed=False, message=f"未知 Tier '{tier}'")]
 
@@ -581,8 +751,13 @@ def main():
     )
     parser.add_argument(
         "--tier",
-        choices=["T0", "T1", "T2"],
+        choices=["T0", "T1", "T2", "T3"],
         help="检查级别（与 --auto-detect-tier 二选一）",
+    )
+    parser.add_argument(
+        "--skip-hotfix-audit",
+        action="store_true",
+        help="跳过 48h Hotfix Retro 检查（Ezio 手动豁免用）",
     )
     parser.add_argument(
         "--auto-detect-tier",
@@ -624,8 +799,10 @@ def main():
             print("❌ 需要指定 --tier 或 --auto-detect-tier，或创建 .workflow/tier 文件")
             sys.exit(1)
 
-    # 执行检查
-    passed, results = run_check(tier, project_root, verbose=args.verbose)
+    passed, results = run_check(
+        tier, project_root, verbose=args.verbose,
+        skip_hotfix_audit=args.skip_hotfix_audit,
+    )
     all_results = results + extra_results
 
     # 重新评估（考虑 extra_results 中的 ERROR）

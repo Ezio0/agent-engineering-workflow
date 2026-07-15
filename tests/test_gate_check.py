@@ -450,6 +450,141 @@ class TestFindGateFile:
         assert result is None
 
 
+# ---------------------------------------------------------------------------\
+# T3 Hotfix 测试
+# ---------------------------------------------------------------------------
+
+class TestT3Hotfix:
+    """T3 Hotfix Lane 检查。"""
+
+    def test_t3_pass(self, tmp_path):
+        """合规的 T3 项目应通过。"""
+        project = make_project(tmp_path)
+        
+        # .workflow/tier 声明 T3 + incident justification
+        tier_dir = project / ".workflow"
+        tier_dir.mkdir(exist_ok=True)
+        (tier_dir / "tier").write_text(
+            "tier: T3\njustification: incident-2026-07-15 P0 production down\n",
+            encoding="utf-8",
+        )
+        
+        # Kanban 卡（含 reviewer）
+        (project / "kanban.md").write_text(
+            "# Kanban\n\nreviewed by: Ezio\n",
+            encoding="utf-8",
+        )
+        
+        # git init + hotfix commit
+        os.system(f"cd {tmp_path} && git init -q && git config user.email t@t.com && git config user.name t")
+        (tmp_path / "fix.py").write_text("# fix", encoding="utf-8")
+        os.system(f"cd {tmp_path} && git add -A && git commit -q -m 'hotfix: fix prod crash'")
+        
+        passed, results = gate_check.run_check("T3", project, verbose=True)
+        assert passed, f"合规 T3 应通过，错误: {[r.message for r in results if not r.passed]}"
+
+    def test_t3_wrong_tier_fails(self, tmp_path):
+        """.workflow/tier 不是 T3 应失败。"""
+        project = make_project(tmp_path)
+        
+        tier_dir = project / ".workflow"
+        tier_dir.mkdir(exist_ok=True)
+        (tier_dir / "tier").write_text("tier: T2\n", encoding="utf-8")
+        
+        passed, results = gate_check.run_check("T3", project, verbose=True)
+        assert not passed, "非 T3 声明应失败"
+
+    def test_t3_no_justification_fails(self, tmp_path):
+        """T3 声明无 justification 应失败。"""
+        project = make_project(tmp_path)
+        
+        tier_dir = project / ".workflow"
+        tier_dir.mkdir(exist_ok=True)
+        (tier_dir / "tier").write_text("tier: T3\n", encoding="utf-8")
+        
+        passed, results = gate_check.run_check("T3", project, verbose=True)
+        assert not passed, "无 justification 应失败"
+
+    def test_t3_no_hotfix_commit_fails(self, tmp_path):
+        """最近 commit 无 hotfix 前缀应失败。"""
+        project = make_project(tmp_path)
+        
+        tier_dir = project / ".workflow"
+        tier_dir.mkdir(exist_ok=True)
+        (tier_dir / "tier").write_text(
+            "tier: T3\njustification: incident P0\n", encoding="utf-8",
+        )
+        
+        os.system(f"cd {tmp_path} && git init -q && git config user.email t@t.com && git config user.name t")
+        (tmp_path / "code.py").write_text("# code", encoding="utf-8")
+        os.system(f"cd {tmp_path} && git add -A && git commit -q -m 'feat: new feature'")
+        
+        passed, results = gate_check.run_check("T3", project, verbose=True)
+        assert not passed, "无 hotfix commit 应失败"
+
+
+class Test48hRetroEnforcement:
+    """48h Hotfix Retro 强制检查。"""
+
+    def test_no_hotfix_no_block(self, tmp_path):
+        """没有 hotfix retro 文件时不阻塞 T2。"""
+        project = make_project(tmp_path)
+        write_all_gates(project)
+        
+        results = gate_check.check_hotfix_retro_48h(project)
+        assert len(results) == 0, "无 hotfix 文件应无额外结果"
+
+    def test_stale_incomplete_hotfix_blocks_t2(self, tmp_path):
+        """超 48h 且不完整的 hotfix retro 应阻塞 T2。"""
+        project = make_project(tmp_path)
+        write_all_gates(project)
+        
+        # 创建一个 3 天前的不完整 hotfix retro
+        retro_dir = project / "docs" / "09-retro"
+        retro_dir.mkdir(parents=True, exist_ok=True)
+        (retro_dir / "hotfix-2026-07-10-incident-001.zh.md").write_text(
+            "# Hotfix Retro\n\n一些内容但不完整\n", encoding="utf-8",
+        )
+        
+        results = gate_check.check_hotfix_retro_48h(project)
+        failures = [r for r in results if not r.passed]
+        assert len(failures) >= 1, "超 48h 不完整 retro 应报失败"
+        assert "48h" in failures[0].message or "48" in failures[0].message
+
+    def test_complete_hotfix_no_block(self, tmp_path):
+        """完整的 hotfix retro（含 root cause）不阻塞。"""
+        project = make_project(tmp_path)
+        write_all_gates(project)
+        
+        retro_dir = project / "docs" / "09-retro"
+        retro_dir.mkdir(parents=True, exist_ok=True)
+        (retro_dir / "hotfix-2026-07-10-incident-001.zh.md").write_text(
+            "# Hotfix Retro\n\n## Root Cause Analysis\n\n数据库连接池耗尽\n\n## Timeline\n\n10:00 发现\n",
+            encoding="utf-8",
+        )
+        
+        results = gate_check.check_hotfix_retro_48h(project)
+        failures = [r for r in results if not r.passed]
+        assert len(failures) == 0, "完整 retro 不应报失败"
+
+    def test_skip_hotfix_audit_flag(self, tmp_path):
+        """--skip-hotfix-audit 应跳过检查。"""
+        project = make_project(tmp_path)
+        write_all_gates(project)
+        
+        retro_dir = project / "docs" / "09-retro"
+        retro_dir.mkdir(parents=True, exist_ok=True)
+        (retro_dir / "hotfix-2026-07-10-incident-001.zh.md").write_text(
+            "# incomplete\n", encoding="utf-8",
+        )
+        
+        # 带 skip_hotfix_audit=True 应通过
+        passed, results = gate_check.run_check(
+            "T2", project, verbose=True, skip_hotfix_audit=True,
+        )
+        assert passed, "skip_hotfix_audit 应跳过 48h 检查"
+
+
 # ---------------------------------------------------------------------------
 # 运行
 # ---------------------------------------------------------------------------
@@ -466,6 +601,8 @@ if __name__ == "__main__":
         TestTierDetection,
         TestDetectTierHeuristics,
         TestFindGateFile,
+        TestT3Hotfix,
+        Test48hRetroEnforcement,
     ]
 
     passed_count = 0
