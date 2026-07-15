@@ -47,6 +47,8 @@ EXEMPT_FILES = {
     "README.zh.md",
     "CHANGELOG.md",
     "CHANGELOG.zh.md",
+    "QUICKSTART.md",
+    "QUICKSTART.zh.md",
     "LICENSE",
     ".gitignore",
     ".gitattributes",

@@ -6,6 +6,16 @@
 
 ---
 
+## 🚀 5-Minute Quickstart
+
+New? Go straight to [**QUICKSTART.md**](QUICKSTART.md) — 5 steps to a passing T1.
+
+Or see a working example: [`examples/minimal-t1/`](examples/minimal-t1/).
+
+Want the full theory? Read on.
+
+---
+
 ## What is this?
 
 This handbook consolidates the engineering practices Ezio has developed across multiple agent-driven projects (EgoZone, agent-team-orchestrator, Hermes-Governance, and more). It exists because on 2026-07-12, after `agent-team-orchestrator` shipped without PRD/Spec/Plan, Ezio explicitly said:
@@ -106,6 +116,21 @@ Semantic versioning:
 - **PATCH** = typo fix, link fix, clarification — edit in place, do NOT create new file
 
 Full naming + versioning standard: see [`docs/agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.en.md`](docs/agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.en.md).
+
+## Dogfooding
+
+This handbook follows the workflow it defines — dogfooding is the foundation of credibility. If we don't follow our own flow, no one else should be expected to.
+
+| Artifact | Path | Status |
+|----------|------|--------|
+| PRD | [`docs/01-prd/agent_engineering_workflow_prd_v1.0_2026-07-12.en.md`](docs/01-prd/agent_engineering_workflow_prd_v1.0_2026-07-12.en.md) | v1.0 (lagging handbook structure; v1.1 pending) |
+| Spec | [`docs/02-spec/agent_engineering_workflow_spec_v1.0_2026-07-12.en.md`](docs/02-spec/agent_engineering_workflow_spec_v1.0_2026-07-12.en.md) | v1.0 |
+| Retro | [`docs/09-retro/handbook_retro_v2.3.0_2026-07-15.en.md`](docs/09-retro/handbook_retro_v2.3.0_2026-07-15.en.md) | First one, covers v2.3, v2.4 releases |
+| Pitfalls sunk | Stage 90 #46 / #47 / #48 | Distilled from first Retro |
+| Positioning Memo | Pending (action listed in Retro §6) | ⬜️ |
+| CI gate-check | Pending (action listed in Retro §6 #7) | ⬜️ |
+
+Read a complete example: [v2.3.0 Retro](docs/09-retro/handbook_retro_v2.3.0_2026-07-15.en.md) — covers metrics review, assumption verification, pitfall candidates, and doc-drift check.
 
 ## License
 

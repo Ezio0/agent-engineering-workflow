@@ -534,6 +534,66 @@ Every pitfall entry uses this fixed structure:
 **Fix**: When user asserts current state, **verify file content FIRST**. Summary lags reality; file wins. "Verify reality first" is a hard rule.
 **Cross-reference**: Stage 11 §6; `egozone-governance` Pitfall #17; `agent-team-orchestrator` v0.1.0 lesson (EgoZone docs has §12 now, not "missing").
 
+#### Pitfall #44: LLM empty response silently passes
+
+**Date**: 2026-07-15
+**Category**: P-CD / P-IM
+**Context**: LLM call returns 200 OK but body has empty content / null / whitespace only.
+**Trigger**: Provider timeout / content-filter / streaming truncation returns success status with empty payload.
+**Symptom**: Downstream code treats empty as "model chose to say nothing"; silent bugs; blank docs generated.
+**Fix**: Coding Practices §12 — all LLM calls must validate response non-empty; explicit retry/error on empty; never fall through.
+**Cross-reference**: Stage 10 §12 LLM reliability; Stage 06 B.3.
+
+#### Pitfall #45: Code-doc drift (implementation changed, doc didn't)
+
+**Date**: 2026-07-15
+**Category**: P-IM / P-RV
+**Context**: Implementation legitimately diverges from Spec, but Spec/PRD never updates.
+**Trigger**: Implementation phase changed behavior, no one went back to bump Spec version.
+**Symptom**: Six months later doc says A, code does B; onboarding gets wrong info; audit impossible.
+**Fix**: QG-8b (Code-Doc Sync Gate) — Review phase enforces implementation vs Spec/PRD consistency. Divergence = bump doc version FIRST, then review. Full scan during Retro (Stage 09).
+**Cross-reference**: Stage 07 QG-8b; Stage 09 Retro §5; Stage 06 B.2b.
+
+#### Pitfall #46: PRD without quantitative metrics = Retro without baseline
+
+**Date**: 2026-07-15
+**Category**: P-IM / P-GV
+**Context**: PRD §8 only lists scope statements or qualitative aspirations, no measurable metrics. Retro finds no baseline to compare against.
+**Trigger**: When writing PRD, thought "add metrics later" or "this is hard to quantify", then skipped.
+**Symptom**: Milestone ships; Retro §2 metrics table is all subjective judgment; can't tell done vs not-done; assumptions can't be verified or falsified.
+**Fix**: PRD §8 must contain at least 3 **quantifiable metrics** (from any of user/performance/business dimensions). Positioning Memo's WHY NOW assumption must be verifiable by at least one PRD metric. PRD Gate checklist adds "§8 has ≥3 quantitative metrics" check.
+**Cross-reference**: Stage 01 PRD §8; Stage 09 Retro §2; `prd-authoring` skill.
+
+#### Pitfall #47: Existence check ≠ content check
+
+**Date**: 2026-07-15
+**Category**: P-GV / P-RV
+**Context**: `gate-check.py` v1 only checked whether `docs/01-prd/*.md` exists, not content.
+**Trigger**: When automating checklists, took shortcut: "file/dir exists" = pass.
+**Symptom**: When agent or human has incentive to bypass, `touch docs/01-prd/x.md` passes; checklist becomes paper tiger; governance rules exist in name only.
+**Fix**: Any gate automation MUST verify **content properties** (chapter completeness / signature markers / upstream references), not just file existence. gate-check v2's three-layer validation (chapters + signature + upstream) is the direct fix for this pitfall.
+**Cross-reference**: `scripts/gate-check.py` (v2.0 hardened); Stage 07 §2 review principles; Retro `handbook_retro_v2.3.0_2026-07-15.en.md` §3 assumption 4.
+
+#### Pitfall #48: Preacher doesn't eat own dogfood (Dogfooding gap)
+
+**Date**: 2026-07-15
+**Category**: P-GV
+**Context**: This handbook requires all projects to Retro within 7 days of milestone, but v2.3 shipped without its own Retro.
+**Trigger**: "The handbook is for others" mindset; author thought they'd already reasoned through it, no need to follow flow.
+**Symptom**: Outsiders see through immediately — if you don't follow your own workflow, why should anyone trust it? Credibility zeroed out; docs degrade to theory.
+**Fix**: All **workflow/spec/skill handbook** projects MUST dogfood their own flow — from Positioning Memo to Retro, nothing skipped. README adds Dogfooding section showing evidence chain. CI check: handbook's own repo periodically runs gate-check T2 + retro-check.
+**Cross-reference**: Retro `handbook_retro_v2.3.0_2026-07-15.en.md` (first dogfooding deliverable); README Dogfooding section; Stage 09 Retro _index.
+
+#### Pitfall #49: Fake urgent goes Hotfix Lane
+
+**Date**: 2026-07-15
+**Category**: P-GV
+**Context**: Any "feels urgent but no actual incident" scenario tagged T3 and skipping 5-Gate.
+**Trigger**: Agent or human wants to skip flow; learns "call it urgent to skip gates" and reuses the pattern.
+**Symptom**: T3 loses credibility, real urgent vs fake urgent become indistinguishable; T2/T1 actually gets skipped; governance rules degrade to paper.
+**Fix**: T3 trigger hard constraint requires ALL 4 conditions (real incident + P0/P1 + 2h deadline + "T2 would be worse"); Retro forced to audit "was this truly urgent"; 3 fake-urgent triggers → triggerer barred from T3 for 90 days.
+**Cross-reference**: `docs/11-governance/hotfix-lane_v1.0_2026-07-15.en.md` §3/§8; Stage 09 Retro.
+
 ---
 
 ## 4. Pitfall Sources

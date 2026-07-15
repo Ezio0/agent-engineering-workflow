@@ -6,6 +6,16 @@
 
 ---
 
+## 🚀 5 分钟上手
+
+新用户直接看 [**QUICKSTART.zh.md**](QUICKSTART.zh.md)，5 步跑通 T1。
+
+或看完整可跑例子：[`examples/minimal-t1/`](examples/minimal-t1/)。
+
+想学完整体系？继续往下读。
+
+---
+
 ## 这是什么？
 
 本手册整合了 Ezio 在多个 agent 驱动项目里沉淀的工程实践（EgoZone、agent-team-orchestrator、Hermes-Governance 等）。它存在的原因是 2026-07-12 `agent-team-orchestrator` 跳过 PRD/Spec/Plan 直接发版后，Ezio 明确说：
@@ -109,6 +119,21 @@ Semantic versioning：
 - **PATCH** = typo 修复、链接修复、表述澄清 — 原地编辑，不要新建文件
 
 完整命名 + 版本规范：见 [`docs/agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.zh.md`](docs/agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.zh.md)。
+
+## Dogfooding
+
+本手册自身走手册定义的流程——这是可信度的基石。如果我们自己都不遵守自己定义的流程，也不应该要求别人遵守。
+
+| 交付物 | 路径 | 状态 |
+|--------|------|------|
+| PRD | [`docs/01-prd/agent_engineering_workflow_prd_v1.0_2026-07-12.zh.md`](docs/01-prd/agent_engineering_workflow_prd_v1.0_2026-07-12.zh.md) | v1.0（已满后于手册实际结构，v1.1 待升级） |
+| Spec | [`docs/02-spec/agent_engineering_workflow_spec_v1.0_2026-07-12.zh.md`](docs/02-spec/agent_engineering_workflow_spec_v1.0_2026-07-12.zh.md) | v1.0 |
+| Retro | [`docs/09-retro/handbook_retro_v2.3.0_2026-07-15.zh.md`](docs/09-retro/handbook_retro_v2.3.0_2026-07-15.zh.md) | 首份，覆盖 v2.3、v2.4 release |
+| Pitfalls sunk | Stage 90 #46 / #47 / #48 | 从首份 Retro 沉淀 |
+| Positioning Memo | 待补（action 已列于 Retro §6） | ⬜️ |
+| CI gate-check | 待集成（action 列于 Retro §6 #7） | ⬜️ |
+
+读一份完整案例：[v2.3.0 Retro](docs/09-retro/handbook_retro_v2.3.0_2026-07-15.zh.md) — 包含指标对照、假设验证、pitfall 候选和文档漂移检查。
 
 ## 许可证
 
