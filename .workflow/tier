@@ -1,0 +1,2 @@
+tier: T1
+justification: 手册是文档聚合项目，不含独立 Spec/Plan/Test Plan 单文件。T1 适配：Positioning Memo + Kanban 注册。未来可升级到 T2。
