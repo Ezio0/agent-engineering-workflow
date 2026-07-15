@@ -9,172 +9,36 @@
 
 ---
 
-## [1.0.0] - 2026-07-12
-
-### 新增
-
-- 首次发布 `agent-engineering-workflow` 手册
-- 12-section 目录结构：`00-positioning`、`01-prd`、`02-spec`、`03-plan`、`04-test-plan`、`05-implementation`、`06-review`、`07-commit`、`10-coding-practices`、`11-governance`、`12-multi-agent-coordination`、`90-pitfalls`
-- 双语约定：每个非代码 `.md` 都有 `_en.md` + `_zh.md` 两个独立文件
-- 8 阶段 workflow：Positioning → PRD → Spec → Plan → Test Plan → Implementation → Review → Commit
-- 文档结构与命名规范（见 [`docs/agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.zh.md`](docs/agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.zh.md)）
-- 12 个 section 的骨架 `_index_en.md` / `_index_zh.md`
-- 顶层索引 [`docs/agent_engineering_workflow_sections_v1.0_2026-07-12.zh.md`](docs/agent_engineering_workflow_sections_v1.0_2026-07-12.zh.md)
-- 初始 PRD v1（[`docs/01-prd/agent_engineering_workflow_prd_v1.0_2026-07-12.zh.md`](docs/01-prd/agent_engineering_workflow_prd_v1.0_2026-07-12.zh.md)）
-- 初始 Spec v1（[`docs/02-spec/agent_engineering_workflow_spec_v1.0_2026-07-12.zh.md`](docs/02-spec/agent_engineering_workflow_spec_v1.0_2026-07-12.zh.md)）
-
-### 背景
-
-2026-07-12 经多轮讨论后创建。8 阶段 workflow 取代了早期 7 阶段提案（`global-launch-review` skill v1.0.0）— 早期版本漏了 Test Plan 和 Positioning。Ezio 明确：
-
-- Stage 0（Positioning）是前门 — 在写代码前回答为谁 / 为什么 / 底层逻辑
-- Test Plan 是独立阶段，在 Plan 和 Implementation 之间
-- 12 sections 分为 8 线性 stages + 3 横向主题 + 1 跨主题索引
-
-### 命名严格合规化
-
-初次准备 commit 时，Ezio 指出：本项目必须**以身作则** —— 每个文件都必须遵循新命名规范，**不允许"旧格式保留原样"的例外**。为此：
-
-- 所有 `<project>-<doc-type>-v<N>.{en,zh}.md` 文件重命名为标准格式 `<project>_<doc_type>_v<N>.<date>.{en,zh}.md`（4 个文件）
-- 所有 `_index.{en,zh}.md` 重命名为 `_index_{en,zh}.md`（24 个文件），统一使用下划线分隔
-- `agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.md` 和 `sections.md` 重命名为标准格式
-- 命名规范文档中的"历史命名豁免"章节删除 — **零例外**
-- CHANGELOG 拆分为双语两份文件（本文件 + `CHANGELOG.md`）
-
-### 已知局限
-
-- 12 个 section 都是带 TODO 占位的骨架 — 内容待讨论后填充
-- 还没有实际 section 内容（Positioning、PRD 工作流细节等）
-- Hermes 里的 `global-launch-review` skill 仍反映旧的 7 阶段 workflow；v1.1 会更新
-
 ---
 
-## [2.0.0] - 2026-07-12
-
-### 变更 — 版本号 bump 到 2.0.0
-
-**为什么是 2.0.0（不是 1.x）：** v1.0 → v1.9 覆盖**线性 workflow**（Stages 0–8）。
-v2.0 开始**横向主题阶段**（Stages 10–11，然后 90）。按 handbook 自己的版本规则：
-MAJOR bump（v1 → v2）用于结构性变更。加横向主题是结构性的——它改了文档
-组织方式，不只是每个 section 的内容。
+## [2.3.0] - 2026-07-15
 
 ### 新增
 
-#### 横向 10（Coding Practices）—— 第一个填的横向 section
-
-13 章编码风格指南。**与 Stage 6 严格分离**：Stage 6 拥有**怎么执行 task**；
-Stage 10 拥有**代码本身怎么写**。
-
-13 章：
-
-- §1 概述 —— 手艺层；三条支撑原则（可读性 / 显式 / 用户数据路径无魔法）
-- §2 命名 —— 按语言的命名风格；命名目标；`_` 前缀；要避免的命名
-- §3 类型和签名 —— 何时必须 vs 可选；`Optional[T]` vs `T | None`；避免 `Any`
-- §4 错误处理 —— 四层（验证 / 领域 / 基础设施 / 内部）；自定义异常；永不吞
-- §5 日志 —— 级别；记什么什么不记（PII）；`print` 不是日志
-- §6 注释和 Docstring —— WHY 不是 WHAT；过时注释比没注释更糟
-- §7 函数和模块设计 —— 大小限制；参数个数；flag 参数；模块大小；public API
-- §8 测试（风格）—— AAA 模式；能的话一个断言；命名；测试无逻辑；在边界 mock
-- §9 依赖和工具 —— 默认（ruff / mypy / eslint / prettier / pre-commit）；固定规则
-- §10 语言笔记（惯用法）—— Python / TypeScript / SQL 具体惯用法
-- §11 架构纪律（用户数据路径无魔法）—— 引擎代码绝不硬编码用户/环境值；"明天不同用户"测试
-- §12 开放问题
-- §13 参考
-
-包含：
-
-- [`docs/10-coding-practices/_index_en.md`](docs/10-coding-practices/_index_en.md) + `_index_zh.md` —— 完整 section
-
-### 与 Ezio 确认的决策
-
-- **与 Stage 6 严格分离**：Stage 6 是 SOP（流程）；Stage 10 是手艺（风格）。不重复。
-- **三条支撑原则**：可读性 > 巧妙，显式 > 隐式，用户数据路径无魔法。
-- **交叉引用 SOUL.md 架构原则**："引擎代码无硬编码用户数据"——在 §11 重述，带具体测试（"明天不同用户"）。
-- **默认与语言无关，惯用法在 §10**：原则普适；只是每语言语法不同。
-- **工具默认明确**：ruff/mypy/eslint/prettier/pre-commit 命名带每个工具的理由。
-
-### 重述既有决策
-
-- **不重复 `coding-workflow` skill**：现有
-  `~/.hermes/profiles/ezio-zero/skills/software-development/coding-workflow/`
-  描述 Plan → Code → Test → Review → Report 循环，那是 **Stage 6** 内容，不是
-  Stage 10。Stage 10 **不**重述那个循环。`coding-workflow` skill 未来更新应引用
-  Stage 6 + Stage 10，不是维护自己的副本。
+- **Tier 系统**（T0/T1/T2）：Fast Lane vs Full Gate 决策树
+- **gate-check.py**：可执行门控脚本，支持 `--tier T0|T1|T2`
+- **Stage 09 Retro**：发版后回顾（指标对照、假设验证、pitfall 沉淀、文档漂移检查）
+- **ADR 层**：架构决策记录（`docs/adr/`），不可变，只可 supersede
+- **Code-Doc Sync Gate**（QG-8b）：Review 阶段强制检查 Spec/PRD 与实现一致性
+- **Pitfall #44**：LLM 空响应静默通过
+- **Pitfall #45**：代码-文档漂移
+- **Coding Practices §12**：LLM 调用可靠性
+- **运维 Runbook**（Governance §9.6）：凭证生命周期 + 定时任务健康检查
+- Plan template 加预估/实际耗时字段
+- 轻量 commit 模板（T0/T1 Fast Lane）
+- Skill 版本对齐机制（frontmatter `requires` 字段）
 
 ### 变更
 
-- Sections 索引更新：横向 10（Coding Practices）状态 `骨架` → `活跃`
-- 版本号 bump：1.9.0 → 2.0.0（横向阶段开始）
+- **WHY NOW 放宽**：三选一（外部变化 / 内部积累 / 机会窗口）
+- **Test Plan 覆盖率**：CUJ 标准替代写死数字
+- **Multi-agent Coordination**：标注为触发式子流程
+- README 路径修复 + 版本 v2.3.0
+- CHANGELOG 版本排序修正
 
-### 剩 2 个 section
+### 来源
 
-- 横向 11（Governance）—— 骨架
-- 跨主题 90（pitfalls）—— 骨架
-
----
-
-## [2.1.0] - 2026-07-12
-
-### 新增
-
-#### 横向 11（Governance）—— 第二个填的横向 section
-
-11 章 governance 框架。**框架层，不是项目特定实例。** 每 stage 的机制（多 agent 隔离、commit 操作）
-在 Stages 5 和 8；Stage 11 拥有"谁决定什么、用什么权限、什么升级"的**策略层**。
-
-11 章：
-
-- §1 概述 —— 根本张力（agents 快、人类负责）；Governance 不是什么；跟 egozone-governance skill 的关系
-- §2 角色与权限 —— 5 个角色类别；完整权限矩阵（5 × 12 动作）；"永不 commit" 的 3 个 tier；显式指令定义
-- §3 Commit 权限（交叉引用）—— 为何非对称权限；审计轨迹要求；预授权模式
-- §4 Push 策略 —— 按场景何时 push；`--force` 禁用；push 前验证；推荐 pre-push hooks
-- §5 Profile 边界 —— profiles 能/不能共享什么；2 个跨 profile 通信模式；2 个反模式（跨 profile 读 env、跨 profile 写 memory）
-- §6 升级协议 —— 7 条升级路径（E1-E7）；"问，不要猜"原则；静默失败陷阱
-- §7 Skill 管理治理 —— 谁创建/修改 skills；创建触发；版本化；跨 profile 同步
-- §8 Memory 管理治理 —— 什么放哪里；按 profile 的写权限；什么写/不写；压缩
-- §9 反模式 —— 5 个治理失败模式（agent 决定 / 隐性授权 / 跨 profile 直连 / memory 误用 / skill 重复）
-- §10 开放问题
-- §11 参考
-
-包含：
-
-- [`docs/11-governance/_index_en.md`](docs/11-governance/_index_en.md) + `_index_zh.md` —— 完整 section
-
-### 与 Ezio 确认的决策
-
-- **Handbook = 框架；egozone-governance skill = 实例**。Stage 11 记录框架（谁决定什么）；
-  egozone-governance skill 记录 EgoZone 的特定实例（Kanban board、patch 目录、18 个 pitfalls）。
-  如果 skill 删了，handbook 对任何项目仍有效。
-- **"永不 commit" 的 3 个 tier** 带不同强制策略：工作流层（Tier 1 worker profiles）、
-  工具配置层（Tier 2 编码子 agents）、N/A（Tier 3）。
-- **三条显式指令规则** 重述自 Stage 8：仅 "commit" / "提交" / 直接 git 命令算数；
-  "OK" / "looks good" / 沉默不算。
-- **Push 策略独立于 commit**：push 是 Stage 11 §4 管的独立治理决策，不是 commit workflow 的一部分。
-- **Profile 边界默认硬**：跨 profile 读/写需要显式 `cross_profile=True` + Ezio 授权；不自动允许。
-
-### 从 egozone-governance skill 的投影
-
-Stage 11 框架从 `egozone-governance` skill 投影以下内容：
-
-| 从 egozone-governance | Stage 11 归属 |
-|----------------------|--------------|
-| Kanban-first 规则 | Stage 11 §6（升级）—— 通用原则，项目特定在 skill |
-| Commit 权限 tiers | Stage 11 §2.3 —— 完整矩阵带 3 个 tiers |
-| Patch handoff 格式 | Stage 5 §7（机制）+ egozone-governance（EgoZone 路径） |
-| Profile-scoped files | Stage 11 §5 —— 边界规则 |
-| Pitfall #7（静默失败） | Stage 11 §6.3 —— 提升到框架级规则 |
-| Pitfall #15（Claude Code auto-commit） | Stage 11 §2.3 Tier 2 —— 强制策略 |
-| Pitfalls #1-6, #8-14, #16-18 | Stage 90（Pitfalls）—— 交叉引用，完整内容保留在 skill |
-
-### 变更
-
-- Sections 索引更新：横向 11（Governance）状态 `骨架` → `活跃`
-
-### 剩 1 个 section
-
-- 跨主题 90（pitfalls）—— 骨架
-
----
+- Claude Code 结构性 review + Ezio Zero gap analysis
 
 ## [2.2.0] - 2026-07-12
 
@@ -281,6 +145,133 @@ agent-engineering-workflow/
 | 90 Pitfalls | ✅ 活跃 |
 
 **12/12 sections 活跃。Handbook 完成。**
+
+---
+
+## [2.1.0] - 2026-07-12
+
+### 新增
+
+#### 横向 11（Governance）—— 第二个填的横向 section
+
+11 章 governance 框架。**框架层，不是项目特定实例。** 每 stage 的机制（多 agent 隔离、commit 操作）
+在 Stages 5 和 8；Stage 11 拥有"谁决定什么、用什么权限、什么升级"的**策略层**。
+
+11 章：
+
+- §1 概述 —— 根本张力（agents 快、人类负责）；Governance 不是什么；跟 egozone-governance skill 的关系
+- §2 角色与权限 —— 5 个角色类别；完整权限矩阵（5 × 12 动作）；"永不 commit" 的 3 个 tier；显式指令定义
+- §3 Commit 权限（交叉引用）—— 为何非对称权限；审计轨迹要求；预授权模式
+- §4 Push 策略 —— 按场景何时 push；`--force` 禁用；push 前验证；推荐 pre-push hooks
+- §5 Profile 边界 —— profiles 能/不能共享什么；2 个跨 profile 通信模式；2 个反模式（跨 profile 读 env、跨 profile 写 memory）
+- §6 升级协议 —— 7 条升级路径（E1-E7）；"问，不要猜"原则；静默失败陷阱
+- §7 Skill 管理治理 —— 谁创建/修改 skills；创建触发；版本化；跨 profile 同步
+- §8 Memory 管理治理 —— 什么放哪里；按 profile 的写权限；什么写/不写；压缩
+- §9 反模式 —— 5 个治理失败模式（agent 决定 / 隐性授权 / 跨 profile 直连 / memory 误用 / skill 重复）
+- §10 开放问题
+- §11 参考
+
+包含：
+
+- [`docs/11-governance/_index_en.md`](docs/11-governance/_index_en.md) + `_index_zh.md` —— 完整 section
+
+### 与 Ezio 确认的决策
+
+- **Handbook = 框架；egozone-governance skill = 实例**。Stage 11 记录框架（谁决定什么）；
+  egozone-governance skill 记录 EgoZone 的特定实例（Kanban board、patch 目录、18 个 pitfalls）。
+  如果 skill 删了，handbook 对任何项目仍有效。
+- **"永不 commit" 的 3 个 tier** 带不同强制策略：工作流层（Tier 1 worker profiles）、
+  工具配置层（Tier 2 编码子 agents）、N/A（Tier 3）。
+- **三条显式指令规则** 重述自 Stage 8：仅 "commit" / "提交" / 直接 git 命令算数；
+  "OK" / "looks good" / 沉默不算。
+- **Push 策略独立于 commit**：push 是 Stage 11 §4 管的独立治理决策，不是 commit workflow 的一部分。
+- **Profile 边界默认硬**：跨 profile 读/写需要显式 `cross_profile=True` + Ezio 授权；不自动允许。
+
+### 从 egozone-governance skill 的投影
+
+Stage 11 框架从 `egozone-governance` skill 投影以下内容：
+
+| 从 egozone-governance | Stage 11 归属 |
+|----------------------|--------------|
+| Kanban-first 规则 | Stage 11 §6（升级）—— 通用原则，项目特定在 skill |
+| Commit 权限 tiers | Stage 11 §2.3 —— 完整矩阵带 3 个 tiers |
+| Patch handoff 格式 | Stage 5 §7（机制）+ egozone-governance（EgoZone 路径） |
+| Profile-scoped files | Stage 11 §5 —— 边界规则 |
+| Pitfall #7（静默失败） | Stage 11 §6.3 —— 提升到框架级规则 |
+| Pitfall #15（Claude Code auto-commit） | Stage 11 §2.3 Tier 2 —— 强制策略 |
+| Pitfalls #1-6, #8-14, #16-18 | Stage 90（Pitfalls）—— 交叉引用，完整内容保留在 skill |
+
+### 变更
+
+- Sections 索引更新：横向 11（Governance）状态 `骨架` → `活跃`
+
+### 剩 1 个 section
+
+- 跨主题 90（pitfalls）—— 骨架
+
+---
+
+## [2.0.0] - 2026-07-12
+
+### 变更 — 版本号 bump 到 2.0.0
+
+**为什么是 2.0.0（不是 1.x）：** v1.0 → v1.9 覆盖**线性 workflow**（Stages 0–8）。
+v2.0 开始**横向主题阶段**（Stages 10–11，然后 90）。按 handbook 自己的版本规则：
+MAJOR bump（v1 → v2）用于结构性变更。加横向主题是结构性的——它改了文档
+组织方式，不只是每个 section 的内容。
+
+### 新增
+
+#### 横向 10（Coding Practices）—— 第一个填的横向 section
+
+13 章编码风格指南。**与 Stage 6 严格分离**：Stage 6 拥有**怎么执行 task**；
+Stage 10 拥有**代码本身怎么写**。
+
+13 章：
+
+- §1 概述 —— 手艺层；三条支撑原则（可读性 / 显式 / 用户数据路径无魔法）
+- §2 命名 —— 按语言的命名风格；命名目标；`_` 前缀；要避免的命名
+- §3 类型和签名 —— 何时必须 vs 可选；`Optional[T]` vs `T | None`；避免 `Any`
+- §4 错误处理 —— 四层（验证 / 领域 / 基础设施 / 内部）；自定义异常；永不吞
+- §5 日志 —— 级别；记什么什么不记（PII）；`print` 不是日志
+- §6 注释和 Docstring —— WHY 不是 WHAT；过时注释比没注释更糟
+- §7 函数和模块设计 —— 大小限制；参数个数；flag 参数；模块大小；public API
+- §8 测试（风格）—— AAA 模式；能的话一个断言；命名；测试无逻辑；在边界 mock
+- §9 依赖和工具 —— 默认（ruff / mypy / eslint / prettier / pre-commit）；固定规则
+- §10 语言笔记（惯用法）—— Python / TypeScript / SQL 具体惯用法
+- §11 架构纪律（用户数据路径无魔法）—— 引擎代码绝不硬编码用户/环境值；"明天不同用户"测试
+- §12 开放问题
+- §13 参考
+
+包含：
+
+- [`docs/10-coding-practices/_index_en.md`](docs/10-coding-practices/_index_en.md) + `_index_zh.md` —— 完整 section
+
+### 与 Ezio 确认的决策
+
+- **与 Stage 6 严格分离**：Stage 6 是 SOP（流程）；Stage 10 是手艺（风格）。不重复。
+- **三条支撑原则**：可读性 > 巧妙，显式 > 隐式，用户数据路径无魔法。
+- **交叉引用 SOUL.md 架构原则**："引擎代码无硬编码用户数据"——在 §11 重述，带具体测试（"明天不同用户"）。
+- **默认与语言无关，惯用法在 §10**：原则普适；只是每语言语法不同。
+- **工具默认明确**：ruff/mypy/eslint/prettier/pre-commit 命名带每个工具的理由。
+
+### 重述既有决策
+
+- **不重复 `coding-workflow` skill**：现有
+  `~/.hermes/profiles/ezio-zero/skills/software-development/coding-workflow/`
+  描述 Plan → Code → Test → Review → Report 循环，那是 **Stage 6** 内容，不是
+  Stage 10。Stage 10 **不**重述那个循环。`coding-workflow` skill 未来更新应引用
+  Stage 6 + Stage 10，不是维护自己的副本。
+
+### 变更
+
+- Sections 索引更新：横向 10（Coding Practices）状态 `骨架` → `活跃`
+- 版本号 bump：1.9.0 → 2.0.0（横向阶段开始）
+
+### 剩 2 个 section
+
+- 横向 11（Governance）—— 骨架
+- 跨主题 90（pitfalls）—— 骨架
 
 ---
 
@@ -408,66 +399,6 @@ Reviewer 不能是本 task 的实施 agent（G3）。
 
 ---
 
-## [1.6.0] - 2026-07-12
-
-### 新增
-
-#### Stage 5（Multi-Agent Coordination）—— 第六个填充的 section（**重排**）
-
-**重大重组**：Multi-Agent Coordination 从横向主题 12 移到**线性 stage 5**，因为它是 Implementation 的硬前置。Implementation 现在是 Stage 6，Review Stage 7，Commit Stage 8。编号方案从 00–07 扩到 00–09。
-
-重命名 sections：
-
-- `12-multi-agent-coordination/` → `05-multi-agent-coordination/`
-- `05-implementation/` → `06-implementation/`
-- `06-review/` → `07-review/`
-- `07-commit/` → `08-commit/`
-
-**从 `agent-team-orchestrator` 整合**：协议层（3 层 + 4 设计原则）现在进手册。实现细节（Python 模块、CLI、exit code）留在 Orchestrator 仓库作可选参考工具。**解耦**：如果 Orchestrator 删了，本 section 仍然有效。
-
-Stage 5 的 11 章节：
-
-- §1 何时适用本 section
-- §2 3 种失败模式（并发覆盖 / stale-base 重写 / 混合文件 auto-commit）
-- §3 三层防护（声明 + 隔离 + 检测）
-- §4 Target Files 协议（严格 grammar spec，宽容解析）
-- §5 Worktree 生命周期（创建 / 清理 / 孤儿处理）
-- §6 Stale-Base 检测（捕获 / 检测 / 处理）
-- §7 Patch 交接协议（落地到 `docs/pending-reviews/<task_id>_<timestamp>.patch`）
-- §8 Commit Authority（agent 永远不 commit 到 main）
-- §9 设计原则（无静默失败 / 人在回路 / 上游无关 / 主 checkout 只读）
-- §10 Open Questions（每项决策截止日）
-- §11 References（Orchestrator 作可选工具，不是 SSOT）
-
-包括：
-
-- [`docs/05-multi-agent-coordination/_index_zh.md`](docs/05-multi-agent-coordination/_index_zh.md) + `_index_en.md` — section 完整内容
-- [`docs/05-multi-agent-coordination/template_v1.0_zh.md`](docs/05-multi-agent-coordination/template_v1.0_zh.md) + `_en.md` — 4 模板：Target Files section、Patch header、Worktree checklist、Stale-base 脚本
-- [`docs/05-multi-agent-coordination/checklist_v1.0_zh.md`](docs/05-multi-agent-coordination/checklist_v1.0_zh.md) + `_en.md` — 并发 agent run 前的签字门
-
-### 变更
-
-- 编号方案：`00–07` → `00–09`，纳入 Multi-Agent 作为 Stage 5
-- Stage 编号：Implementation 现 6（原 5），Review 现 7（原 6），Commit 现 8（原 7）
-- Multi-Agent Coordination 从"横向主题"表移出 — 现在在"Workflow Stages"里
-- 17 个含交叉引用的文件已更新到新 section 路径 + stage 编号
-
-### 移除
-
-- "横向主题（10–19）"里的 12（Multi-Agent 已移出）
-- multi-agent section 旧的"横向"状态
-
-### 剩 6 个 section
-
-- Stage 6（Implementation）—— 骨架
-- Stage 7（Review）—— 骨架
-- Stage 8（Commit）—— 骨架
-- 横向 10（Coding Practices）—— 骨架
-- 横向 11（Governance）—— 骨架
-- 跨主题 90（pitfalls）—— 骨架
-
----
-
 ## [1.7.0] - 2026-07-12
 
 ### 新增
@@ -524,6 +455,66 @@ Stage 6 负责：一个 task 怎么端到端执行。
 
 ### 剩 5 个 section
 
+- Stage 7（Review）—— 骨架
+- Stage 8（Commit）—— 骨架
+- 横向 10（Coding Practices）—— 骨架
+- 横向 11（Governance）—— 骨架
+- 跨主题 90（pitfalls）—— 骨架
+
+---
+
+## [1.6.0] - 2026-07-12
+
+### 新增
+
+#### Stage 5（Multi-Agent Coordination）—— 第六个填充的 section（**重排**）
+
+**重大重组**：Multi-Agent Coordination 从横向主题 12 移到**线性 stage 5**，因为它是 Implementation 的硬前置。Implementation 现在是 Stage 6，Review Stage 7，Commit Stage 8。编号方案从 00–07 扩到 00–09。
+
+重命名 sections：
+
+- `12-multi-agent-coordination/` → `05-multi-agent-coordination/`
+- `05-implementation/` → `06-implementation/`
+- `06-review/` → `07-review/`
+- `07-commit/` → `08-commit/`
+
+**从 `agent-team-orchestrator` 整合**：协议层（3 层 + 4 设计原则）现在进手册。实现细节（Python 模块、CLI、exit code）留在 Orchestrator 仓库作可选参考工具。**解耦**：如果 Orchestrator 删了，本 section 仍然有效。
+
+Stage 5 的 11 章节：
+
+- §1 何时适用本 section
+- §2 3 种失败模式（并发覆盖 / stale-base 重写 / 混合文件 auto-commit）
+- §3 三层防护（声明 + 隔离 + 检测）
+- §4 Target Files 协议（严格 grammar spec，宽容解析）
+- §5 Worktree 生命周期（创建 / 清理 / 孤儿处理）
+- §6 Stale-Base 检测（捕获 / 检测 / 处理）
+- §7 Patch 交接协议（落地到 `docs/pending-reviews/<task_id>_<timestamp>.patch`）
+- §8 Commit Authority（agent 永远不 commit 到 main）
+- §9 设计原则（无静默失败 / 人在回路 / 上游无关 / 主 checkout 只读）
+- §10 Open Questions（每项决策截止日）
+- §11 References（Orchestrator 作可选工具，不是 SSOT）
+
+包括：
+
+- [`docs/05-multi-agent-coordination/_index_zh.md`](docs/05-multi-agent-coordination/_index_zh.md) + `_index_en.md` — section 完整内容
+- [`docs/05-multi-agent-coordination/template_v1.0_zh.md`](docs/05-multi-agent-coordination/template_v1.0_zh.md) + `_en.md` — 4 模板：Target Files section、Patch header、Worktree checklist、Stale-base 脚本
+- [`docs/05-multi-agent-coordination/checklist_v1.0_zh.md`](docs/05-multi-agent-coordination/checklist_v1.0_zh.md) + `_en.md` — 并发 agent run 前的签字门
+
+### 变更
+
+- 编号方案：`00–07` → `00–09`，纳入 Multi-Agent 作为 Stage 5
+- Stage 编号：Implementation 现 6（原 5），Review 现 7（原 6），Commit 现 8（原 7）
+- Multi-Agent Coordination 从"横向主题"表移出 — 现在在"Workflow Stages"里
+- 17 个含交叉引用的文件已更新到新 section 路径 + stage 编号
+
+### 移除
+
+- "横向主题（10–19）"里的 12（Multi-Agent 已移出）
+- multi-agent section 旧的"横向"状态
+
+### 剩 6 个 section
+
+- Stage 6（Implementation）—— 骨架
 - Stage 7（Review）—— 骨架
 - Stage 8（Commit）—— 骨架
 - 横向 10（Coding Practices）—— 骨架
@@ -751,3 +742,43 @@ Stage 6 负责：一个 task 怎么端到端执行。
 - 更新 `agent-team-orchestrator` README 引用本手册
 - 添加 `05-implementation/templates/`（PRD/Spec/Plan 复制粘贴模板）
 - 添加 CI workflow `.github/workflows/bilingual-lint.yml` 强制结构对齐
+
+## [1.0.0] - 2026-07-12
+
+### 新增
+
+- 首次发布 `agent-engineering-workflow` 手册
+- 12-section 目录结构：`00-positioning`、`01-prd`、`02-spec`、`03-plan`、`04-test-plan`、`05-implementation`、`06-review`、`07-commit`、`10-coding-practices`、`11-governance`、`12-multi-agent-coordination`、`90-pitfalls`
+- 双语约定：每个非代码 `.md` 都有 `_en.md` + `_zh.md` 两个独立文件
+- 8 阶段 workflow：Positioning → PRD → Spec → Plan → Test Plan → Implementation → Review → Commit
+- 文档结构与命名规范（见 [`docs/agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.zh.md`](docs/agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.zh.md)）
+- 12 个 section 的骨架 `_index_en.md` / `_index_zh.md`
+- 顶层索引 [`docs/agent_engineering_workflow_sections_v1.0_2026-07-12.zh.md`](docs/agent_engineering_workflow_sections_v1.0_2026-07-12.zh.md)
+- 初始 PRD v1（[`docs/01-prd/agent_engineering_workflow_prd_v1.0_2026-07-12.zh.md`](docs/01-prd/agent_engineering_workflow_prd_v1.0_2026-07-12.zh.md)）
+- 初始 Spec v1（[`docs/02-spec/agent_engineering_workflow_spec_v1.0_2026-07-12.zh.md`](docs/02-spec/agent_engineering_workflow_spec_v1.0_2026-07-12.zh.md)）
+
+### 背景
+
+2026-07-12 经多轮讨论后创建。8 阶段 workflow 取代了早期 7 阶段提案（`global-launch-review` skill v1.0.0）— 早期版本漏了 Test Plan 和 Positioning。Ezio 明确：
+
+- Stage 0（Positioning）是前门 — 在写代码前回答为谁 / 为什么 / 底层逻辑
+- Test Plan 是独立阶段，在 Plan 和 Implementation 之间
+- 12 sections 分为 8 线性 stages + 3 横向主题 + 1 跨主题索引
+
+### 命名严格合规化
+
+初次准备 commit 时，Ezio 指出：本项目必须**以身作则** —— 每个文件都必须遵循新命名规范，**不允许"旧格式保留原样"的例外**。为此：
+
+- 所有 `<project>-<doc-type>-v<N>.{en,zh}.md` 文件重命名为标准格式 `<project>_<doc_type>_v<N>.<date>.{en,zh}.md`（4 个文件）
+- 所有 `_index.{en,zh}.md` 重命名为 `_index_{en,zh}.md`（24 个文件），统一使用下划线分隔
+- `agent_engineering_workflow_structure_and_naming_v1.0_2026-07-12.md` 和 `sections.md` 重命名为标准格式
+- 命名规范文档中的"历史命名豁免"章节删除 — **零例外**
+- CHANGELOG 拆分为双语两份文件（本文件 + `CHANGELOG.md`）
+
+### 已知局限
+
+- 12 个 section 都是带 TODO 占位的骨架 — 内容待讨论后填充
+- 还没有实际 section 内容（Positioning、PRD 工作流细节等）
+- Hermes 里的 `global-launch-review` skill 仍反映旧的 7 阶段 workflow；v1.1 会更新
+
+---

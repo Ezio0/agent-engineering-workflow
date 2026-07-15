@@ -653,6 +653,45 @@ Discovered-in-X, fixed-in-Y。
 
 ---
 
+
+### 按 keyword 快速查找
+
+| 关键词 | Pitfall # | 场景 |
+|--------|-----------|------|
+| 文件覆盖 / 同时编辑 | #1 | 多 agent 并行 |
+| 旧 base / stale patch | #2 | 多 agent 并行 |
+| auto-commit / 混合文件 | #3 | Claude Code / Codex |
+| 自我 review | #4, #17 | Review 流程 |
+| 跨 profile 读 env | #5 | Profile 边界 |
+| 跨 profile 写 memory | #6, #39 | Memory 管理 |
+| 静默失败 / 没通知 | #7 | 实施通知 |
+| 顺手修 / 范围蔓延 | #8, #10, #11 | 实施边界 |
+| 跳过测试 / 删测试 | #9, #20 | 测试纪律 |
+| Target Files 漂移 | #14 | 实施范围 |
+| 停止条件不遵守 | #15 | 实施纪律 |
+| 看起来不错就批准 | #16 | Review 质量 |
+| 测试输出造假 | #19, #20 | Review 验证 |
+| commit 作者错 | #23 | Git 操作 |
+| git add -A 拉错文件 | #24 | Git 操作 |
+| force push | #25, #37 | Git 操作 |
+| amend 已 push commit | #26 | Git 操作 |
+| commit 缺 Task ID | #27 | Commit 格式 |
+| print 调试 | #29 | 代码风格 |
+| except: pass | #30 | 错误处理 |
+| 硬编码用户值 | #31 | 架构纪律 |
+| 魔法数字 | #32 | 代码风格 |
+| Any 类型消音 | #33 | 类型安全 |
+| 类型签名撒谎 | #34 | 类型安全 |
+| agent 擅自决定 | #35 | 治理权限 |
+| 隐性授权 | #36 | 治理权限 |
+| Skill 重复 | #38 | Skill 管理 |
+| dispatcher auto-claim | #40 | Kanban 管理 |
+| gateway ≠ session | #41 | 通信 |
+| card 卡 blocked | #42 | Kanban 管理 |
+| 信摘要不信文件 | #43 | 上下文 |
+| LLM 空响应 | #44 | LLM 调用 |
+| 代码-文档漂移 | #45 | 文档同步 |
+
 ## 8. 参考
 
 - [`../05-multi-agent-coordination/_index_zh.md`](../05-multi-agent-coordination/_index_zh.md) — P-MA 归属

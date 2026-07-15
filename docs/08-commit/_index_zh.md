@@ -223,6 +223,19 @@ Body 回答三个问题：
 - **总长 ≤ 50 字符**（含 type 和 scope；如必须可 72 硬上限）
 - **不要**用 "WIP" / "TODO" / "fix typo" 作 subject——用 `chore` 或拆分
 
+### 4.5b 轻量 Commit（T0/T1 Fast Lane）
+
+T0/T1 task 不需要 What/Why/Evidence 三段 body。简化为：
+
+```
+<type>(<scope>): <subject>
+
+Refs: T-NNN
+```
+
+适用条件：单文件改动、bug fix、配置调整、文案修改。判断标准：如果 body
+写不出有信息量的 Why（"因为要修这个 bug" 不算），就用轻量格式。
+
 ### 4.6 坏例子（不要产出）
 
 ```
