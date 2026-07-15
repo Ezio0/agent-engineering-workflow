@@ -22,6 +22,16 @@
 
 ## §1 Scope & Coverage Targets
 
+### CUJ (referencing PRD §3.x)
+
+This test plan covers the following Critical User Journeys (**strict subset**, source: PRD §3.x):
+
+| CUJ ID | Tested? | Exemption reason |
+|--------|---------|------------------|
+| CUJ-01 | ✅ | — |
+| CUJ-02 | ✅ | — |
+| CUJ-03 | ❌ | <e.g., depends on third-party service, deferred to next release> |
+
 ### In scope
 
 - <what is tested>

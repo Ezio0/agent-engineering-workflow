@@ -51,6 +51,20 @@ As a <role>, I want to <action>, so that <outcome>.
 
 ---
 
+## §3.x Critical User Journeys (CUJ)
+
+Critical user paths that must have 100% test coverage. The CUJs defined here are the sole source for Test Plan §1.
+
+| CUJ ID | Description | Modules | Priority |
+|--------|-------------|---------|----------|
+| CUJ-01 | <e.g., User registers → first login → completes onboarding> | <auth, user, onboarding> | P0 |
+| CUJ-02 | <e.g., Search → view detail → place order> | <search, detail, order> | P0 |
+| CUJ-03 | ... | ... | P1 |
+
+> **Rule**: CUJ IDs in Test Plan §1 must be a strict subset of those defined here (fewer is OK, more is not).
+
+---
+
 ## §4 Functional Requirements
 
 ### FR-1: <one sentence>

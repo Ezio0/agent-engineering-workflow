@@ -51,6 +51,20 @@
 
 ---
 
+## §3.x Critical User Journeys (CUJ)
+
+必须 100% 测试覆盖的关键用户路径。这里定义的 CUJ 是 Test Plan §1 的唯一来源。
+
+| CUJ ID | 描述 | 涉及模块 | 优先级 |
+|--------|------|---------|--------|
+| CUJ-01 | <如：用户注册 → 首次登录 → 完成 onboarding> | <auth, user, onboarding> | P0 |
+| CUJ-02 | <如：搜索 → 查看详情 → 下单> | <search, detail, order> | P0 |
+| CUJ-03 | ... | ... | P1 |
+
+> **规则**：Test Plan §1 中的 CUJ ID 必须是此处的严格子集（可少测不可多测）。
+
+---
+
 ## §4 功能需求
 
 ### FR-1：<一句话>

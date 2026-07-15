@@ -22,6 +22,16 @@
 
 ## §1 Scope & Coverage Targets
 
+### CUJ（引用 PRD §3.x）
+
+本测试计划覆盖以下 Critical User Journey（**严格子集**，来源：PRD §3.x）：
+
+| CUJ ID | 测？ | 豁免理由 |
+|--------|------|----------|
+| CUJ-01 | ✅ | — |
+| CUJ-02 | ✅ | — |
+| CUJ-03 | ❌ | <如：依赖第三方服务，下个版本测> |
+
 ### In scope
 
 - <测什么>
