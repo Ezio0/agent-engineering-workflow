@@ -1,6 +1,6 @@
 # Agent Engineering Workflow — PRD v1（中文版）
 
-> **状态**：活跃
+> **状态**：已归档（由 v1.1 取代，见 `agent_engineering_workflow_prd_v1.1_2026-07-15.zh.md`）
 > **作者**：Ezio Zero（Ezio Sun 审阅）
 > **创建日期**：2026-07-12
 > **项目**：`agent-engineering-workflow`

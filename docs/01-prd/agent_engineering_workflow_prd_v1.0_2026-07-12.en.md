@@ -1,6 +1,6 @@
 # Agent Engineering Workflow — PRD v1
 
-> **Status**: Active
+> **Status**: Archived (superseded by v1.1, see `agent_engineering_workflow_prd_v1.1_2026-07-15.en.md`)
 > **Author**: Ezio Zero (with Ezio Sun review)
 > **Created**: 2026-07-12
 > **Project**: `agent-engineering-workflow`
