@@ -19,7 +19,7 @@ The 5 files form a complete safety wrapper around a migration script. They're sh
 # <TASK> Pre-flight Check — read-only, no side effects.
 set -uo pipefail
 
-DB_PATH="data/egozone.db"
+DB_PATH="data/app.db"
 SCRIPT="scripts/migrations/<task_script>.py"
 
 pass() { echo -e "\033[0;32m✓\033[0m $1"; }
@@ -62,7 +62,7 @@ fi
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
-DB_PATH="data/egozone.db"
+DB_PATH="data/app.db"
 SNAP_DIR="data/backups"
 TS=$(date +%Y%m%d_%H%M%S)
 SNAP="${SNAP_DIR}/$(basename $DB_PATH).${TS}_<task-tag>"
@@ -81,7 +81,7 @@ echo "✓ Snapshot created: $SNAP ($SNAP_SIZE bytes, source $DB_SIZE bytes)"
 ```bash
 #!/usr/bin/env bash
 set -uo pipefail
-DB_PATH="data/egozone.db"
+DB_PATH="data/app.db"
 SCRIPT="scripts/migrations/<task_script>.py"
 SNAP_DIR="data/backups"
 
@@ -213,11 +213,11 @@ Packaging these as 5 separate files:
 ## Source-of-truth: A3e-iii
 
 The actual scripts as shipped for A3e-iii live at:
-- `EgoZone/scripts/migrations/a3e3_preflight.sh`
-- `EgoZone/scripts/migrations/a3e3_snapshot.sh`
-- `EgoZone/scripts/migrations/a3e3_migrate.sh`
-- `EgoZone/scripts/migrations/a3e3_README.md`
-- `EgoZone/scripts/migrations/migrate_to_utc_tz.py` (the actual script, on `timezone-a3d` branch commit 78404a2)
+- `{project_root}/scripts/migrations/a3e3_preflight.sh`
+- `{project_root}/scripts/migrations/a3e3_snapshot.sh`
+- `{project_root}/scripts/migrations/a3e3_migrate.sh`
+- `{project_root}/scripts/migrations/a3e3_README.md`
+- `{project_root}/scripts/migrations/migrate_to_utc_tz.py` (the actual script, on `timezone-a3d` branch commit 78404a2)
 
 When applying this pattern to a new task, copy the 5 files, rename `<task>` to your task name, and adapt the script-specific steps.
 

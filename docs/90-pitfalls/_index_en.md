@@ -92,7 +92,7 @@ Every pitfall entry uses this fixed structure:
 **Trigger**: Agent B starts work without checking Agent A's in-progress Target Files.
 **Symptom**: Agent A's changes overwritten; final state is incoherent mix.
 **Fix**: Stage 5 §4 Target Files declaration; check before starting work; serialize via git's natural lock (commit → start).
-**Cross-reference**: Stage 5 §3 (3 failure modes); `egozone-governance` skill (Kanban-first rule).
+**Cross-reference**: Stage 5 §3 (3 failure modes); `project-governance` skill (Kanban-first rule).
 
 #### Pitfall #2: Stale-base rewrite
 
@@ -112,7 +112,7 @@ Every pitfall entry uses this fixed structure:
 **Trigger**: Subagent's default workflow includes `git commit` at end of session.
 **Symptom**: Commit lands with 9 files — 1 legitimate + 8 mixed; review impossible.
 **Fix**: Block auto-commit at config level (settings.json); pass `--allowedTools` flags to strip commit capability; verify with `git status` after each subagent run.
-**Cross-reference**: Stage 11 §2.3 Tier 2 (coding subagent enforcement); `egozone-governance` Pitfall #15.
+**Cross-reference**: Stage 11 §2.3 Tier 2 (coding subagent enforcement); `project-governance` Pitfall #15.
 
 #### Pitfall #4: Self-review of own patch
 
@@ -122,7 +122,7 @@ Every pitfall entry uses this fixed structure:
 **Trigger**: Single-agent flow without explicit handoff.
 **Symptom**: Approval without evidence; always passes by definition.
 **Fix**: Stage 7 G3 (Implementation agent ≠ Reviewer); meta-review by coordinator is allowed but E2E sign-off is Ezio's.
-**Cross-reference**: Stage 7 §2 G3; `egozone-governance` skill (two-tier review rule).
+**Cross-reference**: Stage 7 §2 G3; `project-governance` skill (two-tier review rule).
 
 #### Pitfall #5: Cross-profile env read
 
@@ -156,7 +156,7 @@ Every pitfall entry uses this fixed structure:
 **Trigger**: "I'll send the notification after I check one more thing."
 **Symptom**: Patch sits in `docs/pending-reviews/`, card stays blocked for days, Ezio doesn't know work is done.
 **Fix**: Notify BEFORE blocking. `kanban_block(reason="review-required: ...")` MUST be paired with explicit `send_message` to Ezio (chat or Telegram). Notification is the rule, not an afterthought.
-**Cross-reference**: Stage 11 §6.3 (escalated to framework-level rule); `egozone-governance` Pitfall #7.
+**Cross-reference**: Stage 11 §6.3 (escalated to framework-level rule); `project-governance` Pitfall #7.
 
 #### Pitfall #8: Unsolicited adjacent work
 
@@ -166,7 +166,7 @@ Every pitfall entry uses this fixed structure:
 **Trigger**: "While I'm here, let me also fix X."
 **Symptom**: Patch contains 4 unrelated fixes; review queue inflated; scope ambiguous; reviewer's intent bypassed.
 **Fix**: Surface as suggestion in chat ("I noticed FIX-001 looks related, want me to add it to Kanban?"). Do not silently fix. Wait for explicit authorization.
-**Cross-reference**: Stage 6 §9 (boundary discipline); `egozone-governance` Pitfall #8.
+**Cross-reference**: Stage 6 §9 (boundary discipline); `project-governance` Pitfall #8.
 
 #### Pitfall #9: Skipping failing test to "get back to green"
 
@@ -502,7 +502,7 @@ Every pitfall entry uses this fixed structure:
 **Trigger**: "I'll unblock the queue."
 **Symptom**: Wrong-assignee workers spawned; work begins before Ezio ready.
 **Fix**: Before `unblock`, `reassign` to correct agent. Verify with `kanban list --assignee <profile>` after bulk reassign.
-**Cross-reference**: Stage 11 §6.1 E2; `egozone-governance` Pitfall #11.
+**Cross-reference**: Stage 11 §6.1 E2; `project-governance` Pitfall #11.
 
 #### Pitfall #41: Telegram gateway ≠ Kanban worker session
 
@@ -512,7 +512,7 @@ Every pitfall entry uses this fixed structure:
 **Trigger**: Implicit assumption that all profile activity is visible.
 **Symptom**: Misleading status; Ezio sees contradiction that doesn't exist.
 **Fix**: Manual notification required after `kanban dispatch`. After spawning, Ezio sends Telegram message to profile's bot saying "task_id ready, claim and run".
-**Cross-reference**: Stage 11 §5.3 (cross-profile communication); `egozone-governance` Pitfall #14.
+**Cross-reference**: Stage 11 §5.3 (cross-profile communication); `project-governance` Pitfall #14.
 
 #### Pitfall #42: Post-commit Kanban card stuck in "blocked"
 
@@ -522,7 +522,7 @@ Every pitfall entry uses this fixed structure:
 **Trigger**: No explicit owner for "blocked → done" transition.
 **Symptom**: Review-required cards pile up indefinitely; board signal degrades.
 **Fix**: Originating agent (or next session's orchestrator) closes card once commit verified. `git log --oneline | grep <task-id>` shows the commit; then `kanban complete <id>`.
-**Cross-reference**: Stage 11 §6.1 E6; `egozone-governance` Pitfall #12.
+**Cross-reference**: Stage 11 §6.1 E6; `project-governance` Pitfall #12.
 
 #### Pitfall #43: Trusting handoff summaries over file content
 
@@ -532,7 +532,7 @@ Every pitfall entry uses this fixed structure:
 **Trigger**: Trust stale notes over user's words.
 **Symptom**: User has to correct; trust degrades; agent looks unobservant.
 **Fix**: When user asserts current state, **verify file content FIRST**. Summary lags reality; file wins. "Verify reality first" is a hard rule.
-**Cross-reference**: Stage 11 §6; `egozone-governance` Pitfall #17; `agent-team-orchestrator` v0.1.0 lesson (EgoZone docs has §12 now, not "missing").
+**Cross-reference**: Stage 11 §6; `project-governance` Pitfall #17; `agent-team-orchestrator` v0.1.0 lesson (your project docs has §12 now, not "missing").
 
 #### Pitfall #44: LLM empty response silently passes
 
@@ -602,7 +602,7 @@ Where the pitfalls in this index came from.
 
 | Source | Count | Style |
 |--------|-------|-------|
-| `egozone-governance` skill | 18 (numbered #1-#18 there) | Project-specific instances; this index abstracts them |
+| `project-governance` skill | 18 (numbered #1-#18 there) | Project-specific instances; this index abstracts them |
 | `agent-team-orchestrator` README | ~5 | Multi-agent protocol discoveries |
 | `claude-code` skill | ~3 | CLI invocation patterns; HOME prefix; tool-config gotchas |
 | `coding-workflow` skill | ~2 | Plan-Code-Test-Review-Report loop pitfalls |
@@ -639,7 +639,7 @@ When adding a new pitfall:
 1. Pick the next sequential number (don't reuse, don't skip)
 2. Use the template (§3) verbatim — Date / Category / Context / Trigger / Symptom / Fix / Cross-reference
 3. Cross-reference MUST point to a section, skill, or specific commit
-4. If the pitfall came from a project-specific source (e.g., EgoZone), generalize it before adding (the index is project-agnostic)
+4. If the pitfall came from a project-specific source (e.g., your project), generalize it before adding (the index is project-agnostic)
 
 ---
 
@@ -671,9 +671,9 @@ Scan §3 for the relevant category (P-IM or P-CD), look for similar symptoms.
 
 ### By source
 
-> "I'm using EgoZone Kanban — what governance pitfalls apply?"
+> "I'm using 项目 Kanban — what governance pitfalls apply?"
 
-Cross-reference §4: `egozone-governance` skill pitfalls, then check §3 by
+Cross-reference §4: `project-governance` skill pitfalls, then check §3 by
 symptom.
 
 ### By stage
@@ -705,7 +705,7 @@ If you know which category, jump directly:
 - [`../08-commit/_index_en.md`](../08-commit/_index_en.md) — P-CM home (Stage 8 §7 Failure Modes)
 - [`../10-coding-practices/_index_en.md`](../10-coding-practices/_index_en.md) — P-CD home
 - [`../11-governance/_index_en.md`](../11-governance/_index_en.md) — P-GV home
-- [`~/.hermes/profiles/ezio-zero/skills/software-development/egozone-governance/`](https://github.com/Ezio0/Hermes-Governance) — Original EgoZone-specific pitfalls (1-18)
+- [`~/.hermes/profiles/ezio-zero/skills/software-development/project-governance/`](https://github.com/Ezio0/Hermes-Governance) — Original project-specific pitfalls (1-18)
 - [`~/.hermes/profiles/ezio-zero/skills/software-development/coding-workflow/`](https://github.com/Ezio0/Hermes-Governance) — Plan-Code-Test-Review-Report pitfalls
 - [`~/.hermes/profiles/ezio-zero/skills/autonomous-ai-agents/claude-code/`](https://github.com/Ezio0/Hermes-Governance) — Claude Code CLI pitfalls
 - [`~/Documents/MyProjects/agent-team-orchestrator/README.md`](https://github.com/Ezio0/agent-team-orchestrator) — Multi-agent protocol discoveries

@@ -112,11 +112,11 @@ See [PRD template](../05-templates/prd-template/) for the 13-section structure.
 
 When the reader follows this link, their tooling (GitHub, IDE preview) shows whichever version is configured by their locale. If the user wants a specific language, they explicitly suffix.
 
-References to **upstream skills** (e.g., `egozone-governance`) include the skill name and a sentence on what to find there:
+References to **upstream skills** (e.g., `project-governance`) include the skill name and a sentence on what to find there:
 
 ```markdown
-For EgoZone-specific telemetry requirements (§12 mandatory), see the
-[`egozone-prd-authoring`](https://github.com/Ezio0/.../skills/egozone-prd-authoring/)
+For project-specific telemetry requirements (§12 mandatory), see the
+[`prd-authoring`](https://github.com/Ezio0/.../skills/prd-authoring/)
 skill.
 ```
 
@@ -146,7 +146,7 @@ Each pitfall entry follows this structure (in both languages):
 **Cross-reference**: <links to related docs / skills>
 ```
 
-The `## Pitfalls` section in `02-multi-agent-coordination/pitfall-index.{en,zh}.md` will consolidate the 18+ pitfalls currently scattered across `egozone-governance` skill.
+The `## Pitfalls` section in `02-multi-agent-coordination/pitfall-index.{en,zh}.md` will consolidate the 18+ pitfalls currently scattered across `project-governance` skill.
 
 ## 8. CI Lint (`.github/workflows/bilingual-lint.yml`)
 

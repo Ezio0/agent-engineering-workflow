@@ -143,8 +143,8 @@ See [PRD template](docs/05-templates/) for the 13-section structure.
 References to **upstream skills** include the skill name and a sentence on what to find there:
 
 ```markdown
-For EgoZone-specific telemetry requirements (§12 mandatory), see the
-[`egozone-prd-authoring`](https://github.com/Ezio0/Hermes-Governance) skill.
+For project-specific telemetry requirements (§12 mandatory), see the
+[`prd-authoring`](https://github.com/Ezio0/Hermes-Governance) skill.
 ```
 
 ---

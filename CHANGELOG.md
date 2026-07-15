@@ -128,7 +128,7 @@ what, with what authority, with what escalation".
 
 11 sections:
 
-- §1 Overview — fundamental tension (agents fast, humans accountable); what Governance is NOT; relationship with egozone-governance skill
+- §1 Overview — fundamental tension (agents fast, humans accountable); what Governance is NOT; relationship with project-governance skill
 - §2 Roles and Authority — 5 role categories; full authority matrix (5 × 12 actions); 3 tiers of "NEVER commit"; explicit instruction definition
 - §3 Commit Authority (cross-reference) — why asymmetric permission; audit trail requirement; pre-authorization pattern
 - §4 Push Policy — when to push by scenario; `--force` banned; pre-push verification; pre-push hooks recommended
@@ -146,8 +146,8 @@ Includes:
 
 ### Decisions confirmed with Ezio
 
-- **Handbook = framework; egozone-governance skill = instance**. Stage 11 documents the
-  framework (who decides what); egozone-governance skill documents EgoZone's specific
+- **Handbook = framework; project-governance skill = instance**. Stage 11 documents the
+  framework (who decides what); project-governance skill documents the project's specific
   instance (Kanban board, patch directory, 18 pitfalls). If the skill is deleted, the
   handbook remains valid for any project.
 - **Three "NEVER commit" tiers** with different enforcement strategies: workflow-level
@@ -159,15 +159,15 @@ Includes:
 - **Profile boundaries hard by default**: cross-profile reads/writes require explicit
   `cross_profile=True` + Ezio authorization; not auto-permitted.
 
-### Projection from egozone-governance skill
+### Projection from project-governance skill
 
-The Stage 11 framework projects the following from `egozone-governance` skill:
+The Stage 11 framework projects the following from `project-governance` skill:
 
-| From egozone-governance | Stage 11 home |
+| From project-governance | Stage 11 home |
 |------------------------|---------------|
 | Kanban-first rule | Stage 11 §6 (escalation) — general principle, project-specifics in skill |
 | Commit authority tiers | Stage 11 §2.3 — full matrix with 3 tiers |
-| Patch handoff format | Stage 5 §7 (mechanics) + egozone-governance (EgoZone path) |
+| Patch handoff format | Stage 5 §7 (mechanics) + project-governance (your project path) |
 | Profile-scoped files | Stage 11 §5 — boundary rules |
 | Pitfall #7 (silent failure) | Stage 11 §6.3 — escalated to framework-level rule |
 | Pitfall #15 (Claude Code auto-commit) | Stage 11 §2.3 Tier 2 — enforcement strategy |
@@ -193,14 +193,14 @@ The Stage 11 framework projects the following from `egozone-governance` skill:
 
 #### Cross-Topic 90 (Pitfalls) — final section filled in — HANDBOOK COMPLETE
 
-8-section pitfall index. **Index, not narrative** — does not introduce new rules; aggregates pitfalls from all 11 prior sections and external sources (egozone-governance skill, agent-team-orchestrator README, claude-code skill, coding-workflow skill).
+8-section pitfall index. **Index, not narrative** — does not introduce new rules; aggregates pitfalls from all 11 prior sections and external sources (project-governance skill, agent-team-orchestrator README, claude-code skill, coding-workflow skill).
 
 8 sections:
 
 - §1 Overview — when to consult (5 moments) and when NOT to use (3 cases)
 - §2 Pitfall Categories — 6 categories: P-MA / P-IM / P-RV / P-CM / P-CD / P-GV
 - §3 Pitfall Index — 43 entries with fixed template (Date / Category / Context / Trigger / Symptom / Fix / Cross-reference)
-- §4 Pitfall Sources — provenance: egozone-governance (18), agent-team-orchestrator (~5), claude-code (~3), coding-workflow (~2), handbook itself (~15), agent-team-orchestrator project build (1)
+- §4 Pitfall Sources — provenance: project-governance (18), agent-team-orchestrator (~5), claude-code (~3), coding-workflow (~2), handbook itself (~15), agent-team-orchestrator project build (1)
 - §5 When to Add a New Pitfall — 5 triggers (recurrence / blast radius / user correction / skill-documented / pre-delivery review); template enforcement
 - §6 Pitfall Lifecycle — 5 states (discovered / indexed / mitigated / obsolete / promoted to rule)
 - §7 Search Tips — 4 strategies (by symptom / by source / by stage / by category)
@@ -263,7 +263,7 @@ These are tracked separately and not blocking handbook completion:
 1. Update `global-launch-review` skill in Hermes to reflect the 9-stage workflow + cross-cutting + pitfall index
 2. Update `agent-team-orchestrator` README to reference `agent-engineering-workflow` as canonical source for the 3-layer defense and 4 principles
 3. Add `.github/workflows/bilingual-lint.yml` for structural parity enforcement
-4. Apply the workflow to actual projects (EgoZone, future projects)
+4. Apply the workflow to actual projects (actual projects)
 
 ### Changed / 变更
 
@@ -696,7 +696,7 @@ Includes:
 
 #### Stage 1 (PRD) — second section filled in
 
-Reuses the EgoZone 13-section PRD structure with two renames per Ezio's instruction:
+Reuses the the 13-section PRD structure with two renames per Ezio's instruction:
 
 - `§7 Admin SQL` → `§7 Data Observability` (project-agnostic)
 - `§12 埋点需求 (Telemetry)` → `§12 Observability Requirements` (covers events / logs / metrics / tracing, not just events)
@@ -718,7 +718,7 @@ Includes:
 
 ### Decisions confirmed with Ezio
 
-- 13-section structure: reuse EgoZone template
+- 13-section structure: reuse the project template
 - Depth: framework + template + checklist (same shape as Stage 0)
 - Overlap with Positioning: allowed (reference, don't rewrite) — codified in the "Relationship to Positioning" table
 - Observability design principles: included as appendix in template

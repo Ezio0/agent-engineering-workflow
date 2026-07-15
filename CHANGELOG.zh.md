@@ -50,14 +50,14 @@
 
 #### 跨主题 90（Pitfalls）—— 最后填的 section —— HANDBOOK 完成
 
-8 章 pitfall 索引。**索引，不是叙事** —— 不引入新规则；汇总所有 11 个前序 section 和外部源（egozone-governance skill、agent-team-orchestrator README、claude-code skill、coding-workflow skill）的 pitfalls。
+8 章 pitfall 索引。**索引，不是叙事** —— 不引入新规则；汇总所有 11 个前序 section 和外部源（project-governance skill、agent-team-orchestrator README、claude-code skill、coding-workflow skill）的 pitfalls。
 
 8 章：
 
 - §1 概述 —— 何时查阅（5 个时刻）和何时**不**用（3 个情况）
 - §2 Pitfall 分类 —— 6 个类别：P-MA / P-IM / P-RV / P-CM / P-CD / P-GV
 - §3 Pitfall 索引 —— 43 条带固定模板（日期 / 类别 / 上下文 / 触发 / 症状 / 修复 / 交叉引用）
-- §4 Pitfall 来源 —— 出处：egozone-governance（18）、agent-team-orchestrator（~5）、claude-code（~3）、coding-workflow（~2）、handbook 自身（~15）、agent-team-orchestrator 项目构建（1）
+- §4 Pitfall 来源 —— 出处：project-governance（18）、agent-team-orchestrator（~5）、claude-code（~3）、coding-workflow（~2）、handbook 自身（~15）、agent-team-orchestrator 项目构建（1）
 - §5 何时添加新 Pitfall —— 5 个触发（复发 / 高爆炸半径 / 用户纠正 / skill 记录 / pre-delivery review）；模板强制
 - §6 Pitfall 生命周期 —— 5 个状态（已发现 / 已索引 / 已缓解 / 已废弃 / 提升为规则）
 - §7 搜索技巧 —— 4 个策略（按症状 / 按来源 / 按 stage / 按类别）
@@ -120,7 +120,7 @@ agent-engineering-workflow/
 1. 更新 Hermes 的 `global-launch-review` skill，反映 9 阶段 workflow + 横向 + pitfall 索引
 2. 更新 `agent-team-orchestrator` README，引用 `agent-engineering-workflow` 作为三层防护和 4 原则的权威源
 3. 加 `.github/workflows/bilingual-lint.yml` 强制结构对等
-4. 把 workflow 应用到实际项目（EgoZone、未来项目）
+4. 把 workflow 应用到实际项目
 
 ### 变更
 
@@ -159,7 +159,7 @@ agent-engineering-workflow/
 
 11 章：
 
-- §1 概述 —— 根本张力（agents 快、人类负责）；Governance 不是什么；跟 egozone-governance skill 的关系
+- §1 概述 —— 根本张力（agents 快、人类负责）；Governance 不是什么；跟 project-governance skill 的关系
 - §2 角色与权限 —— 5 个角色类别；完整权限矩阵（5 × 12 动作）；"永不 commit" 的 3 个 tier；显式指令定义
 - §3 Commit 权限（交叉引用）—— 为何非对称权限；审计轨迹要求；预授权模式
 - §4 Push 策略 —— 按场景何时 push；`--force` 禁用；push 前验证；推荐 pre-push hooks
@@ -177,8 +177,8 @@ agent-engineering-workflow/
 
 ### 与 Ezio 确认的决策
 
-- **Handbook = 框架；egozone-governance skill = 实例**。Stage 11 记录框架（谁决定什么）；
-  egozone-governance skill 记录 EgoZone 的特定实例（Kanban board、patch 目录、18 个 pitfalls）。
+- **Handbook = 框架；project-governance skill = 实例**。Stage 11 记录框架（谁决定什么）；
+  project-governance skill 记录 项目的特定实例（Kanban board、patch 目录、18 个 pitfalls）。
   如果 skill 删了，handbook 对任何项目仍有效。
 - **"永不 commit" 的 3 个 tier** 带不同强制策略：工作流层（Tier 1 worker profiles）、
   工具配置层（Tier 2 编码子 agents）、N/A（Tier 3）。
@@ -187,15 +187,15 @@ agent-engineering-workflow/
 - **Push 策略独立于 commit**：push 是 Stage 11 §4 管的独立治理决策，不是 commit workflow 的一部分。
 - **Profile 边界默认硬**：跨 profile 读/写需要显式 `cross_profile=True` + Ezio 授权；不自动允许。
 
-### 从 egozone-governance skill 的投影
+### 从 project-governance skill 的投影
 
-Stage 11 框架从 `egozone-governance` skill 投影以下内容：
+Stage 11 框架从 `project-governance` skill 投影以下内容：
 
-| 从 egozone-governance | Stage 11 归属 |
+| 从 project-governance | Stage 11 归属 |
 |----------------------|--------------|
 | Kanban-first 规则 | Stage 11 §6（升级）—— 通用原则，项目特定在 skill |
 | Commit 权限 tiers | Stage 11 §2.3 —— 完整矩阵带 3 个 tiers |
-| Patch handoff 格式 | Stage 5 §7（机制）+ egozone-governance（EgoZone 路径） |
+| Patch handoff 格式 | Stage 5 §7（机制）+ project-governance（your project 路径） |
 | Profile-scoped files | Stage 11 §5 —— 边界规则 |
 | Pitfall #7（静默失败） | Stage 11 §6.3 —— 提升到框架级规则 |
 | Pitfall #15（Claude Code auto-commit） | Stage 11 §2.3 Tier 2 —— 强制策略 |
@@ -668,7 +668,7 @@ Stage 5 的 11 章节：
 
 #### Stage 1（PRD）—— 第二个填充的 section
 
-复用 EgoZone 13 章节 PRD 结构，按 Ezio 指示重命名两章：
+复用 the 13-section PRD 结构，按 Ezio 指示重命名两章：
 
 - `§7 Admin SQL` → `§7 数据可观测性`（项目无关）
 - `§12 埋点需求` → `§12 可观测性需求`（覆盖事件 / 日志 / 指标 / 追踪，不只是事件）
@@ -690,7 +690,7 @@ Stage 5 的 11 章节：
 
 ### 与 Ezio 确认的决策
 
-- 13 章节结构：复用 EgoZone 模板
+- 13 章节结构：复用 your project 模板
 - 深度：框架 + 模板 + checklist（跟 Stage 0 一致）
 - 跟 Positioning 的重叠：允许（引用别重写）—— 体现在"跟 Positioning 的关系"表里
 - 可观测性需求的设计原则：作为附录纳入模板

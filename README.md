@@ -18,9 +18,9 @@ Want the full theory? Read on.
 
 ## What is this?
 
-This handbook consolidates the engineering practices Ezio has developed across multiple agent-driven projects (EgoZone, agent-team-orchestrator, Hermes-Governance, and more). It exists because on 2026-07-12, after `agent-team-orchestrator` shipped without PRD/Spec/Plan, Ezio explicitly said:
+This handbook consolidates the engineering practices Ezio has developed across multiple agent-driven projects (your project, agent-team-orchestrator, Hermes-Governance, and more). It exists because on 2026-07-12, after `agent-team-orchestrator` shipped without PRD/Spec/Plan, Ezio explicitly said:
 
-> *"I need you to make EgoZone workflow a global workflow standard for all future project development."*
+> *"I need you to make our project workflow a global workflow standard for all future project development."*
 
 This repository is that standard, made durable and public.
 
@@ -73,8 +73,8 @@ See also: [Sections Index](docs/agent_engineering_workflow_sections_v1.0_2026-07
 
 This handbook **defers** to upstream skills for granular detail:
 
-- [`egozone-governance`](https://github.com/Ezio0/Hermes-Governance) — EgoZone-specific governance (18 pitfalls, Kanban-first, commit authority)
-- [`egozone-prd-authoring`](https://github.com/Ezio0/Hermes-Governance) — EgoZone-specific PRD authoring (13-section template + telemetry §12)
+- [`project-governance`](https://github.com/Ezio0/Hermes-Governance) — project-specific governance (18 pitfalls, Kanban-first, commit authority)
+- [`prd-authoring`](https://github.com/Ezio0/Hermes-Governance) — project-specific PRD authoring (13-section template + telemetry §12)
 - [`global-launch-review`](https://github.com/Ezio0/agent-engineering-workflow) — Triggers on new-project creation (will be updated to 8-stage workflow in v1.1)
 - [`coding-workflow`](https://github.com/Ezio0/Hermes-Governance) — Plan → Code → Test → Review → Report
 - [`kanban-worker`](https://github.com/Ezio0/Hermes-Governance) — Hermes Kanban worker SOP

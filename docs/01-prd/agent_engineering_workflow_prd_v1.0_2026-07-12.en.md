@@ -8,15 +8,15 @@
 
 ## 1. Product Background
 
-By mid-2026, Ezio Sun has built up significant engineering know-how across multiple agent-driven projects (EgoZone, agent-team-orchestrator, Hermes-Governance, and more). This know-how is currently scattered:
+By mid-2026, Ezio Sun has built up significant engineering know-how across multiple agent-driven projects (multiple agent-driven projects). This know-how is currently scattered:
 
-- **In code**: egozone-governance / egozone-prd-authoring / coding-workflow / global-launch-review skills in `~/.hermes/profiles/ezio-zero/skills/software-development/`
-- **In docs**: `EgoZone/docs/prd/TEMPLATE.md`, `EgoZone/docs/development-workflow.md`, `agent-team-orchestrator/docs/{prd,specs,plans}/`
+- **In code**: project-governance / prd-authoring / coding-workflow / global-launch-review skills in `~/.hermes/profiles/ezio-zero/skills/software-development/`
+- **In docs**: `{project_root}/docs/prd/TEMPLATE.md`, `{project_root}/docs/development-workflow.md`, `agent-team-orchestrator/docs/{prd,specs,plans}/`
 - **In chat history**: implicit patterns discussed session-by-session but never written down
 
 This is fragile. Each new project re-invents the wheel; each new agent discovers the workflow through trial-and-error; each governance rule lives in 3 different places with subtle inconsistencies.
 
-**The 2026-07-12 incident** made this concrete: when Ezio asked Ezio Zero to build `agent-team-orchestrator`, the agent shipped code-first without writing PRD/Spec/Plan first — directly violating the launch-review workflow that exists for EgoZone. Ezio's correction: "I need you to make EgoZone workflow a global workflow standard for all future project development."
+**The 2026-07-12 incident** made this concrete: when Ezio asked Ezio Zero to build `agent-team-orchestrator`, the agent shipped code-first without writing PRD/Spec/Plan first — directly violating the launch-review workflow that exists for your project. Ezio's correction: "I need you to make our project workflow a global standard for all future project development."
 
 This PRD proposes a **standalone, versioned, bilingual reference handbook** that captures all of Ezio's agent-engineering practices in one place. Future projects — whether on Hermes, OpenClaw, or any other agent platform — read from this handbook as the single source of truth.
 
@@ -35,22 +35,22 @@ This PRD proposes a **standalone, versioned, bilingual reference handbook** that
   - Acceptance:
     - [ ] Handbook has `01-launch-review/` section with bilingual SOPs
     - [ ] PRD template (bilingual) lives in `05-templates/prd-template/`
-    - [ ] 13-section template structure is identical to EgoZone's but generalized
-    - [ ] Cross-references `egozone-prd-authoring` skill for EgoZone-specific telemetry rules
+    - [ ] 13-section template structure is identical to your project's but generalized
+    - [ ] Cross-references `prd-authoring` skill for project-specific telemetry rules
 
 - **US-2**: As Ezio Zero, when running multiple agents on the same codebase, I read the multi-agent coordination SOP and apply the three-layer defense (declaration + isolation + detection).
   - Acceptance:
     - [ ] Handbook has `02-multi-agent-coordination/` section
     - [ ] Documents `agent-team-orchestrator` workflow with its 3-layer defense
-    - [ ] Includes the 18+ governance pitfalls from `egozone-governance` skill
+    - [ ] Includes the 18+ governance pitfalls from `project-governance` skill
     - [ ] Bilingual coverage
 
 - **US-3**: As Ezio, when I want to onboard a new agent or platform (e.g., OpenClaw), I can point it at this handbook and it learns the full workflow.
   - Acceptance:
     - [ ] Handbook is public on GitHub
     - [ ] Has a clear `README.md` that doubles as onboarding doc
-    - [ ] Cross-references upstream skills (egozone-governance, etc.) for granular detail
-    - [ ] Doesn't duplicate EgoZone-specific rules; defers to those skills
+    - [ ] Cross-references upstream skills (project-governance, etc.) for granular detail
+    - [ ] Doesn't duplicate project-specific rules; defers to those skills
 
 - **US-4**: As Ezio, when I find a workflow gap (like the 2026-07-12 incident), I document it as a new pitfall/section so it doesn't recur.
   - Acceptance:
@@ -103,18 +103,18 @@ This handbook **aggregates** existing materials, not creates new ones:
 
 | Section | Source material |
 |---------|-----------------|
-| `01-launch-review/` | `~/.hermes/profiles/ezio-zero/skills/software-development/global-launch-review/SKILL.md` + EgoZone `docs/prd/TEMPLATE.md` |
-| `02-multi-agent-coordination/` | `agent-team-orchestrator/docs/{prd,specs,plans}/` + `~/.hermes/profiles/ezio-zero/skills/software-development/egozone-governance/SKILL.md` (pitfalls #1-#18) |
+| `01-launch-review/` | `~/.hermes/profiles/ezio-zero/skills/software-development/global-launch-review/SKILL.md` + your project `docs/prd/TEMPLATE.md` |
+| `02-multi-agent-coordination/` | `agent-team-orchestrator/docs/{prd,specs,plans}/` + `~/.hermes/profiles/ezio-zero/skills/software-development/project-governance/SKILL.md` (pitfalls #1-#18) |
 | `03-coding-practices/` | `~/.hermes/profiles/ezio-zero/skills/software-development/coding-workflow/SKILL.md` |
-| `04-governance/` | `~/.hermes/profiles/ezio-zero/skills/software-development/egozone-governance/SKILL.md` (commit authority, Kanban-first, patch handoff rules) |
-| `05-templates/` | Generalized versions of `EgoZone/docs/prd/TEMPLATE.md` + `agent-team-orchestrator/docs/specs/...` |
+| `04-governance/` | `~/.hermes/profiles/ezio-zero/skills/software-development/project-governance/SKILL.md` (commit authority, Kanban-first, patch handoff rules) |
+| `05-templates/` | Generalized versions of `{project_root}/docs/prd/TEMPLATE.md` + `agent-team-orchestrator/docs/specs/...` |
 | `06-pitfalls/` | Consolidated pitfall index (currently scattered across skills) |
 
 ### FR-4: Cross-Reference Discipline
 
 The handbook **defers** to upstream skills for granular implementation detail:
 
-- For EgoZone-specific telemetry rules → link to `egozone-prd-authoring`
+- For project-specific telemetry rules → link to `prd-authoring`
 - For Hermes-specific Kanban worker patterns → link to `kanban-worker`
 - For Python coding → link to `coding-workflow`
 
@@ -152,7 +152,7 @@ Optional v1.1: Docusaurus / MkDocs site (deferred until content is stable).
 |------|-------|------------|
 | Content drift between handbook and upstream skills | High | Handbook explicitly defers + links; quarterly cross-check |
 | Bilingual sections drift apart | Medium | CI lint check: structural diff between `.zh.md` and `.en.md` must be empty |
-| Redundancy with EgoZone docs | Medium | Handbook is the abstraction layer; EgoZone docs are concrete examples |
+| Redundancy with your project docs | Medium | Handbook is the abstraction layer; your project docs are concrete examples |
 | Scope creep into "every skill ever" | High | Strict scope: launch-review, multi-agent coordination, coding practices, governance. Other skills stay where they are. |
 | Translation quality inconsistent | Medium | Acceptable to start; v1.1 can introduce glossary + style guide |
 | Markdown rendering differences (GitHub vs editors) | Low | Use standard CommonMark; avoid exotic extensions |
@@ -179,7 +179,7 @@ Optional v1.1: Docusaurus / MkDocs site (deferred until content is stable).
 
 ## 12. Telemetry / Observability Requirements
 
-> Adapted from EgoZone's §12 mandatory section.
+> Adapted from your project's §12 mandatory section.
 
 **v1 has no telemetry.**
 
@@ -194,6 +194,6 @@ Future v1.1 candidate: weekly automated check that handbook links to upstream sk
 
 ## 13. History & Governance
 
-- **2026-07-12**: v1 created retroactively, immediately after `agent-team-orchestrator` shipped without PRD/Spec/Plan. Ezio's correction: "make EgoZone workflow a global workflow standard". This handbook IS that standard, made durable and public.
+- **2026-07-12**: v1 created retroactively, immediately after `agent-team-orchestrator` shipped without PRD/Spec/Plan. Ezio's correction: "make our project workflow a global standard". This handbook IS that standard, made durable and public.
 - **Governance**: Handbook changes go through the same launch-review as projects. Material additions need a PRD. Copy-edit fixes can be a single PR.
 - **Versioning**: semver. Major bump = breaking change to section structure; minor = new pitfall / new template; patch = typo fix.

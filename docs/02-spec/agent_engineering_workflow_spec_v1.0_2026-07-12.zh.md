@@ -114,11 +114,11 @@ agent-engineering-workflow/
 
 读者点击链接时，工具（GitHub、IDE 预览）按用户的 locale 配置显示对应版本。如果用户想要指定语言，显式加后缀。
 
-引用**上游 skill**（如 `egozone-governance`）时，包含 skill 名 + 一句话说明在那里找什么：
+引用**上游 skill**（如 `project-governance`）时，包含 skill 名 + 一句话说明在那里找什么：
 
 ```markdown
-关于 EgoZone 特定的埋点需求（§12 必填），见
-[`egozone-prd-authoring`](https://github.com/Ezio0/.../skills/egozone-prd-authoring/)
+关于 项目特定的埋点需求（§12 必填），见
+[`prd-authoring`](https://github.com/Ezio0/.../skills/prd-authoring/)
 skill。
 ```
 
@@ -148,7 +148,7 @@ skill。
 **Cross-reference**：<相关文档 / skill 链接>
 ```
 
-`02-multi-agent-coordination/pitfall-index.{en,zh}.md` 的 `## Pitfalls` section 会整合当前散落在 `egozone-governance` skill 里的 18+ pitfalls。
+`02-multi-agent-coordination/pitfall-index.{en,zh}.md` 的 `## Pitfalls` section 会整合当前散落在 `project-governance` skill 里的 18+ pitfalls。
 
 ## 8. CI Lint（`.github/workflows/bilingual-lint.yml`）
 

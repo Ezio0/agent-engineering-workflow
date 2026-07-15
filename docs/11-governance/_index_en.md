@@ -5,7 +5,7 @@
 > **Related**: [中文版](_index_zh.md)
 >
 > Cross-cutting topic. Applies to **all stages and all agents**. The handbook
-> here is the **framework layer**; project-specific instances (e.g., EgoZone
+> here is the **framework layer**; project-specific instances (e.g., your project
 > Kanban board, patch format) live in their own governance skills.
 
 ---
@@ -32,7 +32,7 @@ default is "agent cannot"; exceptions are explicit and narrow.
 | Commit message format | Stage 8 §4 |
 | Code style | Stage 10 |
 | Per-stage SOP | Stages 0–8 |
-| Project-specific Kanban config | Project's governance skill (e.g., `egozone-governance`) |
+| Project-specific Kanban config | Project's governance skill (e.g., `project-governance`) |
 
 ### Scope boundary with Stage 5 and Stage 8
 
@@ -50,7 +50,7 @@ policy changes who decides. Both are needed; they don't overlap.
 ```
 Handbook (this)               → Framework: rules, roles, escalation paths
                                   Project-agnostic
-egozone-governance skill      → Instance: EgoZone-specific Kanban board,
+project-governance skill      → Instance: project-specific Kanban board,
                                   patch directory, pitfalls
                                   Project-specific
 global-launch-review skill    → Meta: when to load which governance layer
@@ -333,7 +333,7 @@ Some skill management tools accept `cross_profile=True` to write to another
 profile's skills. **This is opt-in, not default** — the tool refuses by default
 and asks for explicit confirmation. Use it only when:
 
-- A skill needs to be available across all profiles (e.g., `egozone-governance`)
+- A skill needs to be available across all profiles (e.g., `project-governance`)
 - Ezio has explicitly authorized the cross-profile write
 
 Never use `cross_profile=True` to "fix" a problem in another profile without
@@ -441,7 +441,7 @@ the skill's `metadata.hermes.changelog` array is enough.
 
 ### 7.4 Cross-profile skill sync
 
-Some skills need to be in every profile (e.g., `egozone-governance`,
+Some skills need to be in every profile (e.g., `project-governance`,
 `global-launch-review`). These are **shared skills**.
 
 The sync mechanism:
@@ -483,7 +483,7 @@ Memory is the per-profile state. Like skills, it needs governance.
 
 DO write:
 
-- Stable facts about the environment (e.g., "EgoZone runs on port 8000")
+- Stable facts about the environment (e.g., "the project runs on port 8000")
 - Project conventions that don't fit in code (e.g., "this project uses kebab-case")
 - Tool quirks (e.g., "Claude Code requires HOME prefix")
 - User preferences (after explicit correction or clarification)
@@ -566,5 +566,5 @@ extend, don't create.
 - [`../08-commit/_index_en.md`](../08-commit/_index_en.md) — Commit mechanics + commit message format + `--amend` / `--force` rules
 - [`../10-coding-practices/_index_en.md`](../10-coding-practices/_index_en.md) — Code style (no governance)
 - [`../90-pitfalls/_index_en.md`](../90-pitfalls/_index_en.md) — Pitfall index; many governance pitfalls cross-referenced
-- [`~/.hermes/profiles/ezio-zero/skills/software-development/egozone-governance/`](https://github.com/Ezio0/Hermes-Governance) — Project-specific instance (EgoZone Kanban board, patch format, 18 pitfalls)
+- [`~/.hermes/profiles/ezio-zero/skills/software-development/project-governance/`](https://github.com/Ezio0/Hermes-Governance) — Project-specific instance (project Kanban board, patch format, 18 pitfalls)
 - [`~/.hermes/profiles/ezio-zero/skills/devops/hermes-workspace-governance/`](https://github.com/Ezio0/Hermes-Governance) — Cross-domain task classification (infra vs product vs user)

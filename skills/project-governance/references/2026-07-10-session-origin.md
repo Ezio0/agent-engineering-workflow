@@ -6,7 +6,7 @@ How the launch-review governance was born — concrete conversation excerpts and
 
 The admin-dashboard rollout exposed a governance gap. Working through 18 implementation tasks (T1-T18), three structural problems appeared:
 
-1. **No Kanban registration before implementation.** PRDs, Specs, Plans were written directly. The `egozone` board had 13 historical tasks (5 done, 7 blocked) — none about admin dashboard.
+1. **No Kanban registration before implementation.** PRDs, Specs, Plans were written directly. The `{board_slug}` board had 13 historical tasks (5 done, 7 blocked) — none about admin dashboard.
 
 2. **Agent committed directly.** Zero (Claude Sonnet) ran `git commit` without human review. Commit message format was inconsistent with what other agents (Infinite, Claude Code) would produce.
 

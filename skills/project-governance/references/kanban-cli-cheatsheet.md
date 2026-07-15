@@ -64,7 +64,7 @@ hermes kanban --board {board_slug} show <task_id>  # should show new run + spawn
 
 **`kanban unblock` transitions to `ready`, NOT `todo` — daemon auto-spawns** (fired 2026-07-13 t_64ae3609): The CLI `hermes kanban unblock <id>` moves the task to `ready` status, which the daemon treats as spawnable. Within seconds the dispatcher claims and spawns a worker. To place a task in `todo` (visible on board but NOT spawnable), use SQL: `sqlite3 ~/.hermes/kanban/boards/{board_slug}/kanban.db "UPDATE tasks SET status='todo' WHERE id='t_X'"`. The `todo` status is the intended "waiting for agent pickup" state; `ready` is the "daemon may spawn" state. This distinction matters because the new lifecycle (v1.13.0+) has zero create tasks as `blocked`, Ezio unblocks to `todo` for manual assignment, and the claiming agent flips to `running` — but `kanban unblock` skips `todo` entirely and goes straight to `ready`.
 
-**Board scope — `--board` flag goes BEFORE the subcommand, not after** (fired 2026-07-13): `hermes kanban boards switch egozone` reports "Active board is now '{board_slug}'" but subsequent `hermes kanban ls` calls may still show the `default` board (the switch does not reliably persist across separate process invocations). The `--board` flag is a parent-level option on `hermes kanban`, NOT a subcommand option:
+**Board scope — `--board` flag goes BEFORE the subcommand, not after** (fired 2026-07-13): `hermes kanban boards switch {board_slug}` reports "Active board is now '{board_slug}'" but subsequent `hermes kanban ls` calls may still show the `default` board (the switch does not reliably persist across separate process invocations). The `--board` flag is a parent-level option on `hermes kanban`, NOT a subcommand option:
 
 ```bash
 # ✅ CORRECT — --board BEFORE subcommand
@@ -73,7 +73,7 @@ hermes kanban --board {board_slug} create "Title" --assignee ...
 
 # ❌ WRONG — --board AFTER subcommand (unrecognized arguments error)
 hermes kanban ls --board {board_slug}          # error: unrecognized arguments
-hermes kanban ls --board=egozone          # same error
+hermes kanban ls --board={board_slug}          # same error
 ```
 
 **SQLite fallback when CLI board scope fails** (verified 2026-07-13): if `--board` placement doesn't work in context, bypass CLI entirely:

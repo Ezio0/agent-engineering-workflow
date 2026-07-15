@@ -10,15 +10,15 @@
 
 ## 1. 产品背景
 
-到 2026 年中，Ezio Sun 已经在多个 agent 驱动的项目里积累了大量工程经验（EgoZone、agent-team-orchestrator、Hermes-Governance 等）。这些经验目前散落在各处：
+到 2026 年中，Ezio Sun 已经在多个 agent 驱动的项目里积累了大量工程经验（多个 agent 驱动项目）。这些经验目前散落在各处：
 
-- **在代码里**：`~/.hermes/profiles/ezio-zero/skills/software-development/` 下的 `egozone-governance` / `egozone-prd-authoring` / `coding-workflow` / `global-launch-review` 等 skill
-- **在文档里**：`EgoZone/docs/prd/TEMPLATE.md`、`EgoZone/docs/development-workflow.md`、`agent-team-orchestrator/docs/{prd,specs,plans}/`
+- **在代码里**：`~/.hermes/profiles/ezio-zero/skills/software-development/` 下的 `project-governance` / `prd-authoring` / `coding-workflow` / `global-launch-review` 等 skill
+- **在文档里**：`{project_root}/docs/prd/TEMPLATE.md`、`{project_root}/docs/development-workflow.md`、`agent-team-orchestrator/docs/{prd,specs,plans}/`
 - **在聊天记录里**：每次 session 讨论过的隐性规律，从未沉淀成文
 
 这种状态很脆弱。每个新项目都重新发明轮子；每个新 agent 都通过试错来理解工作流；每条治理规则在 3 个地方有微妙不一致的版本。
 
-**2026-07-12 的事故**让这点暴露无遗：Ezio 让 Ezio Zero 构建 `agent-team-orchestrator`，agent 直接写代码，跳过了 PRD/Spec/Plan — 直接违反了 EgoZone 已有的 launch-review 工作流。Ezio 的纠正："I need you to make EgoZone workflow a global workflow standard for all future project development."
+**2026-07-12 的事故**让这点暴露无遗：Ezio 让 Ezio Zero 构建 `agent-team-orchestrator`，agent 直接写代码，跳过了 PRD/Spec/Plan — 直接违反了 your project 已有的 launch-review 工作流。Ezio 的纠正："I need you to make our project workflow a global standard for all future project development."
 
 本 PRD 提议：**一个独立、版本化、双语的参考手册**，把 Ezio 所有的 agent 工程实践集中到一处。未来项目 — 无论在 Hermes、OpenClaw 还是其他 agent 平台 — 都从这份手册读 SSOT（单一真理来源）。
 
@@ -37,22 +37,22 @@
   - 验收：
     - [ ] 手册有 `01-launch-review/` section，含双语 SOP
     - [ ] PRD 模板（双语）在 `05-templates/prd-template/`
-    - [ ] 13 章节模板结构跟 EgoZone 一致但通用化
-    - [ ] cross-reference `egozone-prd-authoring` skill 处理 EgoZone 特定的埋点规则
+    - [ ] 13 章节模板结构跟 your project 一致但通用化
+    - [ ] cross-reference `prd-authoring` skill 处理 项目特定的埋点规则
 
 - **US-2**：作为 Ezio Zero，当多个 agent 在同一 codebase 跑时，我读多 agent 协调 SOP，应用三层防护（声明 + 隔离 + 检测）。
   - 验收：
     - [ ] 手册有 `02-multi-agent-coordination/` section
     - [ ] 记录 `agent-team-orchestrator` 工作流和它的三层防护
-    - [ ] 包含 `egozone-governance` skill 里的 18+ 治理 pitfalls
+    - [ ] 包含 `project-governance` skill 里的 18+ 治理 pitfalls
     - [ ] 双语覆盖
 
 - **US-3**：作为 Ezio，当我要 onboard 新 agent 或平台（比如 OpenClaw），我可以指向这本手册，它学完整套工作流。
   - 验收：
     - [ ] 手册在 GitHub 公开
     - [ ] 有清晰的 `README.md`，可作 onboarding 文档
-    - [ ] cross-reference 上游 skill（egozone-governance 等）拿细节
-    - [ ] 不复制 EgoZone 特定规则；defer 给那些 skill
+    - [ ] cross-reference 上游 skill（project-governance 等）拿细节
+    - [ ] 不复制 项目特定规则；defer 给那些 skill
 
 - **US-4**：作为 Ezio，当我发现工作流漏洞（比如 2026-07-12 事故），我把它记录成新的 pitfall/section 防止再发生。
   - 验收：
@@ -105,18 +105,18 @@ agent-engineering-workflow/
 
 | Section | 来源素材 |
 |---------|----------|
-| `01-launch-review/` | `~/.hermes/profiles/ezio-zero/skills/software-development/global-launch-review/SKILL.md` + EgoZone `docs/prd/TEMPLATE.md` |
-| `02-multi-agent-coordination/` | `agent-team-orchestrator/docs/{prd,specs,plans}/` + `egozone-governance/SKILL.md`（pitfalls #1-#18） |
+| `01-launch-review/` | `~/.hermes/profiles/ezio-zero/skills/software-development/global-launch-review/SKILL.md` + your project `docs/prd/TEMPLATE.md` |
+| `02-multi-agent-coordination/` | `agent-team-orchestrator/docs/{prd,specs,plans}/` + `project-governance/SKILL.md`（pitfalls #1-#18） |
 | `03-coding-practices/` | `~/.hermes/profiles/ezio-zero/skills/software-development/coding-workflow/SKILL.md` |
-| `04-governance/` | `egozone-governance/SKILL.md`（commit authority、Kanban-first、patch handoff 规则） |
-| `05-templates/` | `EgoZone/docs/prd/TEMPLATE.md` + `agent-team-orchestrator/docs/specs/...` 的通用化版本 |
+| `04-governance/` | `project-governance/SKILL.md`（commit authority、Kanban-first、patch handoff 规则） |
+| `05-templates/` | `{project_root}/docs/prd/TEMPLATE.md` + `agent-team-orchestrator/docs/specs/...` 的通用化版本 |
 | `06-pitfalls/` | 整合的 pitfalls 索引（目前散落在各 skill） |
 
 ### FR-4: Cross-Reference 纪律
 
 手册**defer** 给上游 skill 拿颗粒度细节：
 
-- EgoZone 特定埋点规则 → 链 `egozone-prd-authoring`
+- 项目特定埋点规则 → 链 `prd-authoring`
 - Hermes 特定 Kanban worker 模式 → 链 `kanban-worker`
 - Python 编码 → 链 `coding-workflow`
 
@@ -154,7 +154,7 @@ N/A — 仅 Markdown 文档。
 |------|------|------|
 | 手册与上游 skill 内容漂移 | 高 | 手册明确 defer + 链接；季度交叉检查 |
 | 双语 section 漂移 | 中 | CI lint 检查：`.zh.md` 和 `.en.md` 结构差异必须为空 |
-| 跟 EgoZone 文档冗余 | 中 | 手册是抽象层；EgoZone 文档是具体示例 |
+| 跟 your project 文档冗余 | 中 | 手册是抽象层；your project 文档是具体示例 |
 | 范围蔓延到"每个 skill 都收" | 高 | 严格范围：launch-review、多 agent 协调、编码实践、治理。其他 skill 留在原处。 |
 | 翻译质量不一致 | 中 | v1 起步可接受；v1.1 可引入术语表 + 风格指南 |
 | Markdown 渲染差异（GitHub vs 编辑器） | 低 | 用标准 CommonMark；避免怪异扩展 |
@@ -181,7 +181,7 @@ N/A — 仅 Markdown 文档。
 
 ## 12. 埋点需求
 
-> 从 EgoZone PRD §12 必填章节适配。
+> 从 your project PRD §12 必填章节适配。
 
 **v1 没有埋点。**
 
@@ -196,6 +196,6 @@ N/A — 仅 Markdown 文档。
 
 ## 13. 历史 & 治理
 
-- **2026-07-12**：v1 追溯创建，紧接着 `agent-team-orchestrator` 跳过 PRD/Spec/Plan 直接发版后。Ezio 的纠正："make EgoZone workflow a global workflow standard"。本手册就是那个标准，被固化、公开化。
+- **2026-07-12**：v1 追溯创建，紧接着 `agent-team-orchestrator` 跳过 PRD/Spec/Plan 直接发版后。Ezio 的纠正："make our project workflow a global standard"。本手册就是那个标准，被固化、公开化。
 - **治理**：手册变更走与项目相同的 launch-review。结构性新增需 PRD；纯 copy-edit 修复可单 PR。
 - **版本**：semver。主版本 bump = section 结构破坏性变更；minor = 新 pitfall / 新模板；patch = typo 修复。

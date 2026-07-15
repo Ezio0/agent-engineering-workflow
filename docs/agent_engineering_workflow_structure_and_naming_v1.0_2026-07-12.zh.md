@@ -143,8 +143,8 @@ Section 标题结构必须在两语种间 1:1 对齐（本手册通过 `.github/
 引用**上游 skill** 含 skill 名 + 一句话说明在那里找什么：
 
 ```markdown
-关于 EgoZone 特定埋点需求（§12 必填），见
-[`egozone-prd-authoring`](https://github.com/Ezio0/Hermes-Governance) skill。
+关于 项目特定埋点需求（§12 必填），见
+[`prd-authoring`](https://github.com/Ezio0/Hermes-Governance) skill。
 ```
 
 ---

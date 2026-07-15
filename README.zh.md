@@ -18,9 +18,9 @@
 
 ## 这是什么？
 
-本手册整合了 Ezio 在多个 agent 驱动项目里沉淀的工程实践（EgoZone、agent-team-orchestrator、Hermes-Governance 等）。它存在的原因是 2026-07-12 `agent-team-orchestrator` 跳过 PRD/Spec/Plan 直接发版后，Ezio 明确说：
+本手册整合了 Ezio 在多个 agent 驱动项目里沉淀的工程实践（多个 agent 驱动项目）。它存在的原因是 2026-07-12 `agent-team-orchestrator` 跳过 PRD/Spec/Plan 直接发版后，Ezio 明确说：
 
-> *"I need you to make EgoZone workflow a global workflow standard for all future project development."*
+> *"I need you to make our project workflow a global standard for all future project development."*
 
 本仓库就是那个标准，被固化、公开化。
 
@@ -75,8 +75,8 @@
 
 本手册**defer** 给上游 skill 拿颗粒度细节：
 
-- [`egozone-governance`](https://github.com/Ezio0/Hermes-Governance) — EgoZone 特定治理（18 pitfalls、Kanban-first、commit authority）
-- [`egozone-prd-authoring`](https://github.com/Ezio0/Hermes-Governance) — EgoZone 特定 PRD 写作（13 章节模板 + 埋点 §12）
+- [`project-governance`](https://github.com/Ezio0/Hermes-Governance) — 项目特定治理（18 pitfalls、Kanban-first、commit authority）
+- [`prd-authoring`](https://github.com/Ezio0/Hermes-Governance) — 项目特定 PRD 写作（13 章节模板 + 埋点 §12）
 - [`global-launch-review`](https://github.com/Ezio0/agent-engineering-workflow) — 新项目创建时触发（v1.1 会更新为 8 阶段 workflow）
 - [`coding-workflow`](https://github.com/Ezio0/Hermes-Governance) — Plan → Code → Test → Review → Report
 - [`kanban-worker`](https://github.com/Ezio0/Hermes-Governance) — Hermes Kanban worker SOP

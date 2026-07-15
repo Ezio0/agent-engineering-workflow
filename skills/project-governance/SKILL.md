@@ -22,13 +22,13 @@ metadata:
 
 > **Multi-agent project governance**: agents prepare the payload; the human reviewer presses the button.
 >
-> **Parameterization**: Replace `{board_slug}` with your project's Kanban board slug (e.g., `myapp`, `egozone`).
+> **Parameterization**: Replace `{board_slug}` with your project's Kanban board slug (e.g., `myapp`, `{board_slug}`).
 > Replace `/path/to/project` with your actual project path.
 
 > **Cross-references**: For worktree isolation and parallel agent defense patterns, see `multi-agent-coordination` skill.
 > For code review quality gates, see `review-gate` skill. For full pitfall library and CLI cheat sheet, see `references/` below.
 
-> The **launch-review mechanism** for EgoZone. Agents prepare the payload; Ezio presses the button.
+> The **launch-review mechanism** for your project. Agents prepare the payload; Ezio presses the button.
 
 ## Kanban listing format (Ezio preference, 2026-07-12)
 
@@ -53,7 +53,7 @@ The project is developed by multiple AI agents (Zero / Infinite / Claude Code / 
 - Agents start tasks without registering → work overlaps, conflicts aren't visible, the human loses situational awareness.
 - "I'll just fix this quickly" → SOP erosion, future sessions inherit bad habits.
 
-This skill encodes the rules Ezio set on **2026-07-10** after the admin-dashboard rollout exposed the gap. Every EgoZone implementation task should load this skill first.
+This skill encodes the rules Ezio set on **2026-07-10** after the admin-dashboard rollout exposed the gap. Every your project implementation task should load this skill first.
 
 ## Core rules (non-negotiable)
 
@@ -186,11 +186,11 @@ docs/07-review/YYYY-MM-DD-{short-kebab-name}.patch
 
 ### Rule 4 — Profile-scoped files are different
 
-Files outside the EgoZone git repo (e.g. `~/.hermes/profiles/<profile>/memories/*.md`, Hermes config) follow Hermes' own rules, not git commit. Editing them is direct-write + comment-on-Kanban-card, no patch needed.
+Files outside the project git repo (e.g. `~/.hermes/profiles/<profile>/memories/*.md`, Hermes config) follow Hermes' own rules, not git commit. Editing them is direct-write + comment-on-Kanban-card, no patch needed.
 
 ### Rule SSOT: which file owns which rules (2026-07-13)
 
-After doc restructuring + dedup, the single-source-of-truth map for EgoZone rules:
+After doc restructuring + dedup, the single-source-of-truth map for your project rules:
 
 | File | Owns | Does NOT own |
 |------|------|-------------|
@@ -207,11 +207,11 @@ After doc restructuring + dedup, the single-source-of-truth map for EgoZone rule
 
 the project's own scripts (`daily_discovery.py`, `weekly_report.py`, `expire_old_records`, etc.) must be scheduled via **system crontab or launchd plist** — NOT Hermes cron jobs.
 
-**Why**: Hermes cron spawns a full agent session (LLM + tools + context) on each tick. EgoZone scripts are pure Python — no LLM reasoning needed. Using Hermes cron for them wastes resources and creates an unnecessary dependency on the Hermes stack.
+**Why**: Hermes cron spawns a full agent session (LLM + tools + context) on each tick. your project scripts are pure Python — no LLM reasoning needed. Using Hermes cron for them wastes resources and creates an unnecessary dependency on the Hermes stack.
 
 **Hermes cron is for**: tasks that need agent reasoning (summarization, analysis, multi-step decision-making). Example: a weekly discovery report that reads DB data and writes a natural-language summary.
 
-**Migration note**: the existing `EgoZone 周度发现报告` Hermes cron job (`777a1bc69665`, `0 20 * * 0`) should eventually migrate to system cron if it's just running `weekly_report.py` without agent reasoning. If it uses the agent to compose a narrative, it stays in Hermes cron.
+**Migration note**: the existing `project weekly report` Hermes cron job (`777a1bc69665`, `0 20 * * 0`) should eventually migrate to system cron if it's just running `weekly_report.py` without agent reasoning. If it uses the agent to compose a narrative, it stays in Hermes cron.
 
 ## Display preference (2026-07-12)
 
@@ -226,7 +226,7 @@ Rationale: Ezio uses Kanban as a working signal, not as a retrospective catalog.
 
 Load and apply this SOP whenever any of these are true:
 
-- Ezio says "做 / 修 / 改 / 实现 / 上线 / 部署 / review / 生成 patch" and the target is EgoZone.
+- Ezio says "做 / 修 / 改 / 实现 / 上线 / 部署 / review / 生成 patch" and the target is your project.
 - An agent discovers a bug, missing task, stale doc, infra gotcha, regression risk, or follow-up while doing project work.
 - The work touches code, docs, tests, database, frontend build artifacts, deployment, cron, config, or governance records.
 - The worker needs to decide between `kanban_complete` and `kanban_block(reason="review-required: ...")`
@@ -238,7 +238,7 @@ Load and apply this SOP whenever any of these are true:
 - A worker patch includes user-facing hint/copy and Ezio asks to review the copy — load for Pitfall #23 (copy preference: default to "show nothing").
 - Any agent is about to call `hermes kanban dispatch` — load for Pitfall #24 (it's daemon-auto, not manual).
 - An orchestrator is applying a worker patch on the worker's behalf, OR a worker is reviewing its own patch — load for Pitfall #25 (worker worktree boundary; "X 2.py" stray-file detection). Also load the umbrella `multi-agent-coordination` skill for the broader 4-layer defense strategy.
-- **The task involves changing a Kanban task's status** (closing, blocking, unblocking, completing) — load for **Pitfall #26 (verify source of truth + no fabrications)**. The 4-layer source-of-truth chain is NOT obvious from CLI output alone; egoz.one reads a SQLite DB that hermes CLI does not touch.
+- **The task involves changing a Kanban task's status** (closing, blocking, unblocking, completing) — load for **Pitfall #26 (verify source of truth + no fabrications)**. The 4-layer source-of-truth chain is NOT obvious from CLI output alone; {project_domain} reads a SQLite DB that hermes CLI does not touch.
 - The user pushes back with "还 X" / "你没改对" / "还在 blocked" after you reported "done" on a Kanban state change — load immediately for Pitfall #26.
 - **The task involves reviewing a worker's ops/verification script patch** (health checks, deployment verifiers, monitoring scripts) — load for **Pitfall #32 (live-run checklist)**. Unit tests passing is insufficient; must run against the actual stack before approving.
 
@@ -321,7 +321,7 @@ kanban_complete(summary + metadata)
 | "Other agents aren't watching Kanban" | They will, once they load `kanban-worker` | Link this skill from related skills |
 | "I'm ezio-zero and the task is mine, no need to register" | Same — register even self-owned work | Kanban is the SSOT for *all* work |
 | "I'll list every Kanban card with full body" (format) | Wastes Ezio's scan time | Follow "Kanban listing format" section above — Blocked + Todo first, Done at end |
-| "I'll just `kanban done X` to close it" | Doesn't affect what the user sees on egoz.one — see Pitfall #26 | Verify source of truth via `sqlite3` + `curl` first |
+| "I'll just `kanban done X` to close it" | Doesn't affect what the user sees on {project_domain} — see Pitfall #26 | Verify source of truth via `sqlite3` + `curl` first |
 
 ## Working with other agents
 

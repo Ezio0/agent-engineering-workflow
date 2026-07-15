@@ -21,7 +21,7 @@ sqlite3 /Users/ezio/.hermes/kanban/boards/{board_slug}/kanban.db \
 Worker output lives in a Kanban worktree, NOT the main project dir:
 
 ```bash
-cd /Users/ezio/.hermes/kanban/boards/{board_slug}/workspaces/t_XXX/EgoZone
+cd /Users/ezio/.hermes/kanban/boards/{board_slug}/workspaces/t_XXX/your project
 ```
 
 **Warning**: the worktree's HEAD may be significantly behind the main repo
