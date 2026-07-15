@@ -521,6 +521,24 @@ session_search 查过去 transcripts。
 **错**（通常）。Skills 应组合，不重复。建新 skill 前，检查：能成为既有
 skill 的 section 吗？能，则扩展，不建。
 
+### 9.6 运维任务归属
+
+工作流覆盖"怎么做 feature"，不覆盖"怎么维护系统"。运维任务（凭证轮换、定时任务健康检查、基础设施调试）不走 5 Gate（不是 feature），但走简化流程：
+
+1. Kanban 注册（标 `ops` 标签）
+2. 直接执行（或 patch → review 如涉及代码变更）
+3. 记录到项目 runbook（`docs/runbook/`）
+
+#### 凭证生命周期
+- gh CLI token：定期检查 `gh auth status`；过期前重新 `gh auth login`
+- API keys：定期轮换；轮换记录在项目 .env
+- SSH keys：按需检查 `ssh -T git@github.com`
+
+#### 定时任务健康检查
+- launchd：`launchctl list | grep <label>` 检查状态
+- Hermes cron：`hermes cron list`（或 cronjob action='list'）
+- 检查 last-run 时间戳和 exit code
+
 ---
 
 ## 10. 开放问题（决策截止）

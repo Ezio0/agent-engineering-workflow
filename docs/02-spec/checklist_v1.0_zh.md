@@ -107,6 +107,8 @@
 - [ ] 无 wishlist 项（无截止日问题）
 - [ ] 机制明确：问题如何被解决、移到对应 section
 
+> 决策后创建 ADR（见 `docs/adr/`）。
+
 ### §12 References
 
 - [ ] Positioning Memo 链接

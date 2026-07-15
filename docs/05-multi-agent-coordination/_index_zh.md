@@ -1,5 +1,7 @@
 # 05 — Multi-Agent Coordination
 
+> **定位说明**：本节是 Stage 06 Implementation 的触发式子流程。当 Implementation 涉及多 agent 并行时加载本节；单 agent 实施可跳过。
+
 > **状态**：活跃（Stage 5）
 > **最后审阅**：2026-07-12
 > **关联**：[English version](_index_en.md)

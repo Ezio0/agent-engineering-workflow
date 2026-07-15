@@ -800,7 +800,35 @@ PROMOTION_THRESHOLD = int(os.environ["PROMOTION_THRESHOLD"])
 
 ---
 
-## 12. 开放问题（决策截止）
+## 12. LLM 调用可靠性
+
+LLM API 调用是**外部依赖**，同数据库、缓存一样需要错误处理。
+
+### 12.1 必须验证的 4 层
+
+1. HTTP status code（非 200 = 错误）
+2. Response body JSON 可解析
+3. `content` / `choices[0].message.content` 非空字符串
+4. `finish_reason`（"length" = 截断；"content_filter" = 被过滤；"stop" = 正常）
+
+### 12.2 重试策略
+
+- 空响应：重试 1 次，可调整 temperature 或 max_tokens
+- HTTP 429（rate limit）：指数退避，最多 3 次
+- HTTP 500：切换 fallback 模型
+- 重试用尽：返回明确错误，**不返回空结果**
+
+### 12.3 Fallback 模型链
+
+主模型 → 备用模型 → 最终 fallback。每层有明确的超时和 token 限制。配置在 `.env`，不在代码里硬编码。
+
+### 12.4 诊断日志
+
+空响应时记录：finish_reason、prompt_tokens、completion_tokens、total_tokens、model 名称。截取 prompt 前 500 字符用于调试。这比只记"empty response"有用得多。
+
+---
+
+## 13. 开放问题（决策截止）
 
 | # | 问题 | 截止 | 负责人 |
 |---|------|------|--------|
@@ -810,7 +838,7 @@ PROMOTION_THRESHOLD = int(os.environ["PROMOTION_THRESHOLD"])
 
 ---
 
-## 13. 参考
+## 14. 参考
 
 - [`../06-implementation/_index_zh.md`](../06-implementation/_index_zh.md) — Stage 6 拥有**怎么**执行 task；本节拥有**怎么**写代码
 - [`../04-test-plan/_index_zh.md`](../04-test-plan/_index_zh.md) — Test Plan 定义测什么；上面 §8 定义怎么测

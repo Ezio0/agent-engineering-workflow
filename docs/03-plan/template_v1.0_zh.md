@@ -47,6 +47,8 @@
 | M | ~半天 | 跨模块改动 |
 | L | **避免** | 拆成多个 M |
 
+Retro（Stage 09）时回填实际耗时，校准未来预估。
+
 ### Tasks
 
 #### T-001：<task 名>
@@ -54,6 +56,8 @@
 - **Phase**：P0
 - **Size**：XS / S / M
 - **Owner**：<agent / 人 / 未指派>
+- **预估耗时**：<XS ~30min / S ~1-2h / M ~半天>
+- **实际耗时**：<Retro 时回填>
 - **Kanban card**：<卡 ID 或 "TBD — 开始前注册">
 - **Description**：<做什么 / 改什么>
 - **Files affected**：<列表 或 "TBD">

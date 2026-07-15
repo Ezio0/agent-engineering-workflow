@@ -12,6 +12,10 @@ description: >-
 version: 1.0.0
 author: Ezio Agent Workflow
 license: MIT
+requires:
+  product-positioning: ">=1.0.0"
+  prd-authoring: ">=1.0.0"
+  spec-authoring: ">=1.0.0"
 metadata:
   hermes:
     tags:
@@ -50,13 +54,29 @@ metadata:
 - 一个项目已经在 Implementation 阶段卡住，需要回上游重新对齐
 - 你不确定一个想法"够不够成熟到可以开始写代码"
 
-不要使用的场景：
+## Tier 系统：Fast Lane vs Full Gate
 
-- bug 修复、配置调整、文案修改 —— 直接做，但测试仍然要求
-- 已签字项目的延续工作 —— 引用旧 gate 即可
-- 纯探索性 spike —— 在 `docs/plans/` 记录目标，验证后再走门
+任务进来时，先判断 Tier：
 
-判断标准：如果任务是"想清楚再写"的范畴，就用本 skill。如果是"已经清楚，直接做"的范畴，跳过。
+| Tier | 标准 | 流程 |
+|------|------|------|
+| **T0 直做** | bug 修复、配置调整、文案修改；单文件 < 20 行改动 | Kanban 注册 → 实现 → 测试 → patch → review |
+| **T1 轻量** | 小 feature、小工具；单模块改动；无跨模块接口变更 | Lean Canvas（Positioning + Acceptance 一页纸）→ 实现 → 测试 → review |
+| **T2 完整** | 预计 > 2 周或 > 3 人协作或涉及外部 API 契约或系统级变更 | 5 Gate 全套（Positioning → PRD → Spec → Plan → Test Plan） |
+
+### 判断标准
+- 涉及新 API 或改 API 契约 → 至少 T2
+- 涉及 DB schema 变更 → 至少 T2
+- 跨模块改动 → 至少 T2
+- 纯单文件改动、无新接口 → T0 或 T1
+- 探索性 spike → T1（记录目标，验证后决定是否升级 T2）
+
+### Fast Lane 规则（T0/T1）
+- 仍然必须 Kanban 注册
+- 仍然必须测试通过
+- 仍然必须 review（T1 需 patch handoff）
+- 跳过的是 5 Gate 的文档门
+- **任何 Fast Lane task 如果实施中发现 scope 超出预期，立即升级 Tier**
 
 ## 5 个 Gate（顺序固定）
 
@@ -86,7 +106,7 @@ metadata:
 
 - WHO 是一个具体的人，不是人群画像
 - WHY 描述的痛点独立于产品存在
-- WHY NOW 识别了一个具体变化，3 年前不成立
+- WHY NOW 有具体触发点（外部变化 / 内部积累 / 机会窗口 三选一）
 - UNDERLYING LOGIC 解释的是机制，不是结论
 - ANTI-POSITIONING 至少列了 3 个本项目不是的东西
 
@@ -287,6 +307,12 @@ metadata:
 - Spec：[`docs/02-spec/checklist_v1.0_zh.md`](../../docs/02-spec/checklist_v1.0_zh.md)
 - Plan：[`docs/03-plan/checklist_v1.0_zh.md`](../../docs/03-plan/checklist_v1.0_zh.md)
 - Test Plan：[`docs/04-test-plan/checklist_v1.0_zh.md`](../../docs/04-test-plan/checklist_v1.0_zh.md)
+
+### Skill 版本对齐
+
+本 skill 引用的章节数（如 PRD 13 章节、Spec 12 章节）依赖下游 skill 的版本。如果下游 skill 升级改变了结构（如 PRD 从 13 章变 14 章），本 skill 的 checklist 会失效。
+
+frontmatter 中的 `requires` 字段声明了最低版本要求。加载前应校验版本兼容性。
 
 ### 路由到深度 skill
 

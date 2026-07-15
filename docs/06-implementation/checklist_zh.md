@@ -57,6 +57,12 @@
 - [ ] 代码编译 / lint 干净
 - [ ] 无 TODO / FIXME / XXX 留下无 follow-up task ID
 
+### B.2b 文档同步检查
+
+- [ ] 实现行为与 Spec 描述一致，或 Spec 已升版本记录偏离
+- [ ] 如偏离了 PRD 级别决策，PRD 已升版本
+- [ ] Task Report §8 偏差条目标注了"需文档同步"
+
 ### B.3 TEST 阶段后
 
 - [ ] 受影响 module / package 的全部测试已跑（不只是碰过的文件的测试）

@@ -109,6 +109,15 @@
 - [ ] 无编造的章节引用
 - [ ] 如章节不存在：VIOLATION，BLOCKED
 
+### B.8b QG-8b：Spec/PRD 与实现一致（Code-Doc Sync）
+
+- [ ] Task Report §5 声明的实现行为与 Stage 2 Spec 对应章节描述一致
+- [ ] 如有偏离：Stage 2 Spec 已升版本（v1.x → v1.x+1），偏离理由在 Spec Revision History
+- [ ] 如偏离触及 PRD 级别决策：Stage 1 PRD 已升版本
+- [ ] 无"实现已经变了但文档没跟"的情况
+
+失败后果：CHANGES REQUESTED — 先升文档版本，再重新 review
+
 ### B.9 QG-9：偏差已披露
 
 - [ ] Task Report §8 存在

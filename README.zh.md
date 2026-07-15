@@ -26,12 +26,12 @@
 
 1. 读 [`docs/00-positioning/`](docs/00-positioning/_index_zh.md) — 产品定位（Stage 0）
 2. 读 [`docs/01-prd/`](docs/01-prd/_index_zh.md) — PRD 工作流（Stage 1）
-3. 用 [`docs/05-implementation/`](docs/05-implementation/_index_zh.md) 里的模板起稿（待补充）
+3. 用 [`docs/06-implementation/`](docs/06-implementation/_index_zh.md) 里的模板起稿（待补充）
 4. 查 [`docs/11-governance/`](docs/11-governance/_index_zh.md) 看 commit / patch 规则
 
 ### 在同一 codebase 跑多 agent 时
 
-1. 读 [`docs/12-multi-agent-coordination/`](docs/12-multi-agent-coordination/_index_zh.md) 的三层防护
+1. 读 [`docs/05-multi-agent-coordination/`](docs/05-multi-agent-coordination/_index_zh.md) 的三层防护
 2. 应用：**声明 + 隔离 + 检测**
 3. 用 [`agent-team-orchestrator`](https://github.com/Ezio0/agent-team-orchestrator) 作为实现参考
 
@@ -49,12 +49,14 @@
 | [02-spec](docs/02-spec/_index_zh.md) | 技术规格 | 写 Spec 的任何人 |
 | [03-plan](docs/03-plan/_index_zh.md) | 实施计划 | 写 Plan 的任何人 |
 | [04-test-plan](docs/04-test-plan/_index_zh.md) | 测试策略（Unit / Integration / E2E） | 写测试的任何人 |
-| [05-implementation](docs/05-implementation/_index_zh.md) | 写代码 | 实施的任何人 |
-| [06-review](docs/06-review/_index_zh.md) | Review 流程 | Reviewer |
-| [07-commit](docs/07-commit/_index_zh.md) | Commit 权限 | Committer |
+| [06-implementation](docs/06-implementation/_index_zh.md) | 写代码 | 实施的任何人 |
+| [07-review](docs/07-review/_index_zh.md) | Review 流程 | Reviewer |
+| [08-commit](docs/08-commit/_index_zh.md) | Commit 权限 | Committer |
 | [10-coding-practices](docs/10-coding-practices/_index_zh.md) | 编码模式（lint/test/refactor） | 编码的任何人 |
 | [11-governance](docs/11-governance/_index_zh.md) | commit 权限、Kanban-first、patch 交接 | agent + 审阅者 |
-| [12-multi-agent-coordination](docs/12-multi-agent-coordination/_index_zh.md) | 防并发编辑冲突的三层防护 | 跑并行 agent 的任何人 |
+| [05-multi-agent-coordination](docs/05-multi-agent-coordination/_index_zh.md) | 防并发编辑冲突的三层防护 | 跑并行 agent 的任何人 |
+| [09-retro](docs/09-retro/_index_zh.md) | 发版后回顾、pitfall 沉淀 | 所有人 |
+| [adr](docs/adr/_index_zh.md) | 架构决策记录 | 做架构决策的任何人 |
 | [90-pitfalls](docs/90-pitfalls/_index_zh.md) | 整合的 pitfalls 索引（18+） | 所有人 |
 
 另见：[Sections 索引](docs/agent_engineering_workflow_sections_v1.0_2026-07-12.zh.md) 顶层完整索引。
@@ -118,6 +120,6 @@ MIT — 见 [LICENSE](LICENSE)。
 
 ---
 
-**最后更新**：2026-07-12
-**版本**：v1.0.0
+**最后更新**：2026-07-15
+**版本**：v2.3.0
 **状态**：活跃
