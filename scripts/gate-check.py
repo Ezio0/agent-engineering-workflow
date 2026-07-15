@@ -400,26 +400,14 @@ def detect_tier(project_root: Path) -> TierAssessment:
 # Gate 检查
 # ---------------------------------------------------------------------------
 
-def check_t0(project_root: Path, allow_chore: bool = False) -> list[CheckResult]:
-    """T0 检查：Kanban 注册是否存在（或 chore 豁免）。
+def check_t0(project_root: Path) -> list[CheckResult]:
+    """T0 检查：Kanban 注册是否存在。
     
-    Args:
-        project_root: 项目根目录
-        allow_chore: 如果 True，检测到 <5 行 chore commit 时豁免 Kanban
+    chore 类改动（typo、lint fix、依赖 bump）走 Kanban 简易卡：
+    单行卡片（what + why），无 AC，无 review，保留可追溯性。
+    仍需 Kanban 注册——不豁免。
     """
     results = []
-    
-    # chore 豁免检查
-    if allow_chore:
-        is_chore = detect_chore_commit(project_root)
-        if is_chore:
-            results.append(CheckResult(
-                passed=True,
-                message="✅ chore 豁免：<5 行改动 + chore: 前缀 + body 含理由",
-                severity="INFO",
-            ))
-            return results
-
     kanban_paths = [
         project_root / ".kanban",
         project_root / "kanban.md",
@@ -429,78 +417,9 @@ def check_t0(project_root: Path, allow_chore: bool = False) -> list[CheckResult]
         results.append(CheckResult(
             passed=False,
             message="Kanban 注册缺失：未找到 .kanban/ 目录、kanban.md 文件或 docs/kanban/ 目录。"
-            " T0 仍需 Kanban 注册（或使用 chore: 前缀 + <5 行豁免）。"
+            " T0 需 Kanban 注册（chore 类走简易卡：单行 what+why，无 AC/review）。"
         ))
     return results
-
-
-def detect_chore_commit(project_root: Path) -> bool:
-    """检测最近 commit 是否符合 chore 豁免条件。
-    
-    条件（全部满足）:
-    1. commit message 以 chore: 开头
-    2. body 非空（含一句理由）
-    3. 改动 < 5 行（insertions + deletions）
-    4. 单文件
-    """
-    try:
-        result = subprocess.run(
-            ["git", "log", "-1", "--format=%B"],
-            capture_output=True,
-            text=True,
-            cwd=project_root,
-            timeout=10,
-        )
-        message = result.stdout.strip()
-    except (subprocess.TimeoutExpired, FileNotFoundError):
-        return False
-
-    if not message:
-        return False
-
-    lines = message.splitlines()
-    first_line = lines[0].strip()
-
-    # 检查 chore: 前缀
-    if not first_line.lower().startswith("chore:"):
-        return False
-
-    # 检查 body 非空
-    body_lines = [l for l in lines[1:] if l.strip()]
-    if not body_lines:
-        return False
-
-    # 检查改动行数
-    try:
-        result = subprocess.run(
-            ["git", "diff", "--stat", "HEAD~1"],
-            capture_output=True,
-            text=True,
-            cwd=project_root,
-            timeout=10,
-        )
-        output = result.stdout
-    except (subprocess.TimeoutExpired, FileNotFoundError):
-        return False
-
-    # 解析 diff stat
-    files_changed = 0
-    lines_changed = 0
-    for line in output.splitlines():
-        if "file" in line and "change" in line:
-            m = re.search(r"(\d+) insertion", line)
-            if m:
-                lines_changed += int(m.group(1))
-            m = re.search(r"(\d+) deletion", line)
-            if m:
-                lines_changed += int(m.group(1))
-        elif "|" in line:
-            files_changed += 1
-
-    if files_changed != 1 or lines_changed >= 5:
-        return False
-
-    return True
 
 
 def check_t1(project_root: Path) -> list[CheckResult]:
@@ -592,13 +511,12 @@ def run_check(
     tier: str,
     project_root: Path,
     verbose: bool = False,
-    allow_chore: bool = False,
 ) -> tuple[bool, list[CheckResult]]:
     """执行门控检查。返回 (passed, results)。"""
     all_results: list[CheckResult] = []
 
     if tier == "T0":
-        all_results = check_t0(project_root, allow_chore=allow_chore)
+        all_results = check_t0(project_root)
     elif tier == "T1":
         all_results = check_t1(project_root)
     elif tier == "T2":
@@ -681,11 +599,6 @@ def main():
         action="store_true",
         help="显示详细检查过程（包括通过项）",
     )
-    parser.add_argument(
-        "--allow-chore",
-        action="store_true",
-        help="T0: 允许 chore: 前缀 + <5 行 + 单文件的 commit 豁免 Kanban",
-    )
 
     args = parser.parse_args()
     project_root = Path(args.project_root).resolve()
@@ -712,7 +625,7 @@ def main():
             sys.exit(1)
 
     # 执行检查
-    passed, results = run_check(tier, project_root, verbose=args.verbose, allow_chore=args.allow_chore)
+    passed, results = run_check(tier, project_root, verbose=args.verbose)
     all_results = results + extra_results
 
     # 重新评估（考虑 extra_results 中的 ERROR）
