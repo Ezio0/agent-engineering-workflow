@@ -135,23 +135,21 @@ python3 ~/agent-workflow/scripts/gate-check.py --auto-detect-tier --project-root
 
 ---
 
-## Fast Lane（T0 chore 豁免）
+## Fast Lane（T0 chore 简易卡）
 
-改一个 typo、bump 一个依赖？走 chore 豁免：
+改一个 typo、bump 一个依赖？chore 类改动仍需 Kanban 记录，但走简易卡（单行 what+why，无 AC/review）：
 
 ```bash
-git commit -m "chore: fix typo in README
+# 在 .kanban/README.md 里加一行：
+echo "- CHORE-001 fix typo in README (link broken)" >> .kanban/README.md
 
-typo caused broken link"
+git commit -m "chore: fix typo in README"
 
-python3 ~/agent-workflow/scripts/gate-check.py --tier T0 --allow-chore --project-root .
+python3 ~/agent-workflow/scripts/gate-check.py --tier T0 --project-root .
 ```
 
-条件（全部满足）：
-- commit message 以 `chore:` 开头
-- body 非空（一句理由）
-- 单文件
-- < 5 行改动
+chore 边界：typo / 注释 / 依赖 bump / 日志文案 / 格式化 / 非核心配置小改。
+**任何逻辑/接口/测试变更不算 chore。**
 
 ---
 

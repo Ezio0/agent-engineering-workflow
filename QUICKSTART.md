@@ -135,23 +135,21 @@ Rules (hardcoded):
 
 ---
 
-## Fast Lane (T0 chore exemption)
+## Fast Lane (T0 chore lite card)
 
-Fixing a typo, bumping a dependency? Use chore exemption:
+Fixing a typo, bumping a dependency? Chore changes still need a Kanban entry, but as a lite card (single-line what+why, no AC/review):
 
 ```bash
-git commit -m "chore: fix typo in README
+# Add a line to .kanban/README.md:
+echo "- CHORE-001 fix typo in README (link broken)" >> .kanban/README.md
 
-typo caused broken link"
+git commit -m "chore: fix typo in README"
 
-python3 ~/agent-workflow/scripts/gate-check.py --tier T0 --allow-chore --project-root .
+python3 ~/agent-workflow/scripts/gate-check.py --tier T0 --project-root .
 ```
 
-Conditions (all must hold):
-- commit message starts with `chore:`
-- body non-empty (one-line reason)
-- single file
-- < 5 lines changed
+Chore boundary: typo / comments / dependency bump / log wording / formatting / non-core config small change.
+**Any logic/interface/test change is NOT chore.**
 
 ---
 
